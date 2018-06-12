@@ -7,7 +7,7 @@ void RainColumn::Update()
 		rs.Update();
 	}
 	// Delete RainStreaks that are out of screen
-	if (RainStreaks.front().IsOutOfScreen()) {
+	if (!RainStreaks.empty() && RainStreaks.front().IsOutOfScreen()) {
 		RainStreaks.pop_front();
 	}
 
