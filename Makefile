@@ -5,7 +5,7 @@ INC_DIR = include
 TARGET = tmatrix
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
-CPPFLAGS = -I$(INC_DIR)
+CPPFLAGS = -I $(INC_DIR)/
 LDLIBS = -lncurses
 
 .PHONY: clean
@@ -17,9 +17,9 @@ $(TARGET): $(OBJECTS)
 	$(CXX) $^ $(LDLIBS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	-rm -rf $(OBJ_DIR)
+	-rm -rf $(OBJ_DIR)/
 	-rm -f $(TARGET)
