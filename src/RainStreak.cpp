@@ -1,6 +1,5 @@
 #include "RainStreak.h"
-
-extern int NumberOfRows;
+#include "Terminal.h"
 
 void RainStreak::Step()
 {
@@ -16,7 +15,7 @@ void RainStreak::Step()
 	}
 	// Create a new MChar
 	// FIXME: last row of the screen shouldn't be empty
-	if (x < NumberOfRows) {
+	if (x < Terminal::getNumberOfRows()) {
 		int UpdateRate = rand() % 3 + 5;
 		int UpdateTimer = rand() % UpdateRate;
 

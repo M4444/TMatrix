@@ -1,4 +1,5 @@
 #include "MatrixChar.h"
+#include "Terminal.h"
 
 std::string MatrixChar::ALL_MCHARS[NUM_OF_CHARS] = {
 	"ﾊ", "ﾐ", "ﾋ", "ｰ", "ｳ", "ｼ", "ﾅ", "ﾓ", "ﾆ", "ｻ",
@@ -20,12 +21,12 @@ void MatrixChar::SetRandomMatrixChar() {
 
 void MatrixChar::Draw()
 {
-        printf("\033[%d;%dH%s\n", x, y, ALL_MCHARS[MCharIndex].c_str());
+	Terminal::Draw(x, y, ALL_MCHARS[MCharIndex]);
 }
 
 void MatrixChar::Erase()
 {
-        printf("\033[%d;%dH%s\n", x, y, " ");
+	Terminal::Erase(x, y);
 }
 
 

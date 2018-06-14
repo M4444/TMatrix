@@ -1,10 +1,10 @@
 #include "Rain.h"
-
-extern int NumberOfColumns;
+#include "Terminal.h"
 
 Rain::Rain()
 {
 	// Create all the rain columns
+	int NumberOfColumns = Terminal::getNumberOfColumns();
 	for (int i = 1; i < NumberOfColumns+1; i++) {
 		int Speed = rand() % 2 + 1;
 		RainColumns.push_back(RainColumn(i, Speed));
