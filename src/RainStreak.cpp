@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "RainStreak.h"
 #include "Terminal.h"
 

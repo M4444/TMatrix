@@ -1,8 +1,8 @@
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
 #include <unistd.h>
-
-#include "Terminal.h"
 #include "Rain.h"
+#include "Terminal.h"
 
 #define RUN_SPEED 100
 

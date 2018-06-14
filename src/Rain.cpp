@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "Rain.h"
 #include "Terminal.h"
 

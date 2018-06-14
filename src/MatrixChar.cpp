@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "MatrixChar.h"
 #include "Terminal.h"
 

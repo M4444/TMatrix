@@ -1,12 +1,7 @@
+#include <cstdio>
+#include <ncurses.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
-
-#ifdef HAVE_NCURSES_H
-#include <ncurses.h>
-#else
-#include <curses.h>
-#endif
-
 #include "Terminal.h"
 
 int Terminal::NumberOfRows = 0;

@@ -2,7 +2,7 @@
 #define _RAIN_COLUMN_H_
 
 #include <list>
-#include <stdlib.h>
+#include <cstdlib>
 #include "Active.h"
 #include "RainStreak.h"
 
