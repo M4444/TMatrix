@@ -12,7 +12,7 @@ int main()
 
 	srand (time(NULL));
 
-	Rain rain = Rain();
+	Rain rain;
 	while (true) {
 		usleep(1000*RUN_SPEED);
 

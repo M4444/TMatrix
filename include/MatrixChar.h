@@ -22,6 +22,9 @@ public:
 		UpdateTimer(UT), MCharIndex(-1) {
 		SetRandomMatrixChar();
 	}
+	~MatrixChar() {
+		Erase();
+	}
 
 	void Draw();
 	void Erase();

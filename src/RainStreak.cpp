@@ -7,7 +7,6 @@ void RainStreak::Step()
 	// Delete the tail MChar
 	if (x > Length) {
 		if (!MChars.empty()) {
-			MChars.front().Erase();
 			MChars.pop_front();
 		} else {
 			OutOfScreen = true;
