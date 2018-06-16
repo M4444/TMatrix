@@ -1,7 +1,5 @@
 #include <cstdio>
 #include <ncurses.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
 #include "Terminal.h"
 
 int Terminal::NumberOfRows = 0;
@@ -17,10 +15,7 @@ Terminal::Terminal() {
 	leaveok(stdscr, TRUE);
 	curs_set(0);
 
-	struct winsize WindowSize;
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &WindowSize);
-	Terminal::NumberOfRows = WindowSize.ws_row;
-	Terminal::NumberOfColumns = WindowSize.ws_col;
+	getmaxyx(stdscr, Terminal::NumberOfRows, Terminal::NumberOfColumns);
 }
 
 Terminal::~Terminal() {
