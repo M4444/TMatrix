@@ -33,10 +33,10 @@ Terminal::~Terminal() {
 
 void Terminal::Draw(int x, int y, std::string &str)
 {
-	printf("\033[%d;%dH%s\n", x, y, str.c_str());
+	printf("\033[%d;%dH%s\n", y, x, str.c_str());
 }
 
 void Terminal::Erase(int x, int y)
 {
-	printf("\033[%d;%dH%s\n", x, y, " ");
+	printf("\033[%d;%dH%s\n", y, x, " ");
 }

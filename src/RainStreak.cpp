@@ -4,9 +4,9 @@
 
 void RainStreak::Step()
 {
-	x++;
+	y++;
 	// Delete the tail MChar
-	if (x > Length) {
+	if (y > Length) {
 		if (!MChars.empty()) {
 			MChars.pop_front();
 		} else {
@@ -15,7 +15,7 @@ void RainStreak::Step()
 	}
 	// Create a new MChar
 	// FIXME: last row of the screen shouldn't be empty
-	if (x < Terminal::getNumberOfRows()) {
+	if (y < Terminal::getNumberOfRows()) {
 		int UpdateRate = Random::Random(5, 7);
 		int UpdateTimer = Random::Random(0, UpdateRate-1);
 
@@ -23,7 +23,7 @@ void RainStreak::Step()
 		MChars.back().Draw();
 	}
 	// Check if the tail MChar has entered the screen
-	if (x >= Length) {
+	if (y >= Length) {
 		FullyEnteredScreen = true;
 	}
 }
