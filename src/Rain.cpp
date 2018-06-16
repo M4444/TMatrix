@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include "Rain.h"
+#include "Random.h"
 #include "Terminal.h"
 
 Rain::Rain()
@@ -7,7 +8,7 @@ Rain::Rain()
 	// Create all the rain columns
 	int NumberOfColumns = Terminal::getNumberOfColumns();
 	for (int i = 1; i < NumberOfColumns+1; i++) {
-		int Speed = rand() % 2 + 1;
+		int Speed = Random::Random(1, 2);
 		RainColumns.push_back(RainColumn(i, Speed));
 	}
 }

@@ -2,9 +2,9 @@
 #define _RAIN_COLUMN_H_
 
 #include <list>
-#include <cstdlib>
 #include "Active.h"
 #include "RainStreak.h"
+#include "Random.h"
 
 class RainColumn : public Active {
 	int x;
@@ -14,7 +14,7 @@ class RainColumn : public Active {
 	std::list<RainStreak> RainStreaks;
 public:
 	RainColumn(int X, int S) : x(X), Speed(S), EmptyRainSlot(true) {
-		UpdateTimer = rand() % 6 + 4;
+		UpdateTimer = Random::Random(4, 9);
 	}
 
 	void Update();

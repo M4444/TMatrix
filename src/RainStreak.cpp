@@ -1,5 +1,5 @@
-#include <cstdlib>
 #include "RainStreak.h"
+#include "Random.h"
 #include "Terminal.h"
 
 void RainStreak::Step()
@@ -16,8 +16,8 @@ void RainStreak::Step()
 	// Create a new MChar
 	// FIXME: last row of the screen shouldn't be empty
 	if (x < Terminal::getNumberOfRows()) {
-		int UpdateRate = rand() % 3 + 5;
-		int UpdateTimer = rand() % UpdateRate;
+		int UpdateRate = Random::Random(5, 7);
+		int UpdateTimer = Random::Random(0, UpdateRate-1);
 
 		MChars.push_back(MatrixChar(x, y, UpdateRate, UpdateTimer));
 		MChars.back().Draw();

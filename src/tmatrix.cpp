@@ -1,5 +1,3 @@
-#include <cstdlib>
-#include <ctime>
 #include <unistd.h>
 #include "Rain.h"
 #include "Terminal.h"
@@ -9,8 +7,6 @@
 int main()
 {
 	Terminal::getInstance();
-
-	srand (time(NULL));
 
 	Rain rain;
 	while (true) {

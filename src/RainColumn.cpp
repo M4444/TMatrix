@@ -15,13 +15,13 @@ void RainColumn::Update()
 		UpdateTimer--;
 	} else if (EmptyRainSlot && UpdateTimer <= 0) {
 		// Create new streak
-		int RandomLength = rand() % 16 + 4;
+		int RandomLength = Random::Random(4, 20);
 
 		RainStreaks.push_back(RainStreak(x, RandomLength, Speed));
 
 		EmptyRainSlot = false;
 	} else if (RainStreaks.back().HasFullyEnteredScreen()) {
 		EmptyRainSlot = true;
-		UpdateTimer = rand() % 6 + 4;
+		UpdateTimer = Random::Random(4, 9);
 	}
 }

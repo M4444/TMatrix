@@ -1,5 +1,5 @@
-#include <cstdlib>
 #include "MatrixChar.h"
+#include "Random.h"
 #include "Terminal.h"
 
 std::string MatrixChar::ALL_MCHARS[NUM_OF_CHARS] = {
@@ -15,7 +15,7 @@ void MatrixChar::SetRandomMatrixChar() {
 	int RandomIndex;
 
 	do {
-		RandomIndex = rand() % NUM_OF_CHARS;
+		RandomIndex = Random::Random(0, NUM_OF_CHARS-1);
 	} while (RandomIndex == MCharIndex);
 	MCharIndex = RandomIndex;
 }
