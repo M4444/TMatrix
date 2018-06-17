@@ -2,13 +2,12 @@
 #define _MATRIX_CHAR_H_
 
 #include <string>
+#include <vector>
 #include "Active.h"
-
-#define NUM_OF_CHARS 57
 
 class MatrixChar : public Active {
 	// Array of all the characters
-	static std::string ALL_MCHARS[NUM_OF_CHARS];
+	static const std::vector<std::string> ALL_MCHARS;
 	// Coordinates
 	int x;
 	int y;

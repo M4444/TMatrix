@@ -2,7 +2,7 @@
 #include "Random.h"
 #include "Terminal.h"
 
-std::string MatrixChar::ALL_MCHARS[NUM_OF_CHARS] = {
+const std::vector<std::string> MatrixChar::ALL_MCHARS = {
 	"ﾊ", "ﾐ", "ﾋ", "ｰ", "ｳ", "ｼ", "ﾅ", "ﾓ", "ﾆ", "ｻ",
 	"ﾜ", "ﾂ", "ｵ", "ﾘ", "ｱ", "ﾎ", "ﾃ", "ﾏ" ,"ｹ" ,"ﾒ",
 	"ｴ", "ｶ", "ｷ", "ﾑ", "ﾕ", "ﾗ", "ｾ", "ﾈ", "ｽ", "ﾀ",
@@ -16,7 +16,7 @@ void MatrixChar::SetRandomMatrixChar()
 	int RandomIndex;
 
 	do {
-		RandomIndex = Random::Random(0, NUM_OF_CHARS-1);
+		RandomIndex = Random::Random(0, ALL_MCHARS.size()-1);
 	} while (RandomIndex == MCharIndex);
 	MCharIndex = RandomIndex;
 }
