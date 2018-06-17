@@ -25,7 +25,7 @@ public:
 
 	static int getNumberOfRows() { return NumberOfRows; }
 	static int getNumberOfColumns() { return NumberOfColumns; }
-	static void Draw(int x, int y, const std::string &str);
+	static void Draw(int x, int y, const std::string &str, bool isGlowing = false);
 	static void Erase(int x, int y);
 	static void Flush();
 };

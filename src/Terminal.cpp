@@ -19,6 +19,13 @@ Terminal::Terminal() {
 	getmaxyx(stdscr, Terminal::NumberOfRows, Terminal::NumberOfColumns);
 
 	Screen = std::vector<std::string>(NumberOfColumns*NumberOfRows, " ");
+
+	// Set black background
+	//std::cout << "\033[40m";
+	// Set bold style
+	std::cout << "\033[1m";
+	// Set green foreground
+	std::cout << "\033[32m";
 }
 
 Terminal::~Terminal() {
@@ -29,9 +36,10 @@ Terminal::~Terminal() {
 	endwin();
 }
 
-void Terminal::Draw(int x, int y, const std::string &str)
+void Terminal::Draw(int x, int y, const std::string &str, bool isGlowing)
 {
-	Screen[y*NumberOfColumns + x] = str;
+	// Set the color to white if MChar is glowing
+	Screen[y*NumberOfColumns + x] = isGlowing ? "\033[97m" + str + "\033[32m" : str;
 }
 
 void Terminal::Erase(int x, int y)

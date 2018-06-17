@@ -22,7 +22,7 @@ void MatrixChar::SetRandomMatrixChar() {
 
 void MatrixChar::Draw()
 {
-	Terminal::Draw(x, y, ALL_MCHARS[MCharIndex]);
+	Terminal::Draw(x, y, ALL_MCHARS[MCharIndex], RainStreakHead);
 }
 
 void MatrixChar::Erase()
@@ -39,4 +39,10 @@ void MatrixChar::Update()
 		Draw();
 	}
 	UpdateTimer--;
+}
+
+void MatrixChar::SetNotRainStreakHead()
+{
+	RainStreakHead = false;
+	Draw();
 }

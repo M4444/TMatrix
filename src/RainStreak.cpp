@@ -12,6 +12,10 @@ void RainStreak::Step()
 			OutOfScreen = true;
 		}
 	}
+	// Remove head status from the previous head MChar
+	if (!MChars.empty()) {
+		MChars.back().SetNotRainStreakHead();
+	}
 	// Create a new MChar
 	if (y < Terminal::getNumberOfRows()) {
 		int UpdateRate = Random::Random(5, 7);
