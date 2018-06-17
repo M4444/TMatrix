@@ -18,7 +18,6 @@ void RainColumn::Update()
 		int RandomLength = Random::Random(4, 20);
 
 		RainStreaks.push_back(RainStreak(x, RandomLength, Speed));
-
 		EmptyRainSlot = false;
 	} else if (RainStreaks.back().HasFullyEnteredScreen()) {
 		EmptyRainSlot = true;

@@ -1,4 +1,3 @@
-#include <cstdlib>
 #include "Rain.h"
 #include "Random.h"
 #include "Terminal.h"

@@ -15,6 +15,4 @@ int main()
 		rain.Update();
 		Terminal::Flush();
 	}
-
-	return 0;
 }

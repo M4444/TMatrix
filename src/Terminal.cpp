@@ -6,7 +6,8 @@ int Terminal::NumberOfRows = 0;
 int Terminal::NumberOfColumns = 0;
 std::vector<std::string> Terminal::Screen;
 
-Terminal::Terminal() {
+Terminal::Terminal()
+{
 	initscr();
 	savetty();
 	nonl();
@@ -28,7 +29,8 @@ Terminal::Terminal() {
 	std::cout << "\033[32m";
 }
 
-Terminal::~Terminal() {
+Terminal::~Terminal()
+{
 	curs_set(1);
 	clear();
 	refresh();

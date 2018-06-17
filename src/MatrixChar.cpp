@@ -11,7 +11,8 @@ std::string MatrixChar::ALL_MCHARS[NUM_OF_CHARS] = {
 	"<", ">", "¦", "|", "╌", " ", "\""
 };
 
-void MatrixChar::SetRandomMatrixChar() {
+void MatrixChar::SetRandomMatrixChar()
+{
 	int RandomIndex;
 
 	do {
