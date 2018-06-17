@@ -6,10 +6,10 @@
 #include "MatrixChar.h"
 
 class RainStreak : public Active {
-	int x;
+	const int x;
 	int y;
-	int Length;
-	int Speed;
+	const int Length;
+	const int Speed;
 	bool FullyEnteredScreen;
 	bool OutOfScreen;
 	std::deque<MatrixChar> MChars;
@@ -17,8 +17,8 @@ public:
 	RainStreak(int col, int Len, int S) : x(col), y(0), Length(Len),
 		Speed(S), FullyEnteredScreen(false), OutOfScreen(false) {}
 
-	bool IsOutOfScreen() { return OutOfScreen; }
-	bool HasFullyEnteredScreen() { return FullyEnteredScreen; }
+	bool IsOutOfScreen() const { return OutOfScreen; }
+	bool HasFullyEnteredScreen() const { return FullyEnteredScreen; }
 
 	void Step();
 	void Update();

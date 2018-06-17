@@ -7,8 +7,8 @@
 #include "Random.h"
 
 class RainColumn : public Active {
-	int x;
-	int Speed;
+	const int x;
+	const int Speed;
 	int UpdateTimer;
 	bool EmptyRainSlot;
 	std::list<RainStreak> RainStreaks;

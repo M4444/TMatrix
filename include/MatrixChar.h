@@ -9,9 +9,9 @@ class MatrixChar : public Active {
 	// Array of all the characters
 	static const std::vector<std::string> ALL_MCHARS;
 	// Coordinates
-	int x;
-	int y;
-	int UpdateRate;	// Usually ~5-7
+	const int x;
+	const int y;
+	const int UpdateRate;	// Usually ~5-7
 	int UpdateTimer;
 	int MCharIndex;
 	bool RainStreakHead;
@@ -26,8 +26,8 @@ public:
 		Erase();
 	}
 
-	void Draw();
-	void Erase();
+	void Draw() const;
+	void Erase() const;
 	void Update();
 	void SetNotRainStreakHead();
 };

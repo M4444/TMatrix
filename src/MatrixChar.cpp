@@ -21,12 +21,12 @@ void MatrixChar::SetRandomMatrixChar()
 	MCharIndex = RandomIndex;
 }
 
-void MatrixChar::Draw()
+void MatrixChar::Draw() const
 {
 	Terminal::Draw(x, y, ALL_MCHARS[MCharIndex], RainStreakHead);
 }
 
-void MatrixChar::Erase()
+void MatrixChar::Erase() const
 {
 	Terminal::Erase(x, y);
 }
