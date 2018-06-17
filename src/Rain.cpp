@@ -7,7 +7,7 @@ Rain::Rain()
 {
 	// Create all the rain columns
 	int NumberOfColumns = Terminal::getNumberOfColumns();
-	for (int i = 1; i < NumberOfColumns+1; i++) {
+	for (int i = 0; i < NumberOfColumns; i++) {
 		int Speed = Random::Random(1, 2);
 		RainColumns.push_back(RainColumn(i, Speed));
 	}

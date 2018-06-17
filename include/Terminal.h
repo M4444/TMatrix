@@ -2,12 +2,14 @@
 #define _TERMINAL_H_
 
 #include <string>
+#include <vector>
 
 // Singleton
 class Terminal
 {
 	static int NumberOfRows;
 	static int NumberOfColumns;
+	static std::vector<std::string> Screen;
 
 	Terminal();
 	~Terminal();
@@ -23,8 +25,9 @@ public:
 
 	static int getNumberOfRows() { return NumberOfRows; }
 	static int getNumberOfColumns() { return NumberOfColumns; }
-	static void Draw(int x, int y, std::string &str);
+	static void Draw(int x, int y, const std::string &str);
 	static void Erase(int x, int y);
+	static void Flush();
 };
 
 #endif

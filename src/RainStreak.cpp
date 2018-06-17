@@ -4,9 +4,8 @@
 
 void RainStreak::Step()
 {
-	y++;
 	// Delete the tail MChar
-	if (y > Length) {
+	if (y >= Length) {
 		if (!MChars.empty()) {
 			MChars.pop_front();
 		} else {
@@ -14,7 +13,6 @@ void RainStreak::Step()
 		}
 	}
 	// Create a new MChar
-	// FIXME: last row of the screen shouldn't be empty
 	if (y < Terminal::getNumberOfRows()) {
 		int UpdateRate = Random::Random(5, 7);
 		int UpdateTimer = Random::Random(0, UpdateRate-1);
@@ -26,6 +24,7 @@ void RainStreak::Step()
 	if (y >= Length) {
 		FullyEnteredScreen = true;
 	}
+	y++;
 }
 
 void RainStreak::Update()

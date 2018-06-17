@@ -13,6 +13,7 @@ int main()
 		usleep(1000*RUN_SPEED);
 
 		rain.Update();
+		Terminal::Flush();
 	}
 
 	return 0;
