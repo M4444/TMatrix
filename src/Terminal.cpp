@@ -55,5 +55,6 @@ void Terminal::Flush()
 		std::cout << c;
 	}
 	std::cout << std::flush;
+	// Move cursor to the start of the screen
 	std::cout << "\033[0;0H";
 }

@@ -14,12 +14,12 @@ class MatrixChar : public Active {
 	const int UpdateRate;	// Usually ~5-7
 	int UpdateTimer;
 	int MCharIndex;
-	bool RainStreakHead;
+	bool Glowing;
 
 	void SetRandomMatrixChar();
 public:
 	MatrixChar(int X, int Y, int UR, int UT) : x(X), y(Y), UpdateRate(UR),
-		UpdateTimer(UT), MCharIndex(-1), RainStreakHead(true) {
+		UpdateTimer(UT), MCharIndex(-1), Glowing(true) {
 		SetRandomMatrixChar();
 	}
 	~MatrixChar() {
@@ -29,7 +29,7 @@ public:
 	void Draw() const;
 	void Erase() const;
 	void Update();
-	void SetNotRainStreakHead();
+	void SetNotGlowing();
 };
 
 #endif

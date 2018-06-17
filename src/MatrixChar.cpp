@@ -15,6 +15,7 @@ void MatrixChar::SetRandomMatrixChar()
 {
 	int RandomIndex;
 
+	// Get a random index different from the current one
 	do {
 		RandomIndex = Random::Random(0, ALL_MCHARS.size()-1);
 	} while (RandomIndex == MCharIndex);
@@ -23,7 +24,7 @@ void MatrixChar::SetRandomMatrixChar()
 
 void MatrixChar::Draw() const
 {
-	Terminal::Draw(x, y, ALL_MCHARS[MCharIndex], RainStreakHead);
+	Terminal::Draw(x, y, ALL_MCHARS[MCharIndex], Glowing);
 }
 
 void MatrixChar::Erase() const
@@ -34,6 +35,7 @@ void MatrixChar::Erase() const
 
 void MatrixChar::Update()
 {
+	// When the timer expires restart it and change the MChar
 	if (UpdateTimer <= 0) {
 		SetRandomMatrixChar();
 		UpdateTimer = UpdateRate;
@@ -42,8 +44,8 @@ void MatrixChar::Update()
 	UpdateTimer--;
 }
 
-void MatrixChar::SetNotRainStreakHead()
+void MatrixChar::SetNotGlowing()
 {
-	RainStreakHead = false;
+	Glowing = false;
 	Draw();
 }

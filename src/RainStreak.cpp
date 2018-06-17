@@ -12,9 +12,9 @@ void RainStreak::Step()
 			OutOfScreen = true;
 		}
 	}
-	// Remove head status from the previous head MChar
+	// Remove glow from the previous MChar
 	if (!MChars.empty()) {
-		MChars.back().SetNotRainStreakHead();
+		MChars.back().SetNotGlowing();
 	}
 	// Create a new MChar
 	if (y < Terminal::getNumberOfRows()) {
