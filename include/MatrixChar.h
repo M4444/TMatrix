@@ -1,6 +1,7 @@
 #ifndef _MATRIX_CHAR_H_
 #define _MATRIX_CHAR_H_
 
+#include <cstring>
 #include <string>
 #include <array>
 #include "Active.h"
@@ -38,6 +39,18 @@ public:
 	void Erase() const;
 	void Update();
 	void SetNotGlowing();
+
+	static constexpr std::size_t GetMaxMCharSize()
+	{
+		std::size_t longest = 0;
+		for (const auto &MChar : ALL_MCHARS) {
+			std::size_t current = std::strlen(MChar);
+			if (current > longest) {
+				longest = current;
+			}
+		}
+		return longest;
+	}
 };
 
 #endif

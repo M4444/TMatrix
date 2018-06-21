@@ -1,14 +1,49 @@
 #ifndef _TERMINAL_H_
 #define _TERMINAL_H_
 
+#include <algorithm>
+#include <cstddef>
+#include <cstring>
 #include <string>
+#include <string_view>
 #include <vector>
+#include "MatrixChar.h"
+
+struct TerminalChar {
+	static constexpr char GLOW_SEQ[] = { '\033', '[', '9', '7', 'm' };
+	static constexpr char GLOW_END_SEQ[] = { '\033', '[', '3', '2', 'm' };
+	static constexpr std::size_t PREFIX_SIZE = sizeof(GLOW_SEQ);
+	static constexpr std::size_t MCHAR_SIZE = MatrixChar::GetMaxMCharSize();
+	static constexpr std::size_t SUFFIX_SIZE = sizeof(GLOW_END_SEQ);
+
+	char prefix[PREFIX_SIZE];
+	char MChar[MCHAR_SIZE];
+	char suffix[SUFFIX_SIZE];
+
+	TerminalChar() : prefix{'\0'}, MChar{' '} , suffix{'\0'} {}
+
+	void SetFullMChar(std::string_view str, bool isGlowing)
+	{
+		std::memset(&prefix, '\0', sizeof(*this));
+		std::memcpy(&MChar, str.data(), std::min(str.length(), MCHAR_SIZE));
+		if (isGlowing) {
+			std::memcpy(&prefix, GLOW_SEQ, PREFIX_SIZE);
+			std::memcpy(&suffix, GLOW_END_SEQ, SUFFIX_SIZE);
+		}
+	}
+
+	void Clear()
+	{
+		std::memset(&prefix, '\0', sizeof(*this));
+		MChar[0] = ' ';
+	}
+};
 
 // Singleton
 class Terminal {
 	static int NumberOfRows;
 	static int NumberOfColumns;
-	static std::vector<std::string> Screen;
+	static std::vector<TerminalChar> ScreenBuffer;
 
 	Terminal();
 	~Terminal();
@@ -25,7 +60,7 @@ public:
 	static int getNumberOfRows() { return NumberOfRows; }
 	static int getNumberOfColumns() { return NumberOfColumns; }
 
-	static void Draw(int x, int y, const std::string &str, bool isGlowing = false);
+	static void Draw(int x, int y, std::string_view str, bool isGlowing = false);
 	static void Erase(int x, int y);
 	static void Flush();
 };

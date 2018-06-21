@@ -4,7 +4,7 @@ INC_DIR = include
 
 TARGET = tmatrix
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall
+CXXFLAGS = -std=c++17 -O2 -Wall
 CPPFLAGS = -I $(INC_DIR)/
 LDLIBS = -lncurses
 

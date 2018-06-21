@@ -4,7 +4,7 @@
 
 int Terminal::NumberOfRows = 0;
 int Terminal::NumberOfColumns = 0;
-std::vector<std::string> Terminal::Screen;
+std::vector<TerminalChar> Terminal::ScreenBuffer;
 
 Terminal::Terminal()
 {
@@ -19,7 +19,10 @@ Terminal::Terminal()
 
 	getmaxyx(stdscr, Terminal::NumberOfRows, Terminal::NumberOfColumns);
 
-	Screen = std::vector<std::string>(NumberOfColumns*NumberOfRows, " ");
+	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TerminalChar());
+
+	// Disable C stream sync
+	std::ios::sync_with_stdio(false);
 
 	// Set black background
 	//std::cout << "\033[40m";
@@ -38,22 +41,19 @@ Terminal::~Terminal()
 	endwin();
 }
 
-void Terminal::Draw(int x, int y, const std::string &str, bool isGlowing)
+void Terminal::Draw(int x, int y, std::string_view str, bool isGlowing)
 {
-	// Set the color to white if MChar is glowing
-	Screen[y*NumberOfColumns + x] = isGlowing ? "\033[97m" + str + "\033[32m" : str;
+	ScreenBuffer[y*NumberOfColumns + x].SetFullMChar(str, isGlowing);
 }
 
 void Terminal::Erase(int x, int y)
 {
-	Draw(x, y, " ");
+	ScreenBuffer[y*NumberOfColumns + x].Clear();
 }
 
 void Terminal::Flush()
 {
-	for (const auto &c : Screen) {
-		std::cout << c;
-	}
+	std::cout.write((char*)ScreenBuffer.data(), ScreenBuffer.size()*sizeof(decltype(ScreenBuffer)::value_type));
 	std::cout << std::flush;
 	// Move cursor to the start of the screen
 	std::cout << "\033[0;0H";
