@@ -2,12 +2,20 @@
 #define _MATRIX_CHAR_H_
 
 #include <string>
-#include <vector>
+#include <array>
 #include "Active.h"
 
 class MatrixChar : public Active {
 	// Array of all the characters
-	static const std::vector<std::string> ALL_MCHARS;
+	static constexpr std::array ALL_MCHARS = {
+		"ﾊ", "ﾐ", "ﾋ", "ｰ", "ｳ", "ｼ", "ﾅ", "ﾓ", "ﾆ", "ｻ",
+		"ﾜ", "ﾂ", "ｵ", "ﾘ", "ｱ", "ﾎ", "ﾃ", "ﾏ" ,"ｹ" ,"ﾒ",
+		"ｴ", "ｶ", "ｷ", "ﾑ", "ﾕ", "ﾗ", "ｾ", "ﾈ", "ｽ", "ﾀ",
+		"ﾇ", "ﾍ", "𐌇", "0", "1", "2", "3", "4", "5", "7",
+		"8", "9", "Z", ":", ".", "･", "=", "*", "+", "-",
+		"<", ">", "¦", "|", "╌", " ", "\""
+	};
+
 	// Coordinates
 	const int x;
 	const int y;
