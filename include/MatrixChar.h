@@ -1,13 +1,12 @@
 #ifndef _MATRIX_CHAR_H_
 #define _MATRIX_CHAR_H_
 
+#include <array>
 #include <cstring>
 #include <string>
-#include <array>
 #include "Active.h"
 
 class MatrixChar : public Active {
-	// Array of all the characters
 	static constexpr std::array ALL_MCHARS = {
 		"ﾊ", "ﾐ", "ﾋ", "ｰ", "ｳ", "ｼ", "ﾅ", "ﾓ", "ﾆ", "ｻ",
 		"ﾜ", "ﾂ", "ｵ", "ﾘ", "ｱ", "ﾎ", "ﾃ", "ﾏ" ,"ｹ" ,"ﾒ",
@@ -17,7 +16,6 @@ class MatrixChar : public Active {
 		"<", ">", "¦", "|", "╌", " ", "\""
 	};
 
-	// Coordinates
 	const int x;
 	const int y;
 	const int UpdateRate;	// Usually ~5-7
