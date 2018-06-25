@@ -2,9 +2,9 @@
 #include <ncurses.h>
 #include "Terminal.h"
 
-int Terminal::NumberOfRows = 0;
-int Terminal::NumberOfColumns = 0;
-std::vector<TerminalChar> Terminal::ScreenBuffer;
+int Terminal::NumberOfRows {0};
+int Terminal::NumberOfColumns {0};
+std::vector<TerminalChar> Terminal::ScreenBuffer {};
 
 Terminal::Terminal()
 {

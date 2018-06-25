@@ -9,13 +9,11 @@
 class RainColumn : public Active {
 	const int x;
 	const int Speed;
-	int GapTimer;
-	bool EmptyRainStreakSlot;
+	int GapTimer {Random::Random(4, 9)};
+	bool EmptyRainStreakSlot {true};
 	std::list<RainStreak> RainStreaks;
 public:
-	RainColumn(int X, int S) : x(X), Speed(S), EmptyRainStreakSlot(true) {
-		GapTimer = Random::Random(4, 9);
-	}
+	RainColumn(int X, int S) : x{X}, Speed{S} {}
 
 	void Update();
 };

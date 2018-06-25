@@ -18,8 +18,8 @@ void RainStreak::Step()
 	}
 	// Create a new MChar
 	if (y < Terminal::getNumberOfRows()) {
-		int UpdateRate = Random::Random(5, 7);
-		int UpdateTimer = Random::Random(0, UpdateRate-1);
+		int UpdateRate {Random::Random(5, 7)};
+		int UpdateTimer {Random::Random(0, UpdateRate-1)};
 
 		MChars.push_back(MatrixChar(x, y, UpdateRate, UpdateTimer));
 		MChars.back().Draw();

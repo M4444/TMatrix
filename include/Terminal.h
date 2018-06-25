@@ -10,17 +10,15 @@
 #include "MatrixChar.h"
 
 struct TerminalChar {
-	static constexpr char GLOW_SEQ[] = { '\033', '[', '9', '7', 'm' };
-	static constexpr char GLOW_END_SEQ[] = { '\033', '[', '3', '2', 'm' };
-	static constexpr std::size_t PREFIX_SIZE = sizeof(GLOW_SEQ);
-	static constexpr std::size_t MCHAR_SIZE = MatrixChar::GetMaxMCharSize();
-	static constexpr std::size_t SUFFIX_SIZE = sizeof(GLOW_END_SEQ);
+	static constexpr char GLOW_SEQ[] { '\033', '[', '9', '7', 'm' };
+	static constexpr char GLOW_END_SEQ[] { '\033', '[', '3', '2', 'm' };
+	static constexpr std::size_t PREFIX_SIZE {sizeof(GLOW_SEQ)};
+	static constexpr std::size_t MCHAR_SIZE {MatrixChar::GetMaxMCharSize()};
+	static constexpr std::size_t SUFFIX_SIZE {sizeof(GLOW_END_SEQ)};
 
-	char prefix[PREFIX_SIZE];
-	char MChar[MCHAR_SIZE];
-	char suffix[SUFFIX_SIZE];
-
-	TerminalChar() : prefix{'\0'}, MChar{' '} , suffix{'\0'} {}
+	char prefix[PREFIX_SIZE] { '\0' };
+	char MChar[MCHAR_SIZE] { ' ' };
+	char suffix[SUFFIX_SIZE] { '\0' };
 
 	void SetFullMChar(std::string_view str, bool isGlowing)
 	{

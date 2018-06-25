@@ -8,7 +8,7 @@ int main()
 {
 	Terminal::getInstance();
 
-	Rain rain;
+	Rain rain {};
 	while (true) {
 		usleep(1000*RUN_SPEED);
 

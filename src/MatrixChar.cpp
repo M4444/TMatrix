@@ -2,15 +2,19 @@
 #include "Random.h"
 #include "Terminal.h"
 
-void MatrixChar::SetRandomMatrixChar()
+int MatrixChar::GetRandomMCharIndex()
 {
-	int RandomIndex;
+	return Random::Random(0, ALL_MCHARS.size()-1);
+}
 
-	// Get a random index different from the current one
-	do {
-		RandomIndex = Random::Random(0, ALL_MCHARS.size()-1);
-	} while (RandomIndex == MCharIndex);
-	MCharIndex = RandomIndex;
+void MatrixChar::SetRandomMChar()
+{
+	int NewIndex {GetRandomMCharIndex()};
+	while (MCharIndex == NewIndex) {
+		NewIndex = GetRandomMCharIndex();
+	}
+
+	MCharIndex = NewIndex;
 }
 
 void MatrixChar::Draw() const
@@ -27,7 +31,7 @@ void MatrixChar::Update()
 {
 	// When the timer expires restart it and change the MChar
 	if (UpdateTimer <= 0) {
-		SetRandomMatrixChar();
+		SetRandomMChar();
 		UpdateTimer = UpdateRate;
 		Draw();
 	}

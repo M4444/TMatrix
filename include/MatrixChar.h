@@ -7,7 +7,7 @@
 #include "Active.h"
 
 class MatrixChar : public Active {
-	static constexpr std::array ALL_MCHARS = {
+	static constexpr std::array ALL_MCHARS {
 		"ﾊ", "ﾐ", "ﾋ", "ｰ", "ｳ", "ｼ", "ﾅ", "ﾓ", "ﾆ", "ｻ",
 		"ﾜ", "ﾂ", "ｵ", "ﾘ", "ｱ", "ﾎ", "ﾃ", "ﾏ" ,"ｹ" ,"ﾒ",
 		"ｴ", "ｶ", "ｷ", "ﾑ", "ﾕ", "ﾗ", "ｾ", "ﾈ", "ｽ", "ﾀ",
@@ -20,15 +20,14 @@ class MatrixChar : public Active {
 	const int y;
 	const int UpdateRate;	// Usually ~5-7
 	int UpdateTimer;
-	int MCharIndex;
-	bool Glowing;
+	int MCharIndex {GetRandomMCharIndex()};
+	bool Glowing {true};
 
-	void SetRandomMatrixChar();
+	static int GetRandomMCharIndex();
+	void SetRandomMChar();
 public:
-	MatrixChar(int X, int Y, int UR, int UT) : x(X), y(Y), UpdateRate(UR),
-		UpdateTimer(UT), MCharIndex(-1), Glowing(true) {
-		SetRandomMatrixChar();
-	}
+	MatrixChar(int X, int Y, int UR, int UT) : x{X}, y{Y},
+		UpdateRate{UR}, UpdateTimer{UT} {}
 	~MatrixChar() {
 		Erase();
 	}
@@ -40,9 +39,9 @@ public:
 
 	static constexpr std::size_t GetMaxMCharSize()
 	{
-		std::size_t longest = 0;
+		std::size_t longest {0};
 		for (const auto &MChar : ALL_MCHARS) {
-			std::size_t current = std::strlen(MChar);
+			std::size_t current {std::strlen(MChar)};
 			if (current > longest) {
 				longest = current;
 			}
