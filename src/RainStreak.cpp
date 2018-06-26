@@ -21,7 +21,7 @@ void RainStreak::Step()
 		int UpdateRate {Random::Random(5, 7)};
 		int UpdateTimer {Random::Random(0, UpdateRate-1)};
 
-		MChars.push_back(MatrixChar(x, y, UpdateRate, UpdateTimer));
+		MChars.emplace_back(x, y, UpdateRate, UpdateTimer);
 		MChars.back().Draw();
 	}
 	// Check if the tail MChar has entered the screen

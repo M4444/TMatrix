@@ -10,7 +10,7 @@ Rain::Rain()
 	RainColumns.reserve(NumberOfColumns);
 	for (int i = 0; i < NumberOfColumns; i++) {
 		int Speed {Random::Random(1, 2)};
-		RainColumns.push_back(RainColumn(i, Speed));
+		RainColumns.emplace_back(i, Speed);
 	}
 }
 

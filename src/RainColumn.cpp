@@ -20,7 +20,7 @@ void RainColumn::Update()
 			// Create new streak
 			int RandomLength = Random::Random(4, 20);
 
-			RainStreaks.push_back(RainStreak(x, RandomLength, Speed));
+			RainStreaks.emplace_back(x, RandomLength, Speed);
 			EmptyRainStreakSlot = false;
 		}
 	} else if (RainStreaks.back().HasFullyEnteredScreen()) {
