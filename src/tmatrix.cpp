@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include "Parser.h"
 #include "Rain.h"
 #include "Terminal.h"
 
@@ -10,6 +11,7 @@ int main()
 
 	Rain rain {};
 	while (true) {
+		Parser::Parse(Terminal::ReadInputChar());
 		usleep(1000*RUN_SPEED);
 
 		rain.Update();

@@ -61,6 +61,7 @@ public:
 	static void Draw(int x, int y, std::string_view str, bool isGlowing = false);
 	static void Erase(int x, int y);
 	static void Flush();
+	static char ReadInputChar();
 };
 
 #endif
