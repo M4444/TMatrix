@@ -3,6 +3,6 @@
 
 namespace Parser {
 	void Parse(char c);
-};
+}
 
 #endif
