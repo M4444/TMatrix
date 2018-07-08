@@ -8,7 +8,9 @@
 #define _PARSER_H_
 
 namespace Parser {
+	bool ParseCmdLineArgs(int argc, char *argv[]);
 	void Parse(char c);
+	void PrintUsage(bool full);
 }
 
 #endif

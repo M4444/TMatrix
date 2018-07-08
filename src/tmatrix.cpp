@@ -11,16 +11,18 @@
 
 #define RUN_SPEED 100
 
-int main()
+int main(int argc, char *argv[])
 {
-	Terminal::getInstance();
+	if (Parser::ParseCmdLineArgs(argc, argv)) {
+		Terminal::getInstance();
 
-	Rain rain {};
-	while (true) {
-		Parser::Parse(Terminal::ReadInputChar());
-		usleep(1000*RUN_SPEED);
+		Rain rain {};
+		while (true) {
+			Parser::Parse(Terminal::ReadInputChar());
+			usleep(1000*RUN_SPEED);
 
-		rain.Update();
-		Terminal::Flush();
+			rain.Update();
+			Terminal::Flush();
+		}
 	}
 }
