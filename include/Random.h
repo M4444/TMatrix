@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) 2018 Miloš Stojanović
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
 #ifndef _RANDOM_H_
 #define _RANDOM_H_
 

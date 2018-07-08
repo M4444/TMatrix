@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) 2018 Miloš Stojanović
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
 #include <unistd.h>
 #include "Parser.h"
 #include "Rain.h"
