@@ -8,8 +8,9 @@
 #include "Parser.h"
 #include "Rain.h"
 #include "Terminal.h"
+#include "tmatrix.h"
 
-#define RUN_SPEED 100
+int StepsPerSecond {10};
 
 int main(int argc, char *argv[])
 {
@@ -19,7 +20,7 @@ int main(int argc, char *argv[])
 		Rain rain {};
 		while (true) {
 			Parser::Parse(Terminal::ReadInputChar());
-			usleep(1000*RUN_SPEED);
+			usleep(1000*1000/StepsPerSecond);
 
 			rain.Update();
 			Terminal::Flush();
