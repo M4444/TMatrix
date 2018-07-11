@@ -21,7 +21,7 @@ namespace Parser {
 			std::string_view argument {argv[i]};
 
 			if (argument == "--version") {
-				std::cout << "tmatrix version 0.8" << '\n';
+				std::cout << "tmatrix version " << VERSION << '\n';
 				std::cout << '\n';
 				std::cout << "Copyright (C) 2018 Miloš Stojanović" << '\n';
 				std::cout << "SPDX-License-Identifier: GPL-2.0-only" << '\n';
@@ -69,8 +69,10 @@ namespace Parser {
 			std::cout << "Simulates the digital rain effect from The Matrix." << '\n';
 			std::cout << '\n';
 			std::cout << "  -s, --steps-per-second=<value>  - Run this many steps per second" << '\n';
-			std::cout << "                                    <value> can range from 1 to 60" << '\n';
-			std::cout << "                                    The default value is 10" << '\n';
+			std::cout << "                                    <value> can range from ";
+			std::cout << MIN_STEPS_PER_SECOND << " to " << MAX_STEPS_PER_SECOND << '\n';
+			std::cout << "                                    The default value is ";
+			std::cout << DEFAULT_STEPS_PER_SECOND << '\n';
 			std::cout << "      --help                      - Display this help and exit" << '\n';
 			std::cout << "      --version                   - Output version information and exit" << '\n';
 		}

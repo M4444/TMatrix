@@ -10,7 +10,7 @@
 #include "Terminal.h"
 #include "tmatrix.h"
 
-int StepsPerSecond {10};
+int StepsPerSecond {DEFAULT_STEPS_PER_SECOND};
 
 int main(int argc, char *argv[])
 {
