@@ -16,4 +16,9 @@ namespace Random {
 		std::uniform_int_distribution<> Distribution {min, max};
 		return Distribution(RandomEngine);
 	}
+
+	int Random(int range)
+	{
+		return Random(0, range-1);
+	}
 }

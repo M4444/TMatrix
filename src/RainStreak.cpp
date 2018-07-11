@@ -25,7 +25,7 @@ void RainStreak::Step()
 	// Create a new MChar
 	if (y < Terminal::getNumberOfRows()) {
 		int UpdateRate {Random::Random(5, 7)};
-		int UpdateTime {Random::Random(0, UpdateRate-1)};
+		int UpdateTime {Random::Random(UpdateRate)};
 
 		MChars.emplace_back(x, y, UpdateRate, UpdateTime);
 		MChars.back().Draw();

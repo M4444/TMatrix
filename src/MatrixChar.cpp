@@ -10,7 +10,7 @@
 
 int MatrixChar::GetRandomMCharIndex()
 {
-	return Random::Random(0, ALL_MCHARS.size()-1);
+	return Random::Random(ALL_MCHARS.size());
 }
 
 void MatrixChar::SetRandomMChar()
