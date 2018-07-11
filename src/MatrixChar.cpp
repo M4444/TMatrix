@@ -35,13 +35,12 @@ void MatrixChar::Erase() const
 
 void MatrixChar::Update()
 {
-	// When the timer expires restart it and change the MChar
-	if (UpdateTimer <= 0) {
+	if (UpdateTimer.HasExpired()) {
+		UpdateTimer.Reset();
 		SetRandomMChar();
-		UpdateTimer = UpdateRate;
 		Draw();
 	}
-	UpdateTimer--;
+	UpdateTimer.Update();
 }
 
 void MatrixChar::SetNotGlowing()

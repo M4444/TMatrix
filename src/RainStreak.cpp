@@ -25,9 +25,9 @@ void RainStreak::Step()
 	// Create a new MChar
 	if (y < Terminal::getNumberOfRows()) {
 		int UpdateRate {Random::Random(5, 7)};
-		int UpdateTimer {Random::Random(0, UpdateRate-1)};
+		int UpdateTime {Random::Random(0, UpdateRate-1)};
 
-		MChars.emplace_back(x, y, UpdateRate, UpdateTimer);
+		MChars.emplace_back(x, y, UpdateRate, UpdateTime);
 		MChars.back().Draw();
 	}
 	// Check if the tail MChar has entered the screen

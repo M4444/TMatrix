@@ -20,8 +20,8 @@ void RainColumn::Update()
 	}
 
 	if (EmptyRainStreakSlot) {
-		if (GapTimer > 0) {
-			GapTimer--;
+		if (!GapTimer.HasExpired()) {
+			GapTimer.Update();
 		} else {
 			// Create new streak
 			int RandomLength = Random::Random(4, 20);
@@ -31,6 +31,6 @@ void RainColumn::Update()
 		}
 	} else if (RainStreaks.back().HasFullyEnteredScreen()) {
 		EmptyRainStreakSlot = true;
-		GapTimer = Random::Random(4, 9);
+		GapTimer.ResetWithStartingTime(Random::Random(4, 9));
 	}
 }

@@ -11,6 +11,7 @@
 #include <cstring>
 #include <string>
 #include "Active.h"
+#include "CountdownTimer.h"
 
 class MatrixChar : public Active {
 	static constexpr std::array ALL_MCHARS {
@@ -24,16 +25,15 @@ class MatrixChar : public Active {
 
 	const int x;
 	const int y;
-	const int UpdateRate;	// Usually ~5-7
-	int UpdateTimer;
+	CountdownTimer UpdateTimer;
 	int MCharIndex {GetRandomMCharIndex()};
 	bool Glowing {true};
 
 	static int GetRandomMCharIndex();
 	void SetRandomMChar();
 public:
-	MatrixChar(int X, int Y, int UR, int UT) : x{X}, y{Y},
-		UpdateRate{UR}, UpdateTimer{UT} {}
+	MatrixChar(int X, int Y, int UpdateRate, int UpdateTime) : x{X}, y{Y},
+		UpdateTimer{UpdateRate, UpdateTime} {}
 	~MatrixChar() {
 		Erase();
 	}

@@ -9,13 +9,14 @@
 
 #include <list>
 #include "Active.h"
+#include "CountdownTimer.h"
 #include "RainStreak.h"
 #include "Random.h"
 
 class RainColumn : public Active {
 	const int x;
 	const int Speed;
-	int GapTimer {Random::Random(4, 9)};
+	CountdownTimer GapTimer {Random::Random(4, 9)};
 	bool EmptyRainStreakSlot {true};
 	std::list<RainStreak> RainStreaks;
 public:
