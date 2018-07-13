@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#ifndef _RANDOM_H_
-#define _RANDOM_H_
+#ifndef RANDOM_H
+#define RANDOM_H
 
 namespace Random {
 	// Returns a random integer in the range [min, max]

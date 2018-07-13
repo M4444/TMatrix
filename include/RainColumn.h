@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#ifndef _RAIN_COLUMN_H_
-#define _RAIN_COLUMN_H_
+#ifndef RAIN_COLUMN_H
+#define RAIN_COLUMN_H
 
 #include <list>
 #include "Active.h"

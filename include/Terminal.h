@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#ifndef _TERMINAL_H_
-#define _TERMINAL_H_
+#ifndef TERMINAL_H
+#define TERMINAL_H
 
 #include <algorithm>
 #include <cstddef>

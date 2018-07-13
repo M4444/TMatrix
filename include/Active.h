@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#ifndef _ACTIVE_H_
-#define _ACTIVE_H_
+#ifndef ACTIVE_H
+#define ACTIVE_H
 
 class Active {
 public:

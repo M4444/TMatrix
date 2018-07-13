@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#ifndef _RAIN_H_
-#define _RAIN_H_
+#ifndef RAIN_H
+#define RAIN_H
 
 #include <vector>
 #include "Active.h"

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#ifndef _RAIN_STREAK_H_
-#define _RAIN_STREAK_H_
+#ifndef RAIN_STREAK_H
+#define RAIN_STREAK_H
 
 #include <deque>
 #include "Active.h"

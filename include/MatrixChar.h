@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#ifndef _MATRIX_CHAR_H_
-#define _MATRIX_CHAR_H_
+#ifndef MATRIX_CHAR_H
+#define MATRIX_CHAR_H
 
 #include <array>
 #include <cstring>

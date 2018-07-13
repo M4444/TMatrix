@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#ifndef _COUNTDOWN_TIMER_H_
-#define _COUNTDOWN_TIMER_H_
+#ifndef COUNTDOWN_TIMER_H
+#define COUNTDOWN_TIMER_H
 
 class CountdownTimer : public Active {
 	int StartingTime;

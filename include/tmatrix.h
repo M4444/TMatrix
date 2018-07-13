@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-#ifndef _TMATRIX_H_
-#define _TMATRIX_H_
+#ifndef TMATRIX_H
+#define TMATRIX_H
 
 #define VERSION 0.8
 
