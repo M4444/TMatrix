@@ -9,7 +9,7 @@
 #include "Random.h"
 #include "Terminal.h"
 
-Rain::Rain()
+Rain::Rain(RainProperties RP) : properties{RP}
 {
 	// Create all the rain columns
 	std::shared_ptr<Rain> rain {this};
@@ -30,27 +30,27 @@ void Rain::Update()
 
 int Rain::GetRandomSpeed()
 {
-	return Random::Random(1, 2);
+	return Random::Random(properties.Speed);
 }
 
 int Rain::GetRandomLength()
 {
-	return Random::Random(4, 20);
+	return Random::Random(properties.RainStreakLength);
 }
 
 int Rain::GetRandomStartingGap()
 {
-	return Random::Random(4, 9);
+	return Random::Random(properties.RainColumnStartingGap);
 }
 
 int Rain::GetRandomGap()
 {
-	return Random::Random(4, 9);
+	return Random::Random(properties.RainColumnGap);
 }
 
 std::pair<int, int> Rain::GetRandomUpdateRateAndTime()
 {
-	int UpdateRate {Random::Random(5, 7)};
+	int UpdateRate {Random::Random(properties.MCharUpdateRate)};
 	int UpdateTime {Random::Random(UpdateRate)};
 	return {UpdateRate, UpdateTime};
 }

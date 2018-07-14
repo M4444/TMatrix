@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	if (Parser::ParseCmdLineArgs(argc, argv)) {
 		Terminal::getInstance();
 
-		Rain rain {};
+		Rain rain {{ {1, 2}, {4, 20}, {4, 9}, {4, 9}, {5, 7} }};
 		while (true) {
 			Parser::Parse(Terminal::ReadInputChar());
 			usleep(1000*1000/StepsPerSecond);

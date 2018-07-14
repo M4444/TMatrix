@@ -17,6 +17,11 @@ namespace Random {
 		return Distribution(RandomEngine);
 	}
 
+	int Random(Range<int> range)
+	{
+		return Random(range.GetMin(), range.GetMax());
+	}
+
 	int Random(int range)
 	{
 		return Random(0, range-1);

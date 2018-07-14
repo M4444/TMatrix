@@ -11,13 +11,23 @@
 #include <vector>
 #include "Active.h"
 #include "RainColumn.h"
+#include "Range.h"
+
+struct RainProperties {
+	Range<int> Speed;
+	Range<int> RainStreakLength;
+	Range<int> RainColumnStartingGap;
+	Range<int> RainColumnGap;
+	Range<int> MCharUpdateRate;
+};
 
 class Rain : public Active {
 	std::vector<RainColumn> RainColumns;
+	const RainProperties properties;
 
 	int GetRandomSpeed();
 public:
-	Rain();
+	Rain(RainProperties RP);
 
 	void Update();
 	int GetRandomLength();
