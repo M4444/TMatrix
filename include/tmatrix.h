@@ -7,10 +7,10 @@
 #ifndef TMATRIX_H
 #define TMATRIX_H
 
-#define VERSION 0.8
+const double VERSION {0.8};
 
-#define MIN_STEPS_PER_SECOND 1
-#define MAX_STEPS_PER_SECOND 60
-#define DEFAULT_STEPS_PER_SECOND 10
+const int MIN_STEPS_PER_SECOND {1};
+const int MAX_STEPS_PER_SECOND {60};
+const int DEFAULT_STEPS_PER_SECOND {10};
 
 #endif
