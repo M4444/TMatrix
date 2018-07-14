@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
+#include "Rain.h"
 #include "RainStreak.h"
-#include "Random.h"
 #include "Terminal.h"
 
 void RainStreak::Step()
@@ -24,8 +24,7 @@ void RainStreak::Step()
 	}
 	// Create a new MChar
 	if (y < Terminal::getNumberOfRows()) {
-		int UpdateRate {Random::Random(5, 7)};
-		int UpdateTime {Random::Random(UpdateRate)};
+		auto [UpdateRate, UpdateTime] = rain->GetRandomUpdateRateAndTime();
 
 		MChars.emplace_back(x, y, UpdateRate, UpdateTime);
 		MChars.back().Draw();

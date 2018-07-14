@@ -8,19 +8,22 @@
 #define RAIN_COLUMN_H
 
 #include <list>
+#include <memory>
 #include "Active.h"
 #include "CountdownTimer.h"
 #include "RainStreak.h"
-#include "Random.h"
+
+class Rain;
 
 class RainColumn : public Active {
+	const std::shared_ptr<Rain> rain;
 	const int x;
 	const int Speed;
-	CountdownTimer GapTimer {Random::Random(4, 9)};
+	CountdownTimer GapTimer;
 	bool EmptyRainStreakSlot {true};
 	std::list<RainStreak> RainStreaks;
 public:
-	RainColumn(int X, int S) : x{X}, Speed{S} {}
+	RainColumn(const std::shared_ptr<Rain> &R, int X, int S);
 
 	void Update();
 };

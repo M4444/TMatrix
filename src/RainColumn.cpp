@@ -4,7 +4,11 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
+#include "Rain.h"
 #include "RainColumn.h"
+
+RainColumn::RainColumn(const std::shared_ptr<Rain> &R, int X, int S) : rain{R},
+	x{X}, Speed{S}, GapTimer{R->GetRandomStartingGap()} {}
 
 void RainColumn::Update()
 {
@@ -24,13 +28,11 @@ void RainColumn::Update()
 			GapTimer.Update();
 		} else {
 			// Create new streak
-			int RandomLength = Random::Random(4, 20);
-
-			RainStreaks.emplace_back(x, RandomLength, Speed);
+			RainStreaks.emplace_back(rain, x, rain->GetRandomLength(), Speed);
 			EmptyRainStreakSlot = false;
 		}
 	} else if (RainStreaks.back().HasFullyEnteredScreen()) {
 		EmptyRainStreakSlot = true;
-		GapTimer.ResetWithStartingTime(Random::Random(4, 9));
+		GapTimer.ResetWithStartingTime(rain->GetRandomGap());
 	}
 }
