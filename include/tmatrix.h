@@ -12,6 +12,5 @@
 #define MIN_STEPS_PER_SECOND 1
 #define MAX_STEPS_PER_SECOND 60
 #define DEFAULT_STEPS_PER_SECOND 10
-extern int StepsPerSecond;
 
 #endif

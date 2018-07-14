@@ -12,10 +12,8 @@
 #include "Parser.h"
 #include "tmatrix.h"
 
-extern int StepsPerSecond;
-
 namespace Parser {
-	bool ParseCmdLineArgs(int argc, char *argv[])
+	bool ParseCmdLineArgs(int argc, char *argv[], int &StepsPerSecond)
 	{
 		for (int i = 1; i < argc; i++) {
 			std::string_view argument {argv[i]};
@@ -37,11 +35,11 @@ namespace Parser {
 					value = argument.substr(2);
 				}
 
-				if (!SetStepsPerSecond(value, "-s")) {
+				if (!SetStepsPerSecond(value, "-s", StepsPerSecond)) {
 					return false;
 				}
 			} else if (argument.substr(0, 19) == "--steps-per-second=") {
-				if (!SetStepsPerSecond(argument.substr(19), "--steps-per-second")) {
+				if (!SetStepsPerSecond(argument.substr(19), "--steps-per-second", StepsPerSecond)) {
 					return false;
 				}
 			} else {
@@ -78,7 +76,7 @@ namespace Parser {
 		}
 	}
 
-	bool SetStepsPerSecond(std::string_view value, std::string_view option)
+	bool SetStepsPerSecond(std::string_view value, std::string_view option, int &StepsPerSecond)
 	{
 		if (value == nullptr) {
 			std::cout << "No value specified for " << option << '.' << '\n';

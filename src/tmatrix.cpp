@@ -10,11 +10,11 @@
 #include "Terminal.h"
 #include "tmatrix.h"
 
-int StepsPerSecond {DEFAULT_STEPS_PER_SECOND};
-
 int main(int argc, char *argv[])
 {
-	if (Parser::ParseCmdLineArgs(argc, argv)) {
+	int StepsPerSecond {DEFAULT_STEPS_PER_SECOND};
+
+	if (Parser::ParseCmdLineArgs(argc, argv, StepsPerSecond)) {
 		Terminal::getInstance();
 
 		Rain rain {{ {1, 2}, {4, 20}, {4, 9}, {4, 9}, {5, 7} }};

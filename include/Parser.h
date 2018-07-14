@@ -10,10 +10,10 @@
 #include <string_view>
 
 namespace Parser {
-	bool ParseCmdLineArgs(int argc, char *argv[]);
+	bool ParseCmdLineArgs(int argc, char *argv[], int &StepsPerSecond);
 	void Parse(char c);
 	void PrintUsage(bool full);
-	bool SetStepsPerSecond(std::string_view value, std::string_view option);
+	bool SetStepsPerSecond(std::string_view value, std::string_view option, int &SpepsPerSecond);
 	int ReturnValidNumber(std::string_view value);
 }
 
