@@ -13,8 +13,9 @@
 #include "tmatrix.h"
 
 namespace Parser {
-	bool ParseCmdLineArgs(int argc, char *argv[], int &StepsPerSecond)
+	bool ParseCmdLineArgs(int argc, char *argv[], int &StepsPerSecond, RainProperties &rainProperties)
 	{
+		SetRainProperties(rainProperties);
 		for (int i = 1; i < argc; i++) {
 			std::string_view argument {argv[i]};
 
@@ -106,5 +107,10 @@ namespace Parser {
 		}
 
 		return std::atoi(value.data());
+	}
+
+	void SetRainProperties(RainProperties &rainProperties)
+	{
+		rainProperties = { {1, 2}, {4, 20}, {4, 9}, {4, 9}, {5, 7} };
 	}
 }

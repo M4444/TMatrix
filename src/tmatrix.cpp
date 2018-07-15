@@ -13,11 +13,12 @@
 int main(int argc, char *argv[])
 {
 	int StepsPerSecond {DEFAULT_STEPS_PER_SECOND};
+	RainProperties rainProperties;
 
-	if (Parser::ParseCmdLineArgs(argc, argv, StepsPerSecond)) {
+	if (Parser::ParseCmdLineArgs(argc, argv, StepsPerSecond, rainProperties)) {
 		Terminal::getInstance();
 
-		Rain rain {{ {1, 2}, {4, 20}, {4, 9}, {4, 9}, {5, 7} }};
+		Rain rain {rainProperties};
 		while (true) {
 			Parser::Parse(Terminal::ReadInputChar());
 			usleep(1000*1000/StepsPerSecond);
