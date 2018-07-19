@@ -20,10 +20,7 @@ namespace Parser {
 			std::string_view argument {argv[i]};
 
 			if (argument == "--version") {
-				std::cout << "tmatrix version " << VERSION << '\n';
-				std::cout << '\n';
-				std::cout << "Copyright (C) 2018 Miloš Stojanović" << '\n';
-				std::cout << "SPDX-License-Identifier: GPL-2.0-only" << '\n';
+				PrintVersion();
 				return false;
 			} else if (argument == "--help") {
 				PrintUsage(true);
@@ -59,6 +56,14 @@ namespace Parser {
 		case 'Q':
 			std::raise(SIGINT);
 		}
+	}
+
+	void PrintVersion()
+	{
+		std::cout << "tmatrix version " << VERSION_NUMBER << '\n';
+		std::cout << '\n';
+		std::cout << "Copyright (C) 2018 Miloš Stojanović" << '\n';
+		std::cout << "SPDX-License-Identifier: GPL-2.0-only" << '\n';
 	}
 
 	void PrintUsage(bool full)

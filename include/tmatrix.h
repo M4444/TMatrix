@@ -7,7 +7,7 @@
 #ifndef TMATRIX_H
 #define TMATRIX_H
 
-const double VERSION {0.8};
+const double VERSION_NUMBER {0.8};
 
 const int MIN_STEPS_PER_SECOND {1};
 const int MAX_STEPS_PER_SECOND {60};
