@@ -25,6 +25,7 @@ class RainColumn : public Active {
 public:
 	RainColumn(const std::shared_ptr<Rain> &R, int X, int S);
 
+	void Step();
 	void Update();
 };
 

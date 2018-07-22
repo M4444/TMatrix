@@ -30,7 +30,6 @@ public:
 	bool IsOutOfScreen() const { return OutOfScreen; }
 	bool HasFullyEnteredScreen() const { return FullyEnteredScreen; }
 
-	void Step();
 	void Update();
 };
 

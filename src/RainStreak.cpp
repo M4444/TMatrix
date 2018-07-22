@@ -8,7 +8,7 @@
 #include "RainStreak.h"
 #include "Terminal.h"
 
-void RainStreak::Step()
+void RainStreak::Update()
 {
 	// Delete the tail MChar
 	if (y >= Length) {
@@ -29,21 +29,14 @@ void RainStreak::Step()
 		MChars.emplace_back(x, y, updateRate, updateTime);
 		MChars.back().Draw();
 	}
+	// Advance position
+	y++;
 	// Check if the tail MChar has entered the screen
 	if (y >= Length) {
 		FullyEnteredScreen = true;
 	}
-	y++;
-}
-
-void RainStreak::Update()
-{
+	// Update all the MChars
 	if (!OutOfScreen) {
-		// Move the rain streak
-		for (int i = 0; i < Speed; i++) {
-			Step();
-		}
-		// Update all the MChars
 		for (MatrixChar &mc : MChars) {
 			mc.Update();
 		}
