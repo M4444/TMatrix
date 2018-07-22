@@ -66,21 +66,24 @@ namespace Parser {
 		}
 
 		if (argument.size() < literal.size()) {
-			return {"", ""};
+			throw std::invalid_argument("Argument is too big.");
 		}
 		std::string_view prefix = argument.substr(0, literal.length());
 		std::string_view suffix = argument.substr(literal.length());
 		if (prefix != literal) {
-			// The prefix doesn't match so the split is invalid
-			return {"", ""};
+			throw std::invalid_argument("Prefix doesn't match.");
 		}
 		return {prefix, suffix};
 	}
 
 	bool Option::MatchesArgument (std::string_view argument) const
 	{
-		auto [prefix, suffix] = GetPrefixSuffixSplit(argument);
-		return (prefix != "");
+		try {
+			GetPrefixSuffixSplit(argument);
+		} catch (const std::invalid_argument&) {
+			return false;
+		}
+		return true;
 	}
 
 	//---Parser-functions---------------------------------------------------
@@ -124,9 +127,10 @@ namespace Parser {
 					try {
 						option.ProcessArgument(suffix, stepsPerSecond, rainProperties);
 					} catch (const std::out_of_range&) {
-						std::cout << "Invalid value '" << suffix;
-						std::cout << "' specified for " << prefix << '\n';
-						std::cout << "Try 'tmatrix --help' for more information." << '\n';
+						PrintInvalidValue(prefix, suffix);
+						return false;
+					} catch (const std::invalid_argument&) {
+						PrintInvalidValue(prefix, suffix);
 						return false;
 					}
 					break;
@@ -139,6 +143,13 @@ namespace Parser {
 			}
 		}
 		return true;
+	}
+
+	void PrintInvalidValue(std::string_view prefix, std::string_view suffix)
+	{
+		std::cout << "Invalid value '" << suffix;
+		std::cout << "' specified for " << prefix << '\n';
+		std::cout << "Try 'tmatrix --help' for more information." << '\n';
 	}
 
 	void Parse(char c)
@@ -244,7 +255,7 @@ namespace Parser {
 		stepsPerSecond = ReturnValidNumber(value);
 		if (stepsPerSecond < MIN_STEPS_PER_SECOND ||
 		    stepsPerSecond > MAX_STEPS_PER_SECOND) {
-			throw std::out_of_range("");
+			throw std::out_of_range("Value is out of range.");
 		}
 	}
 
@@ -253,7 +264,7 @@ namespace Parser {
 		if (value.length() == 0 ||
 		    std::any_of(value.begin(), value.end(),
 		    [](unsigned char c) { return !std::isdigit(c); })) {
-			return 0;
+			throw std::invalid_argument("Number isn't valid.");
 		}
 
 		return std::atoi(value.data());
