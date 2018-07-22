@@ -37,6 +37,7 @@ namespace Parser {
 		std::pair<std::string_view, std::string_view> GetPrefixSuffixSplit(std::string_view argument) const;
 	};
 
+	//---Parser-functions---------------------------------------------------
 	bool StartsWith(std::string_view str, std::string_view prefix);
 	bool ParseCmdLineArgs(int argc, char *argv[], int &stepsPerSecond, RainProperties &rainProperties);
 	void Parse(char c);

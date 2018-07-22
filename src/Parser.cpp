@@ -9,6 +9,7 @@
 #include <csignal>
 #include <cstdlib>
 #include <iostream>
+#include <stdexcept>
 #include "Parser.h"
 
 namespace Parser {
@@ -70,7 +71,7 @@ namespace Parser {
 		std::string_view prefix = argument.substr(0, literal.length());
 		std::string_view suffix = argument.substr(literal.length());
 		if (prefix != literal) {
-			// The prefix doesn't match so the split is invalid.
+			// The prefix doesn't match so the split is invalid
 			return {"", ""};
 		}
 		return {prefix, suffix};
@@ -82,6 +83,7 @@ namespace Parser {
 		return (prefix != "");
 	}
 
+	//---Parser-functions---------------------------------------------------
 	bool StartsWith(std::string_view str, std::string_view prefix) {
 		return (str.substr(0, prefix.length()) == prefix);
 	}
@@ -175,7 +177,7 @@ namespace Parser {
 					PrintUsageLine(option, longestLiterals);
 				}
 			}
-			// Print help and version at the end.
+			// Print help and version at the end
 			PrintSpecificOptionType(HELP, longestLiterals);
 			PrintSpecificOptionType(VERSION, longestLiterals);
 		}
@@ -248,7 +250,8 @@ namespace Parser {
 
 	int ReturnValidNumber(std::string_view value)
 	{
-		if (std::any_of(value.begin(), value.end(),
+		if (value.length() == 0 ||
+		    std::any_of(value.begin(), value.end(),
 		    [](unsigned char c) { return !std::isdigit(c); })) {
 			return 0;
 		}
