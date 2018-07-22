@@ -9,14 +9,14 @@
 #include "Random.h"
 #include "Terminal.h"
 
-Rain::Rain(RainProperties RP) : properties{RP}
+Rain::Rain(RainProperties RP) : Properties{RP}
 {
 	// Create all the rain columns
 	std::shared_ptr<Rain> rain {this};
-	int NumberOfColumns {Terminal::getNumberOfColumns()};
+	int numberOfColumns {Terminal::getNumberOfColumns()};
 
-	RainColumns.reserve(NumberOfColumns);
-	for (int i = 0; i < NumberOfColumns; i++) {
+	RainColumns.reserve(numberOfColumns);
+	for (int i = 0; i < numberOfColumns; i++) {
 		RainColumns.emplace_back(rain, i, GetRandomSpeed());
 	}
 }
@@ -30,27 +30,27 @@ void Rain::Update()
 
 int Rain::GetRandomSpeed()
 {
-	return Random::Random(properties.Speed);
+	return Random::Random(Properties.Speed);
 }
 
 int Rain::GetRandomLength()
 {
-	return Random::Random(properties.RainStreakLength);
+	return Random::Random(Properties.RainStreakLength);
 }
 
 int Rain::GetRandomStartingGap()
 {
-	return Random::Random(properties.RainColumnStartingGap);
+	return Random::Random(Properties.RainColumnStartingGap);
 }
 
 int Rain::GetRandomGap()
 {
-	return Random::Random(properties.RainColumnGap);
+	return Random::Random(Properties.RainColumnGap);
 }
 
 std::pair<int, int> Rain::GetRandomUpdateRateAndTime()
 {
-	int UpdateRate {Random::Random(properties.MCharUpdateRate)};
+	int UpdateRate {Random::Random(Properties.MCharUpdateRate)};
 	int UpdateTime {Random::Random(UpdateRate)};
 	return {UpdateRate, UpdateTime};
 }

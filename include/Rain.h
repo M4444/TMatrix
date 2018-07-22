@@ -23,7 +23,7 @@ struct RainProperties {
 
 class Rain : public Active {
 	std::vector<RainColumn> RainColumns;
-	const RainProperties properties;
+	const RainProperties Properties;
 
 	int GetRandomSpeed();
 public:

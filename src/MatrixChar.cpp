@@ -15,12 +15,12 @@ int MatrixChar::GetRandomMCharIndex()
 
 void MatrixChar::SetRandomMChar()
 {
-	int NewIndex {GetRandomMCharIndex()};
-	while (MCharIndex == NewIndex) {
-		NewIndex = GetRandomMCharIndex();
+	int newIndex {GetRandomMCharIndex()};
+	while (MCharIndex == newIndex) {
+		newIndex = GetRandomMCharIndex();
 	}
 
-	MCharIndex = NewIndex;
+	MCharIndex = newIndex;
 }
 
 void MatrixChar::Draw() const

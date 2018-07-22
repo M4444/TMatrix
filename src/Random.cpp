@@ -13,8 +13,8 @@ namespace Random {
 
 	int Random(int min, int max)
 	{
-		std::uniform_int_distribution<> Distribution {min, max};
-		return Distribution(RandomEngine);
+		std::uniform_int_distribution<> distribution {min, max};
+		return distribution(RandomEngine);
 	}
 
 	int Random(Range<int> range)
