@@ -9,6 +9,7 @@
 
 class Active {
 public:
+	virtual ~Active() = default;
 	virtual void Update() = 0;
 };
 
