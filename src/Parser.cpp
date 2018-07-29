@@ -68,8 +68,8 @@ namespace Parser {
 		if (argument.size() < literal.size()) {
 			throw std::invalid_argument("Argument is too big.");
 		}
-		std::string_view prefix = argument.substr(0, literal.length());
-		std::string_view suffix = argument.substr(literal.length());
+		std::string_view prefix {argument.substr(0, literal.length())};
+		std::string_view suffix {argument.substr(literal.length())};
 		if (prefix != literal) {
 			throw std::invalid_argument("Prefix doesn't match.");
 		}
@@ -102,7 +102,7 @@ namespace Parser {
 				if (!option.MatchesArgument(argument)) {
 					continue;
 				}
-				auto [prefix, suffix] = option.GetPrefixSuffixSplit(argument);
+				auto [prefix, suffix] { option.GetPrefixSuffixSplit(argument) };
 				matched = true;
 				switch(option.Type) {
 				case VERSION:
@@ -197,11 +197,11 @@ namespace Parser {
 	std::vector<std::string> CreateUsageHeader()
 	{
 		std::vector<std::string> usage {"Usage: tmatrix"};
-		const int USAGE_START_LENGTH = usage.back().length();
+		const auto usageStartLength {usage.back().length()};
 
 		for (const Option &option : Options) {
 			if (usage.back().length() + 1 + option.GetUsage().length() > MAX_LINE_LENGTH) {
-				usage.emplace_back(USAGE_START_LENGTH, ' ');
+				usage.emplace_back(usageStartLength, ' ');
 			}
 			usage.back() += ' ' + option.GetUsage();
 		}

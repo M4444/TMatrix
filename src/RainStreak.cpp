@@ -24,7 +24,7 @@ void RainStreak::Update()
 	}
 	// Create a new MChar
 	if (y < Terminal::getNumberOfRows()) {
-		auto [updateRate, updateTime] = rain->GetRandomUpdateRateAndTime();
+		auto [updateRate, updateTime] { rain->GetRandomUpdateRateAndTime() };
 
 		MChars.emplace_back(x, y, updateRate, updateTime);
 		MChars.back().Draw();
