@@ -23,7 +23,8 @@ class RainColumn : public Active {
 	bool EmptyRainStreakSlot {true};
 	std::list<RainStreak> RainStreaks;
 public:
-	RainColumn(const std::shared_ptr<Rain> &R, int X, int S);
+	RainColumn(const std::shared_ptr<Rain> &R, int X, int S, int G) :
+		rain{R}, x{X}, Speed{S}, GapTimer{G} {}
 
 	void Step();
 	void Update();

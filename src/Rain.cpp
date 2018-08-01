@@ -17,7 +17,7 @@ Rain::Rain(RainProperties RP) : Properties{RP}
 
 	RainColumns.reserve(numberOfColumns);
 	for (int i = 0; i < numberOfColumns; i++) {
-		RainColumns.emplace_back(rain, i, GetRandomSpeed());
+		RainColumns.emplace_back(rain, i, GetRandomSpeed(), GetRandomStartingGap());
 	}
 }
 
@@ -30,17 +30,17 @@ void Rain::Update()
 
 int Rain::GetRandomSpeed()
 {
-	return Random::Random(Properties.Speed);
-}
-
-int Rain::GetRandomLength()
-{
-	return Random::Random(Properties.RainStreakLength);
+	return Random::Random(Properties.RainColumnSpeed);
 }
 
 int Rain::GetRandomStartingGap()
 {
 	return Random::Random(Properties.RainColumnStartingGap);
+}
+
+int Rain::GetRandomLength()
+{
+	return Random::Random(Properties.RainStreakLength);
 }
 
 int Rain::GetRandomGap()

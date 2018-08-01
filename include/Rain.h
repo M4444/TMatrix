@@ -14,10 +14,10 @@
 #include "Range.h"
 
 struct RainProperties {
-	Range<int> Speed;
-	Range<int> RainStreakLength;
+	Range<int> RainColumnSpeed;
 	Range<int> RainColumnStartingGap;
 	Range<int> RainColumnGap;
+	Range<int> RainStreakLength;
 	Range<int> MCharUpdateRate;
 };
 
@@ -26,12 +26,12 @@ class Rain : public Active {
 	const RainProperties Properties;
 
 	int GetRandomSpeed();
+	int GetRandomStartingGap();
 public:
 	Rain(RainProperties RP);
 
 	void Update();
 	int GetRandomLength();
-	int GetRandomStartingGap();
 	int GetRandomGap();
 	std::pair<int, int> GetRandomUpdateRateAndTime();
 };

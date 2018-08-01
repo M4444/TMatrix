@@ -273,6 +273,6 @@ namespace Parser {
 	//----------------------------------------------------------------------
 	void SetRainProperties(RainProperties &rainProperties)
 	{
-		rainProperties = { {1, 2}, {4, 20}, {4, 9}, {4, 9}, {5, 7} };
+		rainProperties = { {1, 2}, {4, 9}, {4, 9}, {4, 20}, {5, 7} };
 	}
 }

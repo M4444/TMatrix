@@ -7,9 +7,6 @@
 #include "Rain.h"
 #include "RainColumn.h"
 
-RainColumn::RainColumn(const std::shared_ptr<Rain> &R, int X, int S) : rain{R},
-	x{X}, Speed{S}, GapTimer{R->GetRandomStartingGap()} {}
-
 void RainColumn::Step()
 {
 	if (!RainStreaks.empty()) {
