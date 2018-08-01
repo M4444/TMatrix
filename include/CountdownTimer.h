@@ -8,6 +8,7 @@
 #define COUNTDOWN_TIMER_H
 
 #include <stdexcept>
+#include "Active.h"
 
 class CountdownTimer : public Active {
 	int StartingTime;
