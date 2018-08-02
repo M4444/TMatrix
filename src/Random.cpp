@@ -5,6 +5,7 @@
  */
 
 #include <random>
+#include <stdexcept>
 #include "Random.h"
 
 namespace Random {
@@ -13,6 +14,10 @@ namespace Random {
 
 	int Random(int min, int max)
 	{
+		if (min > max) {
+			throw std::range_error("Min is greater than max.");
+		}
+
 		std::uniform_int_distribution<> distribution {min, max};
 		return distribution(RandomEngine);
 	}

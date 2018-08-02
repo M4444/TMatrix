@@ -22,6 +22,7 @@ public:
 	}
 
 	bool HasExpired() const { return CurrentTime <= 0; }
+	bool IsZeroTimer() const { return StartingTime == 0; }
 
 	void Update()
 	{

@@ -35,6 +35,10 @@ void MatrixChar::Erase() const
 
 void MatrixChar::Update()
 {
+	if (UpdateTimer.IsZeroTimer()) {
+		return;
+	}
+
 	if (UpdateTimer.HasExpired()) {
 		UpdateTimer.Reset();
 		SetRandomMChar();

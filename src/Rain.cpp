@@ -51,6 +51,6 @@ int Rain::GetRandomGap()
 std::pair<int, int> Rain::GetRandomUpdateRateAndTime()
 {
 	int UpdateRate {Random::Random(Properties.MCharUpdateRate)};
-	int UpdateTime {Random::Random(UpdateRate)};
+	int UpdateTime {UpdateRate ? Random::Random(UpdateRate) : 0};
 	return {UpdateRate, UpdateTime};
 }
