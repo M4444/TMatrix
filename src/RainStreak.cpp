@@ -27,7 +27,6 @@ void RainStreak::Update()
 		auto [updateRate, updateTime] { rain->GetRandomUpdateRateAndTime() };
 
 		MChars.emplace_back(x, y, updateRate, updateTime);
-		MChars.back().Draw();
 	}
 	// Advance position
 	y++;

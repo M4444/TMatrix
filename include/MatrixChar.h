@@ -31,15 +31,17 @@ class MatrixChar : public Active {
 
 	static int GetRandomMCharIndex();
 	void SetRandomMChar();
+	void Draw() const;
+	void Erase() const;
 public:
 	MatrixChar(int X, int Y, int UpdateRate, int UpdateTime) : x{X}, y{Y},
-		UpdateTimer{UpdateRate, UpdateTime} {}
+		UpdateTimer{UpdateRate, UpdateTime} {
+		Draw();
+	}
 	~MatrixChar() {
 		Erase();
 	}
 
-	void Draw() const;
-	void Erase() const;
 	void Update();
 	void SetNotGlowing();
 
