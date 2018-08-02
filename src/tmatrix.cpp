@@ -21,13 +21,12 @@ int main(int argc, char *argv[])
 
 		Rain rain {rainProperties};
 		while (true) {
-			Parser::Parse(Terminal::ReadInputChar(), paused);
-			usleep(1000*1000/stepsPerSecond);
-
 			if (!paused) {
 				rain.Update();
 				Terminal::Flush();
 			}
+			Parser::Parse(Terminal::ReadInputChar(), paused);
+			usleep(1000*1000/stepsPerSecond);
 		}
 	}
 }

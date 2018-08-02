@@ -9,6 +9,16 @@
 
 void RainColumn::Step()
 {
+	if (EmptyRainStreakSlot) {
+		if (!GapTimer.HasExpired()) {
+			GapTimer.Update();
+		} else {
+			// Create new streak
+			RainStreaks.emplace_back(rain, x, rain->GetRandomLength(), Speed);
+			EmptyRainStreakSlot = false;
+		}
+	}
+
 	if (!RainStreaks.empty()) {
 		// Update all the RainStreaks
 		for (RainStreak &rs : RainStreaks) {
@@ -24,16 +34,6 @@ void RainColumn::Step()
 		// Delete RainStreaks that are out of screen
 		while (!RainStreaks.empty() && RainStreaks.front().IsOutOfScreen()) {
 			RainStreaks.pop_front();
-		}
-	}
-
-	if (EmptyRainStreakSlot) {
-		if (!GapTimer.HasExpired()) {
-			GapTimer.Update();
-		} else {
-			// Create new streak
-			RainStreaks.emplace_back(rain, x, rain->GetRandomLength(), Speed);
-			EmptyRainStreakSlot = false;
 		}
 	}
 }

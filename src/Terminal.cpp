@@ -36,6 +36,9 @@ Terminal::Terminal()
 	std::cout << "\033[1m";
 	// Set green foreground
 	std::cout << "\033[32m";
+
+	// Calling this here first prevents delay in the main loop.
+	getch();
 }
 
 Terminal::~Terminal()
