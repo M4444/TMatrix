@@ -12,6 +12,7 @@
 
 int main(int argc, char *argv[])
 {
+	bool paused {false};
 	int stepsPerSecond {DEFAULT_STEPS_PER_SECOND};
 	RainProperties rainProperties;
 
@@ -20,11 +21,13 @@ int main(int argc, char *argv[])
 
 		Rain rain {rainProperties};
 		while (true) {
-			Parser::Parse(Terminal::ReadInputChar());
+			Parser::Parse(Terminal::ReadInputChar(), paused);
 			usleep(1000*1000/stepsPerSecond);
 
-			rain.Update();
-			Terminal::Flush();
+			if (!paused) {
+				rain.Update();
+				Terminal::Flush();
+			}
 		}
 	}
 }

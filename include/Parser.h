@@ -42,7 +42,7 @@ namespace Parser {
 	bool ParseCmdLineArgs(int argc, char *argv[], int &stepsPerSecond, RainProperties &rainProperties);
 	void PrintInvalidValue(std::string_view prefix, std::string_view suffix);
 
-	void Parse(char c);
+	void Parse(char c, bool &paused);
 
 	//---VERSION------------------------------------------------------------
 	void PrintVersion();
