@@ -49,11 +49,19 @@ Terminal::~Terminal()
 
 void Terminal::Draw(int x, int y, std::string_view str, bool isGlowing)
 {
+	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
+		return;
+	}
+
 	ScreenBuffer[y*NumberOfColumns + x].SetFullMChar(str, isGlowing);
 }
 
 void Terminal::Erase(int x, int y)
 {
+	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
+		return;
+	}
+
 	ScreenBuffer[y*NumberOfColumns + x].Clear();
 }
 
