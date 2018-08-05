@@ -17,10 +17,10 @@
 #include "tmatrix.h"
 
 namespace Parser {
-	const int MAX_LINE_LENGTH {80};
-	const int SHORT_GAP_PREFIX {2};
-	const int LONG_GAP_PREFIX {6};
-	const std::string SEPARATOR {"  - "};
+	constexpr int MAX_LINE_LENGTH {80};
+	constexpr int SHORT_GAP_PREFIX {2};
+	constexpr int LONG_GAP_PREFIX {6};
+	constexpr std::string_view SEPARATOR {"  - "};
 
 	enum OptionType { VERSION, HELP, NUMERIC };
 	struct Option {

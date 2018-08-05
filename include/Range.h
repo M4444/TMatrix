@@ -14,8 +14,8 @@ class Range {
 	T min;
 	T max;
 public:
-	Range() = default;
-	Range(T Min, T Max) : min{Min}, max{Max} {
+	constexpr Range() = default;
+	constexpr Range(T Min, T Max) : min{Min}, max{Max} {
 		if (Min > Max) {
 			throw std::range_error("Min is greater than max.");
 		}
