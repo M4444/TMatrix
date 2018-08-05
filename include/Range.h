@@ -21,8 +21,8 @@ public:
 		}
 	}
 
-	T GetMin() { return min; }
-	T GetMax() { return max; }
+	T GetMin() const { return min; }
+	T GetMax() const { return max; }
 };
 
 #endif
