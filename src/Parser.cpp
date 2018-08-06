@@ -29,6 +29,15 @@ namespace Parser {
 				return "[" + LongLiteral + "=<value>]";
 			}
 			break;
+		case RANGE:
+			if (ShortLiteral != "" && LongLiteral != "") {
+				return "[" + ShortLiteral + "<min>,<max> | " + LongLiteral + "=<min>,<max>]";
+			} else if (ShortLiteral != "") {
+				return "[" + ShortLiteral + "<min>,<max>]";
+			} else {
+				return "[" + LongLiteral + "=<min>,<max>]";
+			}
+			break;
 		}
 		return "";
 	}
@@ -47,6 +56,15 @@ namespace Parser {
 				return ShortLiteral;
 			} else {
 				return LongLiteral + "=<value>";
+			}
+			break;
+		case RANGE:
+			if (ShortLiteral != "" && LongLiteral != "") {
+				return ShortLiteral + ", " + LongLiteral + "=<min>,<max>";
+			} else if (ShortLiteral != "") {
+				return ShortLiteral + " <min>,<max>";
+			} else {
+				return LongLiteral + "=<min>,<max>";
 			}
 			break;
 		}
@@ -115,6 +133,7 @@ namespace Parser {
 					return false;
 					break;
 				case NUMERIC:
+				case RANGE:
 					if (suffix == "") {
 						suffix = argv[++i];
 						if (suffix == nullptr || StartsWith(prefix, "--")) {
@@ -131,6 +150,12 @@ namespace Parser {
 						return false;
 					} catch (const std::invalid_argument&) {
 						PrintInvalidValue(prefix, suffix);
+						return false;
+					} catch (const std::range_error&) {
+						std::cout << "Invalid values '" << suffix;
+						std::cout << "' specified for " << prefix << '\n';
+						std::cout << "The first value must be";
+						std::cout << " greater than the second." << '\n';
 						return false;
 					}
 					break;
@@ -278,6 +303,49 @@ namespace Parser {
 	//----------------------------------------------------------------------
 	void SetRainProperties(RainProperties &rainProperties)
 	{
-		rainProperties = { {1, 2}, {4, 9}, {4, 9}, {4, 20}, {5, 7} };
+		rainProperties = Rain::DEFAULT_PROPERTIES;
+	}
+
+	//---RANGE--------------------------------------------------------------
+	Range<int> SplitRange(std::string_view range)
+	{
+		auto commaPlace {range.find(',')};
+		if (commaPlace == std::string_view::npos) {
+			throw std::invalid_argument("No comma found in range argument.");
+		}
+		int min {ReturnValidNumber(range.substr(0, commaPlace))};
+		int max {ReturnValidNumber(range.substr(commaPlace + 1))};
+		return {min, max};
+	}
+	//---SPEED--------------------------------------------------------------
+	void SetSpeedRange(std::string_view range, RainProperties &rainProperties)
+	{
+		rainProperties.RainColumnSpeed = SplitRange(range);
+		if (rainProperties.RainColumnSpeed.GetMax() > Rain::MAX_FALL_SPEED) {
+			throw std::out_of_range("Value is out of range.");
+		}
+	}
+	//---STARTING-GAP-RANGE-------------------------------------------------
+	void SetStartingGapRange(std::string_view range, RainProperties &rainProperties)
+	{
+		rainProperties.RainColumnStartingGap = SplitRange(range);
+	}
+	//---GAP-RANGE----------------------------------------------------------
+	void SetGapRange(std::string_view range, RainProperties &rainProperties)
+	{
+		rainProperties.RainColumnGap = SplitRange(range);
+	}
+	//---LENGTH-------------------------------------------------------------
+	void SetLengthRange(std::string_view range, RainProperties &rainProperties)
+	{
+		rainProperties.RainStreakLength = SplitRange(range);
+		if (rainProperties.RainStreakLength.GetMin() <= Rain::MIN_LENGTH) {
+			throw std::out_of_range("Value is out of range.");
+		}
+	}
+	//---CHARACTER-UPDATE-RATE----------------------------------------------
+	void SetCharUpdateRateRange(std::string_view range, RainProperties &rainProperties)
+	{
+		rainProperties.MCharUpdateRate = SplitRange(range);
 	}
 }

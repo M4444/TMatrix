@@ -22,7 +22,7 @@ namespace Parser {
 	constexpr int LONG_GAP_PREFIX {6};
 	constexpr std::string_view SEPARATOR {"  - "};
 
-	enum OptionType { VERSION, HELP, NUMERIC };
+	enum OptionType { VERSION, HELP, NUMERIC, RANGE };
 	struct Option {
 		OptionType Type;
 		std::string ShortLiteral;
@@ -57,6 +57,18 @@ namespace Parser {
 	int ReturnValidNumber(std::string_view value);
 	//----------------------------------------------------------------------
 	void SetRainProperties(RainProperties &rainProperties);
+	//---RANGE--------------------------------------------------------------
+	Range<int> SplitRange(std::string_view range);
+	//---SPEED--------------------------------------------------------------
+	void SetSpeedRange(std::string_view range, RainProperties &rainProperties);
+	//---LENGTH-------------------------------------------------------------
+	void SetLengthRange(std::string_view range, RainProperties &rainProperties);
+	//---STARTING-GAP-RANGE-------------------------------------------------
+	void SetStartingGapRange(std::string_view range, RainProperties &rainProperties);
+	//---GAP-RANGE----------------------------------------------------------
+	void SetGapRange(std::string_view range, RainProperties &rainProperties);
+	//---CHARACTER-UPDATE-RATE----------------------------------------------
+	void SetCharUpdateRateRange(std::string_view range, RainProperties &rainProperties);
 
 	const std::array Options {
 		Option{
@@ -80,6 +92,77 @@ namespace Parser {
 			[](std::string_view value, int &stepsPerSecond, RainProperties &)
 			{
 				SetStepsPerSecond(value, stepsPerSecond);
+			}
+		},
+		Option{
+			RANGE, "-S", "--fall-speed",
+			{
+				"Set the range for the fall speed",
+				"The maximal fall speed value is " + std::to_string(Rain::MAX_FALL_SPEED),
+				"The defalut fall speed range is " +
+					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMin()) + ',' +
+					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMax())
+
+			},
+			[](std::string_view range, int &, RainProperties &rainProperties)
+			{
+				SetSpeedRange(range, rainProperties);
+			}
+		},
+		Option{
+			RANGE, "-G", "--start-gap",
+			{
+				"Set the range for the starting gaps",
+				"The defalut starting gap range is " +
+					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnStartingGap.GetMin()) + ',' +
+					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnStartingGap.GetMax())
+			},
+			[](std::string_view range, int &, RainProperties &rainProperties)
+			{
+				SetStartingGapRange(range, rainProperties);
+			}
+		},
+		Option{
+			RANGE, "-g", "--gap",
+			{
+				"Set the range for the gaps between streaks",
+				"The defalut gap range is " +
+					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnGap.GetMin()) + ',' +
+					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnGap.GetMax())
+			},
+			[](std::string_view range, int &, RainProperties &rainProperties)
+			{
+				SetGapRange(range, rainProperties);
+			}
+		},
+		Option{
+			RANGE, "-l", "",
+			{
+				"Set the range for the length of rain streaks",
+				"The minimal lenght value is " + std::to_string(Rain::MIN_LENGTH),
+				"The defalut length range is " +
+					std::to_string(Rain::DEFAULT_PROPERTIES.RainStreakLength.GetMin()) + ',' +
+					std::to_string(Rain::DEFAULT_PROPERTIES.RainStreakLength.GetMax())
+			},
+			[](std::string_view range, int &, RainProperties &rainProperties)
+			{
+				SetLengthRange(range, rainProperties);
+			}
+		},
+		Option{
+			RANGE, "-c", "",
+			{
+				"Set the range for the update rate of the",
+				"Matrix characters",
+				"The values correspond to the number of steps",
+				"before the change and 0 represents no change",
+				"The defalut update rate range is " +
+					std::to_string(Rain::DEFAULT_PROPERTIES.MCharUpdateRate.GetMin()) + ',' +
+					std::to_string(Rain::DEFAULT_PROPERTIES.MCharUpdateRate.GetMax())
+			},
+			[](std::string_view range, int &, RainProperties &rainProperties)
+			{
+				SetCharUpdateRateRange(range, rainProperties);
 			}
 		}
 	};

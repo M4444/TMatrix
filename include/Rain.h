@@ -28,6 +28,12 @@ class Rain : public Active {
 	int GetRandomSpeed();
 	int GetRandomStartingGap();
 public:
+	static constexpr RainProperties DEFAULT_PROPERTIES {
+		{1, 2}, {4, 9}, {4, 9}, {4, 20}, {5, 7}
+	};
+	static constexpr int MAX_FALL_SPEED {10};
+	static constexpr int MIN_LENGTH {1};
+
 	Rain(RainProperties RP);
 
 	void Update();
