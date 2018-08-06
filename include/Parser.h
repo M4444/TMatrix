@@ -24,11 +24,11 @@ namespace Parser {
 
 	enum OptionType { VERSION, HELP, NUMERIC, RANGE };
 	struct Option {
-		OptionType Type;
-		std::string ShortLiteral;
-		std::string LongLiteral;
-		std::vector<std::string> HelpText;
-		std::function<void(std::string_view, int &, RainProperties &)> ProcessArgument;
+		const OptionType Type;
+		const std::string ShortLiteral;
+		const std::string LongLiteral;
+		const std::vector<std::string> HelpText;
+		const std::function<void(std::string_view, int &, RainProperties &)> ProcessArgument;
 
 		std::string GetUsage() const;
 		std::string GetLiterals() const;
