@@ -109,11 +109,12 @@ namespace Parser {
 		return (str.substr(0, prefix.length()) == prefix);
 	}
 
-	bool ParseCmdLineArgs(int argc, char *argv[], int &stepsPerSecond, RainProperties &rainProperties)
+	bool ParseCmdLineArgs(std::vector<std::string_view> arguments,
+			      int &stepsPerSecond, RainProperties &rainProperties)
 	{
 		SetRainProperties(rainProperties);
-		for (int i = 1; i < argc; i++) {
-			std::string_view argument {argv[i]};
+		for (decltype(arguments)::size_type i = 0; i < arguments.size(); i++) {
+			std::string_view argument {arguments[i]};
 
 			bool matched {false};
 			for (const Option &option : Options) {
@@ -135,7 +136,7 @@ namespace Parser {
 				case NUMERIC:
 				case RANGE:
 					if (suffix == "") {
-						suffix = argv[++i];
+						suffix = arguments[++i];
 						if (suffix == nullptr || StartsWith(prefix, "--")) {
 							std::cout << "No value specified for " << argument << '\n';
 							PrintUsage(false);

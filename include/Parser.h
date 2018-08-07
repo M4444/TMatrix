@@ -39,7 +39,8 @@ namespace Parser {
 
 	//---Parser-functions---------------------------------------------------
 	bool StartsWith(std::string_view str, std::string_view prefix);
-	bool ParseCmdLineArgs(int argc, char *argv[], int &stepsPerSecond, RainProperties &rainProperties);
+	bool ParseCmdLineArgs(std::vector<std::string_view> arguments,
+			      int &stepsPerSecond, RainProperties &rainProperties);
 	void PrintInvalidValue(std::string_view prefix, std::string_view suffix);
 
 	void Parse(char c, bool &paused);
