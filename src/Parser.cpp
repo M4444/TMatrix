@@ -340,7 +340,7 @@ namespace Parser {
 	void SetLengthRange(std::string_view range, RainProperties &rainProperties)
 	{
 		rainProperties.RainStreakLength = SplitRange(range);
-		if (rainProperties.RainStreakLength.GetMin() <= Rain::MIN_LENGTH) {
+		if (rainProperties.RainStreakLength.GetMin() < Rain::MIN_LENGTH) {
 			throw std::out_of_range("Value is out of range.");
 		}
 	}
