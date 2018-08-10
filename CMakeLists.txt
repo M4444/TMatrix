@@ -1,4 +1,4 @@
-# Verison 3.8 is the first version that supports CXX_STANDARD 17.
+# Version 3.8 is the first version that supports CXX_STANDARD 17.
 cmake_minimum_required(VERSION 3.8)
 project(TMatrix CXX)
 
@@ -6,7 +6,7 @@ project(TMatrix CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Setup different build types. Release is default.
+# Setup different build types. Release is the default.
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
    set(CMAKE_BUILD_TYPE Release)
 endif()
@@ -24,5 +24,5 @@ link_libraries(${CURSES_LIBRARIES})
 file(GLOB tmatrix_SRC "src/*.cpp")
 add_executable(tmatrix ${tmatrix_SRC})
 
-# Specifie include directory.
+# Specify the include directory.
 include_directories(include)
