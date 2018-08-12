@@ -178,7 +178,7 @@ namespace Parser {
 		std::cout << "Try 'tmatrix --help' for more information." << '\n';
 	}
 
-	void Parse(char c, bool &paused)
+	void ParseRuntimeInput(char c, bool &paused)
 	{
 		switch (c) {
 		case 'p':

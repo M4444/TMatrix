@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 				rain.Update();
 				Terminal::Flush();
 			}
-			Parser::Parse(Terminal::ReadInputChar(), paused);
+			Parser::ParseRuntimeInput(Terminal::ReadInputChar(), paused);
 			usleep(1000*1000/stepsPerSecond);
 		}
 	}

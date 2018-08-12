@@ -43,7 +43,7 @@ namespace Parser {
 			      int &stepsPerSecond, RainProperties &rainProperties);
 	void PrintInvalidValue(std::string_view prefix, std::string_view suffix);
 
-	void Parse(char c, bool &paused);
+	void ParseRuntimeInput(char c, bool &paused);
 
 	//---VERSION------------------------------------------------------------
 	void PrintVersion();
