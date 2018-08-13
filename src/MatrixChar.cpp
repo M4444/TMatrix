@@ -49,6 +49,8 @@ void MatrixChar::Update()
 
 void MatrixChar::SetNotGlowing()
 {
-	Glowing = false;
-	Draw();
+	if (Glowing) {
+		Glowing = false;
+		Draw();
+	}
 }
