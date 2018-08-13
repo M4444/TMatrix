@@ -10,23 +10,23 @@
 
 void RainStreak::Update()
 {
-	// Delete the tail MChar
-	if (y >= Length) {
+	if (FullyEnteredScreen) {
 		if (!MChars.empty()) {
-			MChars.pop_front();
+			// Delete the tail MChar
+			MChars.pop_back();
 		} else {
 			OutOfScreen = true;
 		}
 	}
-	// Remove glow from the previous MChar
+	// Remove glow from the previous head MChar
 	if (!MChars.empty()) {
-		MChars.back().SetNotGlowing();
+		MChars.front().SetNotGlowing();
 	}
-	// Create a new MChar
+	// Create a new head MChar
 	if (y < Terminal::getNumberOfRows()) {
 		auto [updateRate, updateTime] { rain->GetRandomUpdateRateAndTime() };
 
-		MChars.emplace_back(x, y, updateRate, updateTime);
+		MChars.emplace_front(x, y, updateRate, updateTime);
 	}
 	// Advance position
 	y++;
@@ -35,9 +35,7 @@ void RainStreak::Update()
 		FullyEnteredScreen = true;
 	}
 	// Update all the MChars
-	if (!OutOfScreen) {
-		for (MatrixChar &mc : MChars) {
-			mc.Update();
-		}
+	for (MatrixChar &mc : MChars) {
+		mc.Update();
 	}
 }

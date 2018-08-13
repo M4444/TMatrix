@@ -19,13 +19,12 @@ class RainStreak : public Active {
 	const int x;
 	int y {0};
 	const int Length;
-	const int Speed;
 	bool FullyEnteredScreen {false};
 	bool OutOfScreen {false};
 	std::deque<MatrixChar> MChars;
 public:
-	RainStreak(const std::shared_ptr<Rain> &R, int col, int len, int S) :
-		rain{R}, x{col}, Length{len}, Speed{S} {}
+	RainStreak(const std::shared_ptr<Rain> &R, int col, int len) :
+		rain{R}, x{col}, Length{len} {}
 
 	bool IsOutOfScreen() const { return OutOfScreen; }
 	bool HasFullyEnteredScreen() const { return FullyEnteredScreen; }

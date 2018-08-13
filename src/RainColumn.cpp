@@ -14,7 +14,7 @@ void RainColumn::Step()
 			GapTimer.Update();
 		} else {
 			// Create new streak
-			RainStreaks.emplace_back(rain, x, rain->GetRandomLength(), Speed);
+			RainStreaks.emplace_back(rain, x, rain->GetRandomLength());
 			EmptyRainStreakSlot = false;
 		}
 	}
