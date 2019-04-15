@@ -136,8 +136,14 @@ namespace Parser {
 				case NUMERIC:
 				case RANGE:
 					if (suffix == "") {
-						suffix = arguments[++i];
-						if (suffix == nullptr || StartsWith(prefix, "--")) {
+						try {
+							suffix = arguments.at(++i);
+						} catch (const std::out_of_range&) {
+							std::cout << "No value specified for " << argument << '\n';
+							PrintUsage(false);
+							return false;
+						}
+						if (StartsWith(prefix, "--")) {
 							std::cout << "No value specified for " << argument << '\n';
 							PrintUsage(false);
 							return false;
