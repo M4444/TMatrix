@@ -16,8 +16,10 @@
 #include "MatrixChar.h"
 
 struct TerminalChar {
-	static constexpr char GLOW_SEQ[] { '\033', '[', '9', '7', 'm' };
-	static constexpr char GLOW_END_SEQ[] { '\033', '[', '3', '2', 'm' };
+	// White foreground
+	static constexpr char GLOW_SEQ[] {"\033[97m"};
+	// Green foreground
+	static constexpr char GLOW_END_SEQ[] {"\033[32m"};
 	static constexpr std::size_t PREFIX_SIZE {sizeof(GLOW_SEQ)};
 	static constexpr std::size_t MCHAR_SIZE {MatrixChar::GetMaxMCharSize()};
 	static constexpr std::size_t SUFFIX_SIZE {sizeof(GLOW_END_SEQ)};

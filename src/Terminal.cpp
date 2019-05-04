@@ -35,7 +35,7 @@ Terminal::Terminal()
 	// Set bold style
 	std::cout << "\033[1m";
 	// Set green foreground
-	std::cout << "\033[32m";
+	std::cout << TerminalChar::GLOW_END_SEQ;
 
 	// Calling this here first prevents delay in the main loop.
 	getch();
