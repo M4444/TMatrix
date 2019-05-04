@@ -61,8 +61,8 @@ public:
 		return instance;
 	}
 
-	static int getNumberOfRows() { return NumberOfRows; }
-	static int getNumberOfColumns() { return NumberOfColumns; }
+	static int GetNumberOfRows() { return NumberOfRows; }
+	static int GetNumberOfColumns() { return NumberOfColumns; }
 
 	static void Draw(int x, int y, std::string_view str, bool isGlowing = false);
 	static void Erase(int x, int y);

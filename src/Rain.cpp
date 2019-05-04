@@ -13,7 +13,7 @@ Rain::Rain(RainProperties RP) : Properties{RP}
 {
 	// Create all the rain columns
 	std::shared_ptr<Rain> rain {this};
-	int numberOfColumns {Terminal::getNumberOfColumns()};
+	int numberOfColumns {Terminal::GetNumberOfColumns()};
 
 	RainColumns.reserve(numberOfColumns);
 	for (int i = 0; i < numberOfColumns; i++) {

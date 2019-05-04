@@ -23,7 +23,7 @@ void RainStreak::Update()
 		MChars.front().SetNotGlowing();
 	}
 	// Create a new head MChar
-	if (y < Terminal::getNumberOfRows()) {
+	if (y < Terminal::GetNumberOfRows()) {
 		auto [updateRate, updateTime] { rain->GetRandomUpdateRateAndTime() };
 
 		MChars.emplace_front(x, y, updateRate, updateTime);
