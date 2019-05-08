@@ -29,6 +29,9 @@ class Rain : public Active {
 	int GetRandomStartingGap();
 public:
 	static constexpr RainProperties DEFAULT_PROPERTIES {
+		{1, 1}, {10, 50}, {0, 40}, {1, 30}, {10, 20}
+	};
+	static constexpr RainProperties DENSE_PROPERTIES {
 		{1, 2}, {4, 9}, {4, 9}, {4, 20}, {5, 7}
 	};
 	static constexpr int MAX_FALL_SPEED {10};
