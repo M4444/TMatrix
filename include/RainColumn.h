@@ -20,11 +20,14 @@ class RainColumn : public Active {
 	const int x;
 	const int Speed;
 	CountdownTimer GapTimer;
+	char TitleChar;
+	const RainStreak *FirstRainStreak {nullptr};
+	bool CreatedRainStreak {false};
 	bool EmptyRainStreakSlot {true};
 	std::list<RainStreak> RainStreaks;
 public:
-	RainColumn(const std::shared_ptr<Rain> &R, int X, int S, int G) :
-		rain{R}, x{X}, Speed{S}, GapTimer{G} {}
+	RainColumn(const std::shared_ptr<Rain> &R, int X, int S, int G, char TC) :
+		rain{R}, x{X}, Speed{S}, GapTimer{G}, TitleChar{TC} {}
 
 	void Step();
 	void Update();

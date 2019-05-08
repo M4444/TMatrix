@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
+#include <cmath>
 #include <memory>
 #include "Rain.h"
 #include "Random.h"
@@ -14,10 +15,17 @@ Rain::Rain(RainProperties RP) : Properties{RP}
 	// Create all the rain columns
 	std::shared_ptr<Rain> rain {this};
 	int numberOfColumns {Terminal::GetNumberOfColumns()};
+	int titleLength {static_cast<int>(std::strlen(Properties.Title))};
 
+	int titleCharIndex {0};
 	RainColumns.reserve(numberOfColumns);
 	for (int i = 0; i < numberOfColumns; i++) {
-		RainColumns.emplace_back(rain, i, GetRandomSpeed(), GetRandomStartingGap());
+		bool titleColumn {numberOfColumns >= titleLength && titleLength > 0 &&
+				  i >= numberOfColumns/2 - std::ceil(titleLength/2.0) &&
+				  i < numberOfColumns/2 + std::floor(titleLength/2.0)};
+		char titleChar {titleColumn ? Properties.Title[titleCharIndex++] : '\0'};
+		RainColumns.emplace_back(rain, i, GetRandomSpeed(), GetRandomStartingGap(),
+					 titleChar);
 	}
 }
 
