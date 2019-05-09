@@ -1,0 +1,75 @@
+.TH TMatrix 1 "9 May 2019" "TMatrix Version 0.9"
+.SH NAME
+TMatrix \- Terminal based replica of the digital rain from The Matrix
+.SH SYNOPSIS
+.nf
+\fItmatrix\fR [--version] [--help] [-s<value>|--steps-per-second=<value>]
+        [-S<min>,<max>|--fall-speed=<min>,<max>]
+        [-G<min>,<max>|--start-gap=<min>,<max>]
+        [-g<min>,<max>|--gap=<min>,<max>] [-l<min>,<max>]
+        [-c<min>,<max>]
+.fi
+.SH DESCRIPTION
+Simulates the digital rain effect from The Matrix.
+.SH OPTIONS
+.TP 4
+\-\-version
+Output version information and exit.
+.TP 4
+\-\-help
+Display this help and exit.
+.TP 4
+\-s, \-\-steps-per-second=<value>
+Run this many steps per second.
+.br
+<value> can range from \fB1\fR to \fB60\fR.
+.br
+Default: \fI10\fR
+.TP 4
+\-S, --fall-speed=<min>,<max>
+Set the range for the fall speed.
+.br
+The maximal fall speed value is \fB10\fR.
+.br
+Default: \fI1,1\fR.
+.TP 4
+\-G, --start-gap=<min>,<max>
+Set the range for the starting gaps.
+.br
+Default: \fI10,50\fR.
+.TP 4
+\-g, --gap=<min>,<max>
+Set the range for the gaps between streaks.
+.br
+Default: \fI0,40\fR.
+.TP 4
+\-l <min>,<max>
+Set the range for the length of rain streaks.
+.br
+The minimal length value is \fB1\fR.
+.br
+Default: \fI1,30\fR.
+.TP 4
+\-c <min>,<max>
+Set the range for the update rate of the Matrix characters.
+.br
+The values correspond to the number of steps before the change.
+.br
+\fB0\fR represents no change.
+.br
+Default: \fI10,20\fR.
+.SH REAL-TIME COMMANDS
+.TP 4
+p
+Pause
+.TP 4
+q
+Quit
+.SH AUTHORS
+Written by Miloš Stojanović <mc.cm.mail@gmail.com>
+.SH LICENSE
+Copyright (C) 2018-2019 Miloš Stojanović
+.br
+SPDX-License-Identifier: GPL-2.0-only
+.SH SEE ALSO
+.BR cmatrix (1)
