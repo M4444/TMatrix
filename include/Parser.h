@@ -88,7 +88,7 @@ namespace Parser {
 				"Run this many steps per second",
 				"<value> can range from " + std::to_string(MIN_STEPS_PER_SECOND) +
 					" to " + std::to_string(MAX_STEPS_PER_SECOND),
-				"The default value is " + std::to_string(DEFAULT_STEPS_PER_SECOND)
+				"Default: " + std::to_string(DEFAULT_STEPS_PER_SECOND)
 			},
 			[](std::string_view value, int &stepsPerSecond, RainProperties &)
 			{
@@ -100,7 +100,7 @@ namespace Parser {
 			{
 				"Set the range for the fall speed",
 				"The maximal fall speed value is " + std::to_string(Rain::MAX_FALL_SPEED),
-				"The defalut fall speed range is " +
+				"Default: " +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMin()) + ',' +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMax())
 
@@ -114,7 +114,7 @@ namespace Parser {
 			RANGE, "-G", "--start-gap",
 			{
 				"Set the range for the starting gaps",
-				"The defalut starting gap range is " +
+				"Default: " +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnStartingGap.GetMin()) + ',' +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnStartingGap.GetMax())
 			},
@@ -127,7 +127,7 @@ namespace Parser {
 			RANGE, "-g", "--gap",
 			{
 				"Set the range for the gaps between streaks",
-				"The defalut gap range is " +
+				"Default: " +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnGap.GetMin()) + ',' +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnGap.GetMax())
 			},
@@ -140,8 +140,8 @@ namespace Parser {
 			RANGE, "-l", "",
 			{
 				"Set the range for the length of rain streaks",
-				"The minimal lenght value is " + std::to_string(Rain::MIN_LENGTH),
-				"The defalut length range is " +
+				"The minimal length value is " + std::to_string(Rain::MIN_LENGTH),
+				"Default: " +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainStreakLength.GetMin()) + ',' +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainStreakLength.GetMax())
 			},
@@ -157,7 +157,7 @@ namespace Parser {
 				"Matrix characters",
 				"The values correspond to the number of steps",
 				"before the change and 0 represents no change",
-				"The defalut update rate range is " +
+				"Default: " +
 					std::to_string(Rain::DEFAULT_PROPERTIES.MCharUpdateRate.GetMin()) + ',' +
 					std::to_string(Rain::DEFAULT_PROPERTIES.MCharUpdateRate.GetMax())
 			},

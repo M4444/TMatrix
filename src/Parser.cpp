@@ -217,6 +217,7 @@ namespace Parser {
 
 		if (full) {
 			std::cout << "Simulates the digital rain effect from The Matrix." << '\n';
+			std::cout << "Use 'p' to pause and 'q' to quit." << '\n';
 			std::cout << '\n';
 
 			std::size_t longestLiterals {FindLongestLiteralsLength()};
