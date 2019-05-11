@@ -26,8 +26,8 @@ class Rain : public Active {
 	std::vector<RainColumn> RainColumns;
 	const RainProperties Properties;
 
-	int GetRandomSpeed();
-	int GetRandomStartingGap();
+	int GetRandomSpeed() const;
+	int GetRandomStartingGap() const;
 public:
 	static constexpr RainProperties DEFAULT_PROPERTIES {
 		{1, 1}, {10, 50}, {0, 40}, {1, 30}, {10, 20}, " T M A T R I X "
@@ -41,9 +41,9 @@ public:
 	Rain(RainProperties RP);
 
 	void Update();
-	int GetRandomLength();
-	int GetRandomGap();
-	std::pair<int, int> GetRandomUpdateRateAndTime();
+	int GetRandomLength() const;
+	int GetRandomGap() const;
+	std::pair<int, int> GetRandomUpdateRateAndTime() const;
 };
 
 #endif

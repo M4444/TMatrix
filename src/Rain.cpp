@@ -36,27 +36,27 @@ void Rain::Update()
 	}
 }
 
-int Rain::GetRandomSpeed()
+int Rain::GetRandomSpeed() const
 {
 	return Random::Random(Properties.RainColumnSpeed);
 }
 
-int Rain::GetRandomStartingGap()
+int Rain::GetRandomStartingGap() const
 {
 	return Random::Random(Properties.RainColumnStartingGap);
 }
 
-int Rain::GetRandomLength()
+int Rain::GetRandomLength() const
 {
 	return Random::Random(Properties.RainStreakLength);
 }
 
-int Rain::GetRandomGap()
+int Rain::GetRandomGap() const
 {
 	return Random::Random(Properties.RainColumnGap);
 }
 
-std::pair<int, int> Rain::GetRandomUpdateRateAndTime()
+std::pair<int, int> Rain::GetRandomUpdateRateAndTime() const
 {
 	int UpdateRate {Random::Random(Properties.MCharUpdateRate)};
 	int UpdateTime {UpdateRate ? Random::Random(UpdateRate) : 0};
