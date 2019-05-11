@@ -53,7 +53,7 @@ namespace Parser {
 	std::size_t FindLongestLiteralsLength();
 	void PrintUsageLine(const Option &option, std::size_t longestLiterals);
 	void PrintSpecificOptionType(OptionType type, std::size_t longestLiterals);
-	//---SPTES-PER-SECONDS--------------------------------------------------
+	//---STEPS-PER-SECONDS--------------------------------------------------
 	void SetStepsPerSecond(std::string_view value, int &stepsPerSecond);
 	int ReturnValidNumber(std::string_view value);
 	//----------------------------------------------------------------------

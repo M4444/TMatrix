@@ -123,7 +123,7 @@ namespace Parser {
 				}
 				auto [prefix, suffix] { option.GetPrefixSuffixSplit(argument) };
 				matched = true;
-				switch(option.Type) {
+				switch (option.Type) {
 				case VERSION:
 				case HELP:
 					if (suffix != "") {
@@ -193,7 +193,7 @@ namespace Parser {
 			break;
 		case 'q':
 		case 'Q':
-			std::raise(SIGINT);
+			std::raise(SIGTERM);
 			break;
 		}
 	}
@@ -287,7 +287,7 @@ namespace Parser {
 		}
 	}
 
-	//---SPTES-PER-SECONDS--------------------------------------------------
+	//---STEPS-PER-SECONDS--------------------------------------------------
 	void SetStepsPerSecond(std::string_view value, int &stepsPerSecond)
 	{
 		stepsPerSecond = ReturnValidNumber(value);
