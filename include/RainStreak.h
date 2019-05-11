@@ -8,14 +8,13 @@
 #define RAIN_STREAK_H
 
 #include <deque>
-#include <memory>
 #include "Active.h"
 #include "MatrixChar.h"
 
 class Rain;
 
 class RainStreak : public Active {
-	const std::shared_ptr<Rain> rain;
+	const Rain *rain;
 	const int x;
 	int y {0};
 	const int Length;
@@ -25,7 +24,7 @@ class RainStreak : public Active {
 	bool OutOfScreen {false};
 	std::deque<MatrixChar> MChars;
 public:
-	RainStreak(const std::shared_ptr<Rain> &R, int col, int len) :
+	RainStreak(const Rain *R, int col, int len) :
 		rain{R}, x{col}, Length{len} {}
 
 	bool HasFullyEnteredScreen() const { return FullyEnteredScreen; }

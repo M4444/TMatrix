@@ -5,7 +5,6 @@
  */
 
 #include <cmath>
-#include <memory>
 #include "Rain.h"
 #include "Random.h"
 #include "Terminal.h"
@@ -13,7 +12,6 @@
 Rain::Rain(RainProperties RP) : Properties{RP}
 {
 	// Create all the rain columns
-	std::shared_ptr<Rain> rain {this};
 	int numberOfColumns {Terminal::GetNumberOfColumns()};
 	int titleLength {static_cast<int>(std::strlen(Properties.Title))};
 
@@ -24,7 +22,7 @@ Rain::Rain(RainProperties RP) : Properties{RP}
 				  i >= numberOfColumns/2 - std::ceil(titleLength/2.0) &&
 				  i < numberOfColumns/2 + std::floor(titleLength/2.0)};
 		char titleChar {titleColumn ? Properties.Title[titleCharIndex++] : '\0'};
-		RainColumns.emplace_back(rain, i, GetRandomSpeed(), GetRandomStartingGap(),
+		RainColumns.emplace_back(this, i, GetRandomSpeed(), GetRandomStartingGap(),
 					 titleChar);
 	}
 }
