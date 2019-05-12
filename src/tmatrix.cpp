@@ -4,13 +4,16 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
+#include <chrono>
 #include <string_view>
-#include <unistd.h>
+#include <thread>
 #include <vector>
 #include "Parser.h"
 #include "Rain.h"
 #include "Terminal.h"
 #include "tmatrix.h"
+
+using namespace std::chrono_literals;
 
 int main(int argc, char *argv[])
 {
@@ -29,7 +32,7 @@ int main(int argc, char *argv[])
 				Terminal::Flush();
 			}
 			Parser::ParseRuntimeInput(Terminal::ReadInputChar(), paused);
-			usleep(1000*1000/stepsPerSecond);
+			std::this_thread::sleep_for(1.0s/stepsPerSecond);
 		}
 	}
 }
