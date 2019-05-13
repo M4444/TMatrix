@@ -83,7 +83,7 @@ namespace Parser {
 			[](std::string_view, int &, RainProperties &) { PrintUsage(true); }
 		},
 		Option{
-			NUMERIC, "-s", "--steps-per-second",
+			NUMERIC, "-s", "--steps-per-sec",
 			{
 				"Run this many steps per second",
 				"<value> can range from " + std::to_string(MIN_STEPS_PER_SECOND) +
@@ -96,7 +96,7 @@ namespace Parser {
 			}
 		},
 		Option{
-			RANGE, "-S", "--fall-speed",
+			RANGE, "-f", "--fall-speed",
 			{
 				"Set the range for the fall speed",
 				"The maximal fall speed value is " + std::to_string(Rain::MAX_FALL_SPEED),
@@ -151,7 +151,7 @@ namespace Parser {
 			}
 		},
 		Option{
-			RANGE, "-c", "",
+			RANGE, "-r", "",
 			{
 				"Set the range for the update rate of the",
 				"Matrix characters",
