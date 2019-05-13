@@ -7,40 +7,41 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
-#include <algorithm>
-#include <cstddef>
 #include <cstring>
-#include <string_view>
 #include <vector>
 #include "MatrixChar.h"
 
 struct TerminalChar {
 	// White foreground
-	static constexpr char GLOW_SEQ[] {"\033[97m"};
+	static constexpr char GLOWING_COLOR_ESC_SEQ[] {"\033[97m"};
 	// Green foreground
-	static constexpr char GLOW_END_SEQ[] {"\033[32m"};
-	static constexpr std::size_t PREFIX_SIZE {sizeof(GLOW_SEQ)};
-	static constexpr std::size_t MCHAR_SIZE {MatrixChar::GetMaxMCharSize()};
-	static constexpr std::size_t SUFFIX_SIZE {sizeof(GLOW_END_SEQ)};
+	static constexpr char NORMAL_COLOR_ESC_SEQ[] {"\033[32m"};
+	static constexpr std::size_t PREFIX_SIZE {sizeof(NORMAL_COLOR_ESC_SEQ)-1};
 
-	char prefix[PREFIX_SIZE] { '\0' };
-	char MChar[MCHAR_SIZE] { ' ' };
-	char suffix[SUFFIX_SIZE] { '\0' };
+	char prefix[PREFIX_SIZE] { '\033', '[', '3', '2', 'm'};
+	char MChar[MatrixChar::MCHAR_SIZE] { ' ' };
 
-	void SetFullMChar(std::string_view str, bool isGlowing)
+	void SetFullMChar(const char *mchar, bool isGlowing)
 	{
-		std::memset(&prefix, '\0', sizeof(*this));
-		std::memcpy(&MChar, str.data(), std::min(str.length(), MCHAR_SIZE));
 		if (isGlowing) {
-			std::memcpy(&prefix, GLOW_SEQ, PREFIX_SIZE);
-			std::memcpy(&suffix, GLOW_END_SEQ, SUFFIX_SIZE);
+			std::memcpy(&prefix, GLOWING_COLOR_ESC_SEQ, PREFIX_SIZE);
+		} else {
+			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ, PREFIX_SIZE);
 		}
+		std::memcpy(&MChar, mchar, MatrixChar::MCHAR_SIZE);
 	}
 
 	void Clear()
 	{
-		std::memset(&prefix, '\0', sizeof(*this));
-		MChar[0] = ' ';
+		std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ, PREFIX_SIZE);
+		std::memcpy(&MChar, MatrixChar::GetEmptyMChar(), MatrixChar::MCHAR_SIZE);
+	}
+
+	void SetFullTitleChar(char tchar)
+	{
+		std::memcpy(&prefix, GLOWING_COLOR_ESC_SEQ, PREFIX_SIZE);
+		std::memset(&MChar, '\0', MatrixChar::MCHAR_SIZE);
+		MChar[0] = tchar;
 	}
 };
 
@@ -65,8 +66,9 @@ public:
 	static int GetNumberOfRows() { return NumberOfRows; }
 	static int GetNumberOfColumns() { return NumberOfColumns; }
 
-	static void Draw(int x, int y, std::string_view str, bool isGlowing = false);
+	static void Draw(int x, int y, const char *mchar, bool isGlowing);
 	static void Erase(int x, int y);
+	static void DrawTitle(int x, int y, char tchar);
 	static void Flush();
 	static char ReadInputChar();
 };

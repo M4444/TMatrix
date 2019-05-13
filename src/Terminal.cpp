@@ -35,7 +35,7 @@ Terminal::Terminal()
 	// Set bold style
 	std::cout << "\033[1m";
 	// Set green foreground
-	std::cout << TerminalChar::GLOW_END_SEQ;
+	std::cout << TerminalChar::GLOWING_COLOR_ESC_SEQ;
 
 	// Calling this here first prevents delay in the main loop.
 	getch();
@@ -50,13 +50,13 @@ Terminal::~Terminal()
 	endwin();
 }
 
-void Terminal::Draw(int x, int y, std::string_view str, bool isGlowing)
+void Terminal::Draw(int x, int y, const char *mchar, bool isGlowing)
 {
 	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
 		return;
 	}
 
-	ScreenBuffer[y*NumberOfColumns + x].SetFullMChar(str, isGlowing);
+	ScreenBuffer[y*NumberOfColumns + x].SetFullMChar(mchar, isGlowing);
 }
 
 void Terminal::Erase(int x, int y)
@@ -66,6 +66,15 @@ void Terminal::Erase(int x, int y)
 	}
 
 	ScreenBuffer[y*NumberOfColumns + x].Clear();
+}
+
+void Terminal::DrawTitle(int x, int y, char tchar)
+{
+	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
+		return;
+	}
+
+	ScreenBuffer[y*NumberOfColumns + x].SetFullTitleChar(tchar);
 }
 
 void Terminal::Flush()

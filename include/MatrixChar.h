@@ -8,20 +8,10 @@
 #define MATRIX_CHAR_H
 
 #include <array>
-#include <cstring>
 #include "Active.h"
 #include "CountdownTimer.h"
 
 class MatrixChar : public Active {
-	static constexpr std::array ALL_MCHARS {
-		"ﾊ", "ﾐ", "ﾋ", "ｰ", "ｳ", "ｼ", "ﾅ", "ﾓ", "ﾆ", "ｻ",
-		"ﾜ", "ﾂ", "ｵ", "ﾘ", "ｱ", "ﾎ", "ﾃ", "ﾏ", "ｹ", "ﾒ",
-		"ｴ", "ｶ", "ｷ", "ﾑ", "ﾕ", "ﾗ", "ｾ", "ﾈ", "ｽ", "ﾀ",
-		"ﾇ", "ﾍ", "𐌇", "0", "1", "2", "3", "4", "5", "7",
-		"8", "9", "Z", ":", ".", "･", "=", "*", "+", "-",
-		"<", ">", "¦", "|", "╌", " ", "\""
-	};
-
 	const int x;
 	const int y;
 	CountdownTimer UpdateTimer;
@@ -33,6 +23,16 @@ class MatrixChar : public Active {
 	void Draw() const;
 	void Erase() const;
 public:
+	static constexpr std::size_t MCHAR_SIZE {sizeof("𐌇")-1};
+	static constexpr std::array<const char [MCHAR_SIZE+1], 57> ALL_MCHARS {
+		"ﾊ", "ﾐ", "ﾋ", "ｰ", "ｳ", "ｼ", "ﾅ", "ﾓ", "ﾆ", "ｻ",
+		"ﾜ", "ﾂ", "ｵ", "ﾘ", "ｱ", "ﾎ", "ﾃ", "ﾏ", "ｹ", "ﾒ",
+		"ｴ", "ｶ", "ｷ", "ﾑ", "ﾕ", "ﾗ", "ｾ", "ﾈ", "ｽ", "ﾀ",
+		"ﾇ", "ﾍ", "𐌇", "0", "1", "2", "3", "4", "5", "7",
+		"8", "9", "Z", ":", ".", "･", "=", "*", "+", "-",
+		"<", ">", "¦", "|", "╌", " ", "\""
+	};
+
 	MatrixChar(int X, int Y, int UpdateRate, int UpdateTime) : x{X}, y{Y},
 		UpdateTimer{UpdateRate, UpdateTime} {
 		Draw();
@@ -41,20 +41,18 @@ public:
 		Erase();
 	}
 
+	static const char *GetMChar(std::size_t index)
+	{
+		return ALL_MCHARS[index];
+	}
+
+	static const char *GetEmptyMChar()
+	{
+		return ALL_MCHARS[55];
+	}
+
 	void Update();
 	void SetNotGlowing();
-
-	static constexpr std::size_t GetMaxMCharSize()
-	{
-		std::size_t longest {0};
-		for (const auto &MChar : ALL_MCHARS) {
-			std::size_t current {std::strlen(MChar)};
-			if (current > longest) {
-				longest = current;
-			}
-		}
-		return longest;
-	}
 };
 
 #endif
