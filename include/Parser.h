@@ -22,7 +22,7 @@ namespace Parser {
 	constexpr int LONG_GAP_PREFIX {6};
 	constexpr std::string_view SEPARATOR {"  - "};
 
-	enum OptionType { VERSION, HELP, NUMERIC, RANGE };
+	enum OptionType { VERSION, HELP, NUMERIC, RANGE, COLOR };
 	struct Option {
 		const OptionType Type;
 		const std::string ShortLiteral;
@@ -70,6 +70,8 @@ namespace Parser {
 	void SetGapRange(std::string_view range, RainProperties &rainProperties);
 	//---CHARACTER-UPDATE-RATE----------------------------------------------
 	void SetCharUpdateRateRange(std::string_view range, RainProperties &rainProperties);
+	//---COLOR--------------------------------------------------------------
+	void SetColor(std::string_view color, RainProperties &rainProperties);
 
 	const std::array Options {
 		Option{
@@ -164,6 +166,19 @@ namespace Parser {
 			[](std::string_view range, int &, RainProperties &rainProperties)
 			{
 				SetCharUpdateRateRange(range, rainProperties);
+			}
+		},
+		Option{
+			COLOR, "-C", "--color",
+			{
+				"Set the color of the Matrix characters",
+				"Available colors: default, white, gray, black,",
+				"red, green, yellow, blue, magenta, cyan",
+				"Default: green"
+			},
+			[](std::string_view color, int &, RainProperties &rainProperties)
+			{
+				SetColor(color, rainProperties);
 			}
 		}
 	};

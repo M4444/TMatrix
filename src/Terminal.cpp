@@ -8,11 +8,14 @@
 #include <ncurses.h>
 #include "Terminal.h"
 
+const char *TerminalChar::GLOWING_COLOR_ESC_SEQ {TerminalChar::WHITE_COLOR};
+const char *TerminalChar::NORMAL_COLOR_ESC_SEQ {nullptr};
+
 int Terminal::NumberOfRows {0};
 int Terminal::NumberOfColumns {0};
 std::vector<TerminalChar> Terminal::ScreenBuffer {};
 
-Terminal::Terminal()
+Terminal::Terminal(const char *color)
 {
 	initscr();
 	savetty();
@@ -25,8 +28,6 @@ Terminal::Terminal()
 
 	getmaxyx(stdscr, Terminal::NumberOfRows, Terminal::NumberOfColumns);
 
-	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TerminalChar());
-
 	// Disable C stream sync
 	std::ios::sync_with_stdio(false);
 
@@ -34,8 +35,10 @@ Terminal::Terminal()
 	//std::cout << "\033[40m";
 	// Set bold style
 	std::cout << "\033[1m";
-	// Set green foreground
-	std::cout << TerminalChar::GLOWING_COLOR_ESC_SEQ;
+	// Set foreground color
+	TerminalChar::SetColor(color);
+
+	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TerminalChar());
 
 	// Calling this here first prevents delay in the main loop.
 	getch();

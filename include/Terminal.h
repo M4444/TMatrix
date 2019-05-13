@@ -12,14 +12,36 @@
 #include "MatrixChar.h"
 
 struct TerminalChar {
-	// White foreground
-	static constexpr char GLOWING_COLOR_ESC_SEQ[] {"\033[97m"};
-	// Green foreground
-	static constexpr char NORMAL_COLOR_ESC_SEQ[] {"\033[32m"};
-	static constexpr std::size_t PREFIX_SIZE {sizeof(NORMAL_COLOR_ESC_SEQ)-1};
+	// Terminal foreground color escape sequences
+	static constexpr char DEFAULT_COLOR[] {"\033[39m"};
+	static constexpr char WHITE_COLOR[]   {"\033[97m"};
+	static constexpr char GRAY_COLOR[]    {"\033[90m"};
+	static constexpr char BLACK_COLOR[]   {"\033[30m"};
+	static constexpr char RED_COLOR[]     {"\033[31m"};
+	static constexpr char GREEN_COLOR[]   {"\033[32m"};
+	static constexpr char YELLOW_COLOR[]  {"\033[33m"};
+	static constexpr char BLUE_COLOR[]    {"\033[34m"};
+	static constexpr char MAGENTA_COLOR[] {"\033[35m"};
+	static constexpr char CYAN_COLOR[]    {"\033[36m"};
 
-	char prefix[PREFIX_SIZE] { '\033', '[', '3', '2', 'm'};
-	char MChar[MatrixChar::MCHAR_SIZE] { ' ' };
+	static constexpr std::size_t PREFIX_SIZE {sizeof(DEFAULT_COLOR)-1};
+
+	static const char *GLOWING_COLOR_ESC_SEQ;
+	static const char *NORMAL_COLOR_ESC_SEQ;
+
+	static void SetColor(const char *color)
+	{
+		NORMAL_COLOR_ESC_SEQ = color;
+	}
+
+	// Non-static members
+	char prefix[PREFIX_SIZE];
+	char MChar[MatrixChar::MCHAR_SIZE];
+
+	TerminalChar()
+	{
+		Clear();
+	}
 
 	void SetFullMChar(const char *mchar, bool isGlowing)
 	{
@@ -51,15 +73,15 @@ class Terminal {
 	static int NumberOfColumns;
 	static std::vector<TerminalChar> ScreenBuffer;
 
-	Terminal();
+	Terminal(const char *color);
 	~Terminal();
 public:
 	Terminal(Terminal const&) = delete;
 	void operator=(Terminal const&)	= delete;
 
-	static Terminal& getInstance()
+	static Terminal& getInstance(const char *color)
 	{
-		static Terminal instance;
+		static Terminal instance {color};
 		return instance;
 	}
 

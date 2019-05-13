@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
 	if (Parser::ParseCmdLineArgs(std::vector<std::string_view>(argv+1, argv+argc),
 				     stepsPerSecond, rainProperties)) {
-		Terminal::getInstance();
+		Terminal::getInstance(rainProperties.Color);
 
 		Rain rain {rainProperties};
 		while (true) {

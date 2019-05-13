@@ -7,7 +7,7 @@ TMatrix \- Terminal based replica of the digital rain from The Matrix
         [-f<min>,<max>|--fall-speed=<min>,<max>]
         [-G<min>,<max>|--start-gap=<min>,<max>]
         [-g<min>,<max>|--gap=<min>,<max>] [-l<min>,<max>]
-        [-r<min>,<max>]
+        [-r<min>,<max>] [-C<color> | --color=<color>]
 .fi
 .SH DESCRIPTION
 Simulates the digital rain effect from The Matrix.
@@ -58,6 +58,15 @@ The values correspond to the number of steps before the change.
 \fB0\fR represents no change.
 .br
 Default: \fI10,20\fR.
+.TP 4
+\-C, --color=<color>
+Set the color of the Matrix characters.
+.br
+Available colors: \fBdefault\fR, \fBwhite\fR, \fBgray\fR, \fBblack\fR, \fBred\fR, \fBgreen\fR,
+.br
+\fByellow\fR, \fBblue\fR, \fBmagenta\fR, \fBcyan\fR.
+.br
+Default: \fIgreen\fR.
 .SH Real-time commands
 .TP 4
 p
