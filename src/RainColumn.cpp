@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
+#include <string>
 #include "Rain.h"
 #include "RainColumn.h"
 #include "Terminal.h"
