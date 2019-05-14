@@ -72,6 +72,8 @@ namespace Parser {
 	void SetCharUpdateRateRange(std::string_view range, RainProperties &rainProperties);
 	//---COLOR--------------------------------------------------------------
 	void SetColor(std::string_view color, RainProperties &rainProperties);
+	//---BACKGROUND-COLOR---------------------------------------------------
+	void SetBackgroundColor(std::string_view color, RainProperties &rainProperties);
 
 	const std::array Options {
 		Option{
@@ -179,6 +181,18 @@ namespace Parser {
 			[](std::string_view color, int &, RainProperties &rainProperties)
 			{
 				SetColor(color, rainProperties);
+			}
+		},
+		Option{
+			COLOR, "-c", "--bakcground",
+			{
+				"Set the color of the background",
+				"Available colors: default, white, gray, black,",
+				"red, green, yellow, blue, magenta, cyan"
+			},
+			[](std::string_view color, int &, RainProperties &rainProperties)
+			{
+				SetBackgroundColor(color, rainProperties);
 			}
 		}
 	};

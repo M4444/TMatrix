@@ -21,6 +21,7 @@ struct RainProperties {
 	Range<int> RainStreakLength;
 	Range<int> MCharUpdateRate;
 	const char *Color;
+	const char *BackgroundColor;
 	const char *Title;
 };
 
@@ -34,11 +35,13 @@ public:
 	static constexpr RainProperties DEFAULT_PROPERTIES {
 		{1, 1}, {10, 50}, {0, 40}, {1, 30}, {10, 20},
 		TerminalChar::GREEN_COLOR,
+		TerminalChar::DEFAULT_BACKGROUND_COLOR,
 		" T M A T R I X "
 	};
 	static constexpr RainProperties DENSE_PROPERTIES {
 		{1, 2}, {4, 9}, {4, 9}, {4, 20}, {5, 7},
 		TerminalChar::GREEN_COLOR,
+		TerminalChar::DEFAULT_BACKGROUND_COLOR,
 		" T M A T R I X "
 	};
 	static constexpr int MAX_FALL_SPEED {10};

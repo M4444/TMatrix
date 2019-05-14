@@ -23,6 +23,17 @@ struct TerminalChar {
 	static constexpr char BLUE_COLOR[]    {"\033[34m"};
 	static constexpr char MAGENTA_COLOR[] {"\033[35m"};
 	static constexpr char CYAN_COLOR[]    {"\033[36m"};
+	// Terminal background color escape sequences
+	static constexpr char DEFAULT_BACKGROUND_COLOR[] {"\033[49m"};
+	static constexpr char WHITE_BACKGROUND_COLOR[]   {"\033[107m"};
+	static constexpr char GRAY_BACKGROUND_COLOR[]    {"\033[100m"};
+	static constexpr char BLACK_BACKGROUND_COLOR[]   {"\033[40m"};
+	static constexpr char RED_BACKGROUND_COLOR[]     {"\033[41m"};
+	static constexpr char GREEN_BACKGROUND_COLOR[]   {"\033[42m"};
+	static constexpr char YELLOW_BACKGROUND_COLOR[]  {"\033[43m"};
+	static constexpr char BLUE_BACKGROUND_COLOR[]    {"\033[44m"};
+	static constexpr char MAGENTA_BACKGROUND_COLOR[] {"\033[45m"};
+	static constexpr char CYAN_BACKGROUND_COLOR[]    {"\033[46m"};
 
 	static constexpr std::size_t PREFIX_SIZE {sizeof(DEFAULT_COLOR)-1};
 
@@ -73,15 +84,15 @@ class Terminal {
 	static int NumberOfColumns;
 	static std::vector<TerminalChar> ScreenBuffer;
 
-	Terminal(const char *color);
+	Terminal(const char *color, const char *background_color);
 	~Terminal();
 public:
 	Terminal(Terminal const&) = delete;
 	void operator=(Terminal const&)	= delete;
 
-	static Terminal& getInstance(const char *color)
+	static Terminal& getInstance(const char *color, const char *background_color)
 	{
-		static Terminal instance {color};
+		static Terminal instance {color, background_color};
 		return instance;
 	}
 

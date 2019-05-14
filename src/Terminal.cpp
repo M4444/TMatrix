@@ -15,7 +15,7 @@ int Terminal::NumberOfRows {0};
 int Terminal::NumberOfColumns {0};
 std::vector<TerminalChar> Terminal::ScreenBuffer {};
 
-Terminal::Terminal(const char *color)
+Terminal::Terminal(const char *color, const char *background_color)
 {
 	initscr();
 	savetty();
@@ -31,12 +31,12 @@ Terminal::Terminal(const char *color)
 	// Disable C stream sync
 	std::ios::sync_with_stdio(false);
 
-	// Set black background
-	//std::cout << "\033[40m";
 	// Set bold style
 	std::cout << "\033[1m";
 	// Set foreground color
 	TerminalChar::SetColor(color);
+	// Set background color
+	std::cout << background_color;
 
 	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TerminalChar());
 
