@@ -92,13 +92,17 @@ namespace Parser {
 	std::pair<std::string_view, std::string_view> Option::GetPrefixSuffixSplit(std::string_view argument) const
 	{
 		std::string literal;
-		if (StartsWith(argument, "--")) {
+		if (StartsWith(argument, "--") && LongLiteral != "") {
 			literal = LongLiteral;
-			if (Type == NUMERIC) {
+			if (Type == NUMERIC ||
+			    Type == RANGE ||
+			    Type == COLOR) {
 				literal += '=';
 			}
-		} else {
+		} else if (StartsWith(argument, "-") && ShortLiteral != "") {
 			literal = ShortLiteral;
+		} else {
+			throw std::invalid_argument("Invalid argument format.");
 		}
 
 		if (argument.size() < literal.size()) {
