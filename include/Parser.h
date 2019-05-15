@@ -22,7 +22,7 @@ namespace Parser {
 	constexpr int LONG_GAP_PREFIX {6};
 	constexpr std::string_view SEPARATOR {"  - "};
 
-	enum OptionType { VERSION, HELP, NUMERIC, RANGE, COLOR };
+	enum OptionType { VERSION, HELP, MODE, NUMERIC, RANGE, COLOR };
 	struct Option {
 		const OptionType Type;
 		const std::string ShortLiteral;
@@ -57,7 +57,7 @@ namespace Parser {
 	void SetStepsPerSecond(std::string_view value, int &stepsPerSecond);
 	int ReturnValidNumber(std::string_view value);
 	//----------------------------------------------------------------------
-	void SetRainProperties(RainProperties &rainProperties);
+	void SetRainProperties(std::string_view mode, RainProperties &rainProperties);
 	//---RANGE--------------------------------------------------------------
 	Range<int> SplitRange(std::string_view range);
 	//---SPEED--------------------------------------------------------------
@@ -85,6 +85,17 @@ namespace Parser {
 			HELP, "", "--help",
 			{ "Display this help and exit "},
 			[](std::string_view, int &, RainProperties &) { PrintUsage(true); }
+		},
+		Option{
+			MODE, "", "--mode",
+			{
+				"Set the mode of the rain",
+				"Available modes: default, dense"
+			},
+			[](std::string_view mode, int &, RainProperties &rainProperties)
+			{
+				SetRainProperties(mode, rainProperties);
+			}
 		},
 		Option{
 			NUMERIC, "-s", "--steps-per-sec",

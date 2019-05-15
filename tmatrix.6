@@ -1,9 +1,10 @@
-.TH TMatrix 6 "14 May 2019" "TMatrix Version 0.9"
+.TH TMatrix 6 "16 May 2019" "TMatrix Version 0.9"
 .SH NAME
 TMatrix \- Terminal based replica of the digital rain from The Matrix
 .SH SYNOPSIS
 .nf
-\fItmatrix\fR [--version] [--help] [-s<value>|--steps-per-sec=<value>]
+\fItmatrix\fR [--version] [--help] [--mode=<mode>]
+        [-s<value>|--steps-per-sec=<value>]
         [-f<min>,<max>|--fall-speed=<min>,<max>]
         [-G<min>,<max>|--start-gap=<min>,<max>]
         [-g<min>,<max>|--gap=<min>,<max>] [-l<min>,<max>]
@@ -19,6 +20,11 @@ Output version information and exit.
 .TP 4
 \-\-help
 Display this help and exit.
+.TP 4
+\-\-mode=<mode>
+Set the mode of the rain.
+.br
+Available modes: \fBdefault\fR, \fBdense\fR.
 .TP 4
 \-s, \-\-steps-per-sec=<value>
 Run this many steps per second.

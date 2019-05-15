@@ -20,6 +20,15 @@ namespace Parser {
 		case HELP:
 			return "[" + LongLiteral + ']';
 			break;
+		case MODE:
+			if (ShortLiteral != "" && LongLiteral != "") {
+				return "[" + ShortLiteral + "<mode> | " + LongLiteral + "=<mode>]";
+			} else if (ShortLiteral != "") {
+				return "[" + ShortLiteral + "<mode>]";
+			} else {
+				return "[" + LongLiteral + "=<mode>]";
+			}
+			break;
 		case NUMERIC:
 			if (ShortLiteral != "" && LongLiteral != "") {
 				return "[" + ShortLiteral + "<value> | " + LongLiteral + "=<value>]";
@@ -58,6 +67,15 @@ namespace Parser {
 		case HELP:
 			return LongLiteral;
 			break;
+		case MODE:
+			if (ShortLiteral != "" && LongLiteral != "") {
+				return ShortLiteral + ", " + LongLiteral + "=<mode>";
+			} else if (ShortLiteral != "") {
+				return ShortLiteral;
+			} else {
+				return LongLiteral + "=<mode>";
+			}
+			break;
 		case NUMERIC:
 			if (ShortLiteral != "" && LongLiteral != "") {
 				return ShortLiteral + ", " + LongLiteral + "=<value>";
@@ -94,7 +112,8 @@ namespace Parser {
 		std::string literal;
 		if (StartsWith(argument, "--") && LongLiteral != "") {
 			literal = LongLiteral;
-			if (Type == NUMERIC ||
+			if (Type == MODE ||
+			    Type == NUMERIC ||
 			    Type == RANGE ||
 			    Type == COLOR) {
 				literal += '=';
@@ -134,7 +153,7 @@ namespace Parser {
 	bool ParseCmdLineArgs(std::vector<std::string_view> arguments,
 			      int &stepsPerSecond, RainProperties &rainProperties)
 	{
-		SetRainProperties(rainProperties);
+		SetRainProperties("default", rainProperties);
 		for (decltype(arguments)::size_type i = 0; i < arguments.size(); i++) {
 			std::string_view argument {arguments[i]};
 
@@ -155,6 +174,7 @@ namespace Parser {
 					option.ProcessArgument(argument, stepsPerSecond, rainProperties);
 					return false;
 					break;
+				case MODE:
 				case NUMERIC:
 				case RANGE:
 				case COLOR:
@@ -332,9 +352,15 @@ namespace Parser {
 	}
 
 	//----------------------------------------------------------------------
-	void SetRainProperties(RainProperties &rainProperties)
+	void SetRainProperties(std::string_view mode, RainProperties &rainProperties)
 	{
-		rainProperties = Rain::DEFAULT_PROPERTIES;
+		if (mode == "default") {
+			rainProperties = Rain::DEFAULT_PROPERTIES;
+		} else if (mode == "dense") {
+			rainProperties = Rain::DENSE_PROPERTIES;
+		} else {
+			throw std::invalid_argument("Mode isn't valid.");
+		}
 	}
 
 	//---RANGE--------------------------------------------------------------
