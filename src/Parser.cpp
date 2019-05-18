@@ -13,47 +13,48 @@
 #include "Parser.h"
 
 namespace Parser {
+	std::string Option::GetValueName(OptionType type)
+	{
+		switch (type) {
+		case VERSION:
+		case HELP:
+			return "";
+			break;
+		case MODE:
+			return "<mode>";
+			break;
+		case NUMERIC:
+			return "<value>";
+			break;
+		case RANGE:
+			return "<min>,<max>";
+			break;
+		case COLOR:
+			return "<color>";
+			break;
+		}
+		return "";
+	}
+
 	std::string Option::GetUsage() const
 	{
+		std::string valueName {GetValueName(Type)};
 		switch (Type) {
 		case VERSION:
 		case HELP:
 			return "[" + LongLiteral + ']';
 			break;
 		case MODE:
-			if (ShortLiteral != "" && LongLiteral != "") {
-				return "[" + ShortLiteral + "<mode> | " + LongLiteral + "=<mode>]";
-			} else if (ShortLiteral != "") {
-				return "[" + ShortLiteral + "<mode>]";
-			} else {
-				return "[" + LongLiteral + "=<mode>]";
-			}
-			break;
 		case NUMERIC:
-			if (ShortLiteral != "" && LongLiteral != "") {
-				return "[" + ShortLiteral + "<value> | " + LongLiteral + "=<value>]";
-			} else if (ShortLiteral != "") {
-				return "[" + ShortLiteral + "<value>]";
-			} else {
-				return "[" + LongLiteral + "=<value>]";
-			}
-			break;
 		case RANGE:
-			if (ShortLiteral != "" && LongLiteral != "") {
-				return "[" + ShortLiteral + "<min>,<max> | " + LongLiteral + "=<min>,<max>]";
-			} else if (ShortLiteral != "") {
-				return "[" + ShortLiteral + "<min>,<max>]";
-			} else {
-				return "[" + LongLiteral + "=<min>,<max>]";
-			}
-			break;
 		case COLOR:
 			if (ShortLiteral != "" && LongLiteral != "") {
-				return "[" + ShortLiteral + "<color> | " + LongLiteral + "=<color>]";
+				return "[" + ShortLiteral + valueName + " | " +
+				       LongLiteral + "=" + valueName + "]";
 			} else if (ShortLiteral != "") {
-				return "[" + ShortLiteral + "<color>]";
+				return "[" + ShortLiteral + valueName + "]";
 			} else {
-				return "[" + LongLiteral + "=<color>]";
+				return "[" + LongLiteral + "=" + valueName + "]";
 			}
 			break;
 		}
@@ -62,45 +63,22 @@ namespace Parser {
 
 	std::string Option::GetLiterals() const
 	{
+		std::string valueName {GetValueName(Type)};
 		switch (Type) {
 		case VERSION:
 		case HELP:
 			return LongLiteral;
 			break;
 		case MODE:
-			if (ShortLiteral != "" && LongLiteral != "") {
-				return ShortLiteral + ", " + LongLiteral + "=<mode>";
-			} else if (ShortLiteral != "") {
-				return ShortLiteral;
-			} else {
-				return LongLiteral + "=<mode>";
-			}
-			break;
 		case NUMERIC:
-			if (ShortLiteral != "" && LongLiteral != "") {
-				return ShortLiteral + ", " + LongLiteral + "=<value>";
-			} else if (ShortLiteral != "") {
-				return ShortLiteral;
-			} else {
-				return LongLiteral + "=<value>";
-			}
-			break;
 		case RANGE:
-			if (ShortLiteral != "" && LongLiteral != "") {
-				return ShortLiteral + ", " + LongLiteral + "=<min>,<max>";
-			} else if (ShortLiteral != "") {
-				return ShortLiteral + " <min>,<max>";
-			} else {
-				return LongLiteral + "=<min>,<max>";
-			}
-			break;
 		case COLOR:
 			if (ShortLiteral != "" && LongLiteral != "") {
-				return ShortLiteral + ", " + LongLiteral + "=<color>";
+				return ShortLiteral + ", " + LongLiteral + "=" + valueName;
 			} else if (ShortLiteral != "") {
-				return ShortLiteral;
+				return ShortLiteral + " " + valueName;
 			} else {
-				return LongLiteral + "=<color>";
+				return LongLiteral + "=" + valueName;
 			}
 			break;
 		}

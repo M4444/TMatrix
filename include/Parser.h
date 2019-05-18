@@ -30,6 +30,7 @@ namespace Parser {
 		const std::vector<std::string> HelpText;
 		const std::function<void(std::string_view, int &, RainProperties &)> ProcessArgument;
 
+		static std::string GetValueName(OptionType type);
 		std::string GetUsage() const;
 		std::string GetLiterals() const;
 		bool HasShortLiteral() const { return (ShortLiteral.length() != 0); }
