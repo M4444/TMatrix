@@ -22,7 +22,7 @@ namespace Parser {
 	constexpr int LONG_GAP_PREFIX {6};
 	constexpr std::string_view SEPARATOR {"  - "};
 
-	enum OptionType { VERSION, HELP, MODE, NUMERIC, RANGE, COLOR };
+	enum OptionType { VERSION, HELP, MODE, NUMERIC, RANGE, COLOR, TEXT };
 	struct Option {
 		const OptionType Type;
 		const std::string ShortLiteral;
@@ -75,6 +75,8 @@ namespace Parser {
 	void SetColor(std::string_view color, RainProperties &rainProperties);
 	//---BACKGROUND-COLOR---------------------------------------------------
 	void SetBackgroundColor(std::string_view color, RainProperties &rainProperties);
+	//---TITLE--------------------------------------------------------------
+	void SetTitle(std::string_view title, RainProperties &rainProperties);
 
 	const std::array Options {
 		Option{
@@ -205,6 +207,18 @@ namespace Parser {
 			[](std::string_view color, int &, RainProperties &rainProperties)
 			{
 				SetBackgroundColor(color, rainProperties);
+			}
+		},
+		Option{
+			TEXT, "-t", "--title",
+			{
+				"Set the title that appears in the rain",
+				"Note: the title needs to fit within the",
+				"terminal window in order to be displayed"
+			},
+			[](std::string_view title, int &, RainProperties &rainProperties)
+			{
+				SetTitle(title, rainProperties);
 			}
 		}
 	};

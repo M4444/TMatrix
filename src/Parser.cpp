@@ -32,6 +32,9 @@ namespace Parser {
 		case COLOR:
 			return "<color>";
 			break;
+		case TEXT:
+			return "<text>";
+			break;
 		}
 		return "";
 	}
@@ -48,6 +51,7 @@ namespace Parser {
 		case NUMERIC:
 		case RANGE:
 		case COLOR:
+		case TEXT:
 			if (ShortLiteral != "" && LongLiteral != "") {
 				return "[" + ShortLiteral + valueName + " | " +
 				       LongLiteral + "=" + valueName + "]";
@@ -73,6 +77,7 @@ namespace Parser {
 		case NUMERIC:
 		case RANGE:
 		case COLOR:
+		case TEXT:
 			if (ShortLiteral != "" && LongLiteral != "") {
 				return ShortLiteral + ", " + LongLiteral + "=" + valueName;
 			} else if (ShortLiteral != "") {
@@ -93,7 +98,8 @@ namespace Parser {
 			if (Type == MODE ||
 			    Type == NUMERIC ||
 			    Type == RANGE ||
-			    Type == COLOR) {
+			    Type == COLOR ||
+			    Type == TEXT) {
 				literal += '=';
 			}
 		} else if (StartsWith(argument, "-") && ShortLiteral != "") {
@@ -156,6 +162,7 @@ namespace Parser {
 				case NUMERIC:
 				case RANGE:
 				case COLOR:
+				case TEXT:
 					if (suffix == "") {
 						try {
 							suffix = arguments.at(++i);
@@ -436,5 +443,10 @@ namespace Parser {
 		} else {
 			throw std::invalid_argument("Bakcground color isn't valid.");
 		}
+	}
+	//---TITLE--------------------------------------------------------------
+	void SetTitle(std::string_view title, RainProperties &rainProperties)
+	{
+		rainProperties.Title = title.data();
 	}
 }

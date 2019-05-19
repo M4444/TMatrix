@@ -1,4 +1,4 @@
-.TH TMatrix 6 "16 May 2019" "TMatrix Version 0.9"
+.TH TMatrix 6 "19 May 2019" "TMatrix Version 0.9"
 .SH NAME
 TMatrix \- Terminal based replica of the digital rain from The Matrix
 .SH SYNOPSIS
@@ -9,7 +9,7 @@ TMatrix \- Terminal based replica of the digital rain from The Matrix
         [-G<min>,<max>|--start-gap=<min>,<max>]
         [-g<min>,<max>|--gap=<min>,<max>] [-l<min>,<max>]
         [-r<min>,<max>] [-C<color> | --color=<color>]
-        [-c<color> | --bakcground=<color>]
+        [-c<color> | --bakcground=<color>] [-t<text> | --title=<text>]
 .fi
 .SH DESCRIPTION
 Simulates the digital rain effect from The Matrix.
@@ -81,6 +81,13 @@ Set the color of the background.
 Available colors: \fBdefault\fR, \fBwhite\fR, \fBgray\fR, \fBblack\fR, \fBred\fR, \fBgreen\fR,
 .br
 \fByellow\fR, \fBblue\fR, \fBmagenta\fR, \fBcyan\fR.
+.TP 4
+\-t, --title=<text>
+Set the title that appears in the rain.
+.br
+\fINote\fR: the title needs to fit within the terminal window
+.br
+in order to be displayed.
 .SH Real-time commands
 .TP 4
 p
