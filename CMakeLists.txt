@@ -15,6 +15,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 set(CMAKE_CXX_FLAGS_DEBUG  "-O0 -g")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g")
 
+# Add linking with pthread.
+set(CMAKE_EXE_LINKER_FLAGS "-pthread")
+
 # Add the required ncurses library.
 set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
