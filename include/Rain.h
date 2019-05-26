@@ -49,6 +49,7 @@ public:
 
 	Rain(RainProperties RP);
 
+	void Reset();
 	void Update();
 	int GetRandomLength() const;
 	int GetRandomGap() const;

@@ -99,6 +99,7 @@ public:
 	static int GetNumberOfRows() { return NumberOfRows; }
 	static int GetNumberOfColumns() { return NumberOfColumns; }
 
+	static void Reset();
 	static void Draw(int x, int y, const char *mchar, bool isGlowing);
 	static void Erase(int x, int y);
 	static void DrawTitle(int x, int y, char tchar);

@@ -11,11 +11,17 @@
 
 Rain::Rain(RainProperties RP) : Properties{RP}
 {
+	Reset();
+}
+
+void Rain::Reset()
+{
 	// Create all the rain columns
 	int numberOfColumns {Terminal::GetNumberOfColumns()};
 	int titleLength {static_cast<int>(std::strlen(Properties.Title))};
 
 	int titleCharIndex {0};
+	RainColumns.clear();
 	RainColumns.reserve(numberOfColumns);
 	for (int i = 0; i < numberOfColumns; i++) {
 		bool titleColumn {numberOfColumns >= titleLength && titleLength > 0 &&

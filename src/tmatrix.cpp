@@ -4,8 +4,10 @@
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
+#include <atomic>
 #include <chrono>
 #include <condition_variable>
+#include <csignal>
 #include <string_view>
 #include <thread>
 #include <vector>
@@ -15,6 +17,13 @@
 #include "tmatrix.h"
 
 using namespace std::chrono_literals;
+
+std::atomic<bool> resizeTriggered {false};
+
+void resizeHandler(int)
+{
+	resizeTriggered = true;
+}
 
 std::condition_variable renderingConditionVariable;
 std::mutex mutexOfRenderingConditionVariable;
@@ -27,6 +36,11 @@ void render(const RainProperties &rainProperties)
 	std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 	while (true) {
 		renderingConditionVariable.wait(mutexLock);
+		if (resizeTriggered) {
+			Terminal::Reset();
+			rain.Reset();
+			resizeTriggered = false;
+		}
 		rain.Update();
 		Terminal::Flush();
 	}
@@ -40,6 +54,8 @@ int main(int argc, char *argv[])
 
 	if (Parser::ParseCmdLineArgs(std::vector<std::string_view>(argv+1, argv+argc),
 				     stepsPerSecond, rainProperties)) {
+		std::signal(SIGWINCH, resizeHandler);
+
 		std::thread rendering_thread([&]{ render(rainProperties); });
 
 		std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);

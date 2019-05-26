@@ -6,6 +6,8 @@
 
 #include <iostream>
 #include <ncurses.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 #include "Terminal.h"
 
 const char *TerminalChar::GLOWING_COLOR_ESC_SEQ {TerminalChar::WHITE_COLOR};
@@ -26,8 +28,6 @@ Terminal::Terminal(const char *color, const char *background_color)
 	leaveok(stdscr, TRUE);
 	curs_set(0);
 
-	getmaxyx(stdscr, Terminal::NumberOfRows, Terminal::NumberOfColumns);
-
 	// Disable C stream sync
 	std::ios::sync_with_stdio(false);
 
@@ -38,7 +38,7 @@ Terminal::Terminal(const char *color, const char *background_color)
 	// Set background color
 	std::cout << background_color;
 
-	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TerminalChar());
+	Terminal::Reset();
 
 	// Calling this here first prevents delay in the main loop.
 	getch();
@@ -51,6 +51,16 @@ Terminal::~Terminal()
 	refresh();
 	resetty();
 	endwin();
+}
+
+void Terminal::Reset()
+{
+	struct winsize windowSize;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &windowSize);
+	NumberOfRows = windowSize.ws_row;
+	NumberOfColumns = windowSize.ws_col;
+
+	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TerminalChar());
 }
 
 void Terminal::Draw(int x, int y, const char *mchar, bool isGlowing)
