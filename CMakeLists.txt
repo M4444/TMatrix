@@ -29,3 +29,5 @@ add_executable(tmatrix ${tmatrix_SRC})
 
 # Specify the include directory.
 include_directories(include)
+
+install(TARGETS tmatrix DESTINATION bin)
