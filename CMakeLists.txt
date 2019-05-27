@@ -26,7 +26,7 @@ link_libraries(${CURSES_LIBRARIES})
 # Link libatomic because some OSes require explicitly linking it.
 find_library(ATOMIC_LIB atomic)
 # Check if libatomic is present (it may not be, for example on macOS)
-if(NOT ATOMIC_LIB)
+if(ATOMIC_LIB)
 	link_libraries(${ATOMIC_LIB})
 endif()
 
