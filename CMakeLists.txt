@@ -23,6 +23,13 @@ set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
 link_libraries(${CURSES_LIBRARIES})
 
+# Link libatomic explicitly because some platforms require it.
+find_library(ATOMIC_LIB atomic)
+# Check if libatomic is present (it may not be, for example on macOS).
+if(ATOMIC_LIB)
+	link_libraries(${ATOMIC_LIB})
+endif()
+
 # Add all the .cpp files.
 file(GLOB tmatrix_SRC "src/*.cpp")
 add_executable(tmatrix ${tmatrix_SRC})
