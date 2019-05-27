@@ -23,7 +23,7 @@ set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
 link_libraries(${CURSES_LIBRARIES})
 
-# Link libatomic because some OSes require explicitly linking it.
+# Link libatomic because some platforms require explicitly linking it.
 find_library(ATOMIC_LIB atomic)
 # Check if libatomic is present (it may not be, for example on macOS)
 if(ATOMIC_LIB)
