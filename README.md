@@ -1,5 +1,5 @@
 # TMatrix
-TMatrix is a program that simulates the digital rain form The Matrix.
+TMatrix is a program that simulates the digital rain from The Matrix.
 It's focused on being the most accurate replica of the digital rain effect achievable on a typical terminal, while also being customizable and performant.
 
 ### Download and install
