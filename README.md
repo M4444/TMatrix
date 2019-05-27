@@ -2,6 +2,24 @@
 TMatrix is a program that simulates the digital rain form The Matrix.
 It's focused on being the most accurate replica of the digital rain effect achievable on a typical terminal, while also being customizable and performant.
 
+### Download and install
+TMatrix uses the ncurses library.
+To install it on Ubuntu or Debian run:
+```
+sudo apt-get install libncurses5-dev
+```
+Now that you have the required library you can install and run tmatrix:
+```
+wget -q https://github.com/M4444/TMatrix/releases/download/v1.0/installation.tar.gz
+tar -zxvf installation.tar.gz
+cd installation
+sudo ./install.sh
+```
+To check if it installed correctly run:
+```
+tmatrix --version
+```
+
 ### Build and install
 #### Tools
 This project uses C++17 so you'll need the latest tools in order you build it:
