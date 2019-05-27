@@ -40,7 +40,10 @@ sudo make install
 ```
 
 ### Options
-Run `man tmatrix` or `tmatrix --help` to see available options.
+TMatrix is very customizable.
+You can change the starting title text, the color of the background and the characters, the speed, length and separations of the rain streaks.
+
+For a full description of all the options run `man tmatrix` or `tmatrix --help`.
 
 ### Contributing
 Suggestions, bug reports and patch submissions are all welcome.
