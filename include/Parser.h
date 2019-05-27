@@ -198,7 +198,7 @@ namespace Parser {
 			}
 		},
 		Option{
-			COLOR, "-c", "--bakcground",
+			COLOR, "-c", "--background",
 			{
 				"Set the color of the background",
 				"Available colors: default, white, gray, black,",
