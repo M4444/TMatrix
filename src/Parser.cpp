@@ -229,7 +229,8 @@ namespace Parser {
 	//---VERSION------------------------------------------------------------
 	void PrintVersion()
 	{
-		std::cout << "tmatrix version " << VERSION_NUMBER << '\n';
+		std::cout.precision(1);
+		std::cout << "tmatrix version " << std::fixed << VERSION_NUMBER << '\n';
 		std::cout << '\n';
 		std::cout << "Copyright (C) 2018-2019 Miloš Stojanović" << '\n';
 		std::cout << "SPDX-License-Identifier: GPL-2.0-only" << '\n';
