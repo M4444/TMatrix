@@ -21,7 +21,7 @@ set(CMAKE_EXE_LINKER_FLAGS "-pthread")
 # Add the required ncurses library.
 set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
-link_libraries(${CURSES_LIBRARIES})
+link_libraries(${CURSES_LIBRARIES} atomic)
 
 # Add all the .cpp files.
 file(GLOB tmatrix_SRC "src/*.cpp")
