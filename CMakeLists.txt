@@ -21,7 +21,14 @@ set(CMAKE_EXE_LINKER_FLAGS "-pthread")
 # Add the required ncurses library.
 set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
-link_libraries(${CURSES_LIBRARIES} atomic)
+link_libraries(${CURSES_LIBRARIES})
+
+# Link libatomic because some OSes require explicitly linking it.
+find_library(ATOMIC_LIB atomic)
+# Check if libatomic is present (it may not be, for example on macOS)
+if(NOT ATOMIC_LIB)
+	link_libraries(${ATOMIC_LIB})
+endif()
 
 # Add all the .cpp files.
 file(GLOB tmatrix_SRC "src/*.cpp")
