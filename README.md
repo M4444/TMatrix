@@ -56,6 +56,7 @@ Written and maintained by Miloš Stojanović \<[mc.cm.mail@gmail.com](mailto:mc.
 ### Acknowledgments
 Thanks to:
 - [Makefile-dot-in](https://github.com/Makefile-dot-in) for fixing a problem linking atomic on Android
+- [sebpardo](https://github.com/sebpardo) for pointing out a typo in the man page
 
 ### License
 TMatrix is licensed under the `GPL-2.0-only` - see the [LICENSE](../master/LICENSE) file for details.
