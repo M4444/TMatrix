@@ -31,6 +31,15 @@ To check if it installed correctly run:
 tmatrix --version
 ```
 
+### Uninstall
+```
+sudo rm -f /usr/bin/tmatrix /usr/share/man/man6/tmatrix.6.gz
+```
+To check if anything was left behind you can run:
+```
+whereis tmatrix
+```
+
 ### Build and install
 #### Tools
 This project uses C++17 so you'll need the latest tools in order you build it:
