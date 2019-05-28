@@ -442,7 +442,7 @@ namespace Parser {
 		} else if (color == "cyan") {
 			rainProperties.BackgroundColor = TerminalChar::CYAN_BACKGROUND_COLOR;
 		} else {
-			throw std::invalid_argument("Bakcground color isn't valid.");
+			throw std::invalid_argument("Background color isn't valid.");
 		}
 	}
 	//---TITLE--------------------------------------------------------------
