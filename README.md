@@ -80,7 +80,7 @@ Written and maintained by Miloš Stojanović \<[mc.cm.mail@gmail.com](mailto:mc.
 Thanks to:
 - [Infinisil](https://github.com/Infinisil) for creating a NixOS package
 - [filalex77](https://github.com/filalex77) for creating a Gentoo package
-- [eliasrg](https://github.com/eliasrg) for creating an Arch package
+- [eliasrg](https://github.com/eliasrg) for creating an Arch package and clarifying the installation options on Arch
 - [Makefile-dot-in](https://github.com/Makefile-dot-in) for fixing a problem linking atomic on Android
 - [sebpardo](https://github.com/sebpardo) for pointing out a typo in the man page
 
