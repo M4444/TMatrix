@@ -62,7 +62,7 @@ After cloning the repository run:
 ```
 cd tmatrix
 mkdir -p build && cd build
-cmake -DCMAKE_INSTALL_PREFIX:PATH=bin/ ..
+cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
 make -j8
 sudo make install
 ```
