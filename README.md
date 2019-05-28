@@ -3,6 +3,9 @@ TMatrix is a program that simulates the digital rain from The Matrix.
 It's focused on being the most accurate replica of the digital rain effect achievable on a typical terminal, while also being customizable and performant.
 
 ### Install on Arch
+Install [`tmatrix-git`](https://aur.archlinux.org/packages/tmatrix-git/) from
+the AUR. For example, with an [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers)
+such as [`yay`](https://aur.archlinux.org/packages/yay/):
 ```
 yay -S tmatrix-git
 ```
