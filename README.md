@@ -34,7 +34,7 @@ To check if it installed correctly run:
 tmatrix --version
 ```
 
-### Uninstall
+#### Uninstall
 ```
 sudo rm -f /usr/bin/tmatrix /usr/share/man/man6/tmatrix.6.gz
 ```
