@@ -43,7 +43,7 @@ To check if anything was left behind you can run:
 whereis tmatrix
 ```
 
-### Build and install
+### Build and install from source
 #### Tools
 This project uses C++17 so you'll need the latest tools in order you build it:
 - [CMake 3.8+](https://cmake.org/download/)
