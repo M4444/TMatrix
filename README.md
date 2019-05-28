@@ -2,7 +2,7 @@
 TMatrix is a program that simulates the digital rain from The Matrix.
 It's focused on being the most accurate replica of the digital rain effect achievable on a typical terminal, while also being customizable and performant.
 
-### Install on Arch
+### Install on Arch Linux
 Install [`tmatrix-git`](https://aur.archlinux.org/packages/tmatrix-git/) from
 the AUR. For example, with an [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers)
 such as [`yay`](https://aur.archlinux.org/packages/yay/):
@@ -10,7 +10,7 @@ such as [`yay`](https://aur.archlinux.org/packages/yay/):
 yay -S tmatrix-git
 ```
 
-### Install on Gentoo
+### Install on Gentoo Linux
 ```
 eselect repository enable bright
 emerge --ask tmatrix
@@ -78,9 +78,9 @@ Written and maintained by Miloš Stojanović \<[mc.cm.mail@gmail.com](mailto:mc.
 
 ### Acknowledgments
 Thanks to:
-- [Infinisil](https://github.com/Infinisil) for creating a NixOS package
-- [filalex77](https://github.com/filalex77) for creating a Gentoo package
-- [eliasrg](https://github.com/eliasrg) for creating an Arch package and clarifying the installation options on Arch
+- [Infinisil](https://github.com/Infinisil) for creating a NixOS Linux package
+- [filalex77](https://github.com/filalex77) for creating a Gentoo Linux package
+- [eliasrg](https://github.com/eliasrg) for creating an Arch Linux package and clarifying the installation options on Arch Linux
 - [Makefile-dot-in](https://github.com/Makefile-dot-in) for fixing a problem linking atomic on Android
 - [sebpardo](https://github.com/sebpardo) for pointing out a typo in the man page
 
