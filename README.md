@@ -13,7 +13,7 @@ eselect repository enable bright
 emerge --ask tmatrix
 ```
 
-### Download and install on other distributions
+### Download and install on other GNU/Linux distributions
 TMatrix uses the ncurses library.
 To install the library on Ubuntu or Debian run:
 ```
@@ -21,7 +21,7 @@ sudo apt-get install libncurses5-dev
 ```
 Now that you have the required library you can install and run tmatrix:
 ```
-wget -q https://github.com/M4444/TMatrix/releases/download/v1.0/installation.tar.gz
+wget -q https://github.com/M4444/TMatrix/releases/download/v1.1/installation.tar.gz
 tar -zxvf installation.tar.gz
 cd installation
 sudo ./install.sh
