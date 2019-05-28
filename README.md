@@ -2,9 +2,20 @@
 TMatrix is a program that simulates the digital rain from The Matrix.
 It's focused on being the most accurate replica of the digital rain effect achievable on a typical terminal, while also being customizable and performant.
 
-### Download and install
+### Install on Arch
+```
+yay -S tmatrix-git
+```
+
+### Install on Gentoo
+```
+eselect repository enable bright
+emerge --ask tmatrix
+```
+
+### Download and install on other distributions
 TMatrix uses the ncurses library.
-To install it on Ubuntu or Debian run:
+To install the library on Ubuntu or Debian run:
 ```
 sudo apt-get install libncurses5-dev
 ```
@@ -55,6 +66,9 @@ Written and maintained by Miloš Stojanović \<[mc.cm.mail@gmail.com](mailto:mc.
 
 ### Acknowledgments
 Thanks to:
+- [Infinisil](https://github.com/Infinisil) for creating a NixOS package
+- [filalex77](https://github.com/filalex77) for creating a Gentoo package
+- [eliasrg](https://github.com/eliasrg) for creating an Arch package
 - [Makefile-dot-in](https://github.com/Makefile-dot-in) for fixing a problem linking atomic on Android
 - [sebpardo](https://github.com/sebpardo) for pointing out a typo in the man page
 
