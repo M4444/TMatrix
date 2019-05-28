@@ -44,7 +44,7 @@ whereis tmatrix
 #### Tools
 This project uses C++17 so you'll need the latest tools in order you build it:
 - [CMake 3.8+](https://cmake.org/download/)
-- [GCC 7+](https://gcc.gnu.org/)
+- [GCC 7+](https://gcc.gnu.org/) or [Clang 5+](http://releases.llvm.org/)
 
 #### Library:
 - [ncurses](https://www.gnu.org/software/ncurses/)
