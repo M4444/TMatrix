@@ -1,0 +1,33 @@
+#compdef tmatrix
+# SPDX-License-Identifier: GPL-2.0-only
+
+# Range and default for --steps-per-sec
+local steps_min=1
+local steps_max=60
+local steps_default=10
+# Defaults for --fall-speed, --start-gap, --gap, -l, -r
+local rain_defaults=(1,1 10,50 0,40 1,30 10,20)
+local colors=(default white gray black red green yellow blue magenta cyan)
+
+# Syntax from zshcompsys(1)
+_arguments \
+    --mode=-"[Set the mode of the rain]: :(default dense)" \
+    {-s+,--steps-per-sec=-}"[Run this many steps per second]:"\
+"integer between $steps_min and $steps_max (default $steps_default):" \
+    {-f+,--fall-speed=-}"[Set the range for the fall speed]:"\
+"min,max\: integers between 1 and 10 (default ${rain_defaults[1]}):" \
+    {-G+,--start-gap=-}"[Set the range for the starting gaps]:"\
+"min,max\: integers (default ${rain_defaults[2]}):" \
+    {-g+,--gap=-}"[Set the range for the gaps between streaks]:"\
+"min,max\: integers (default ${rain_defaults[3]}):" \
+    -l+"[Set the range for the length of streaks]:"\
+"min,max\: integers (default ${rain_defaults[4]}):" \
+    -r+"[Set the range for the update range of the Matrix characters]:"\
+"min,max\: integers (default ${rain_defaults[5]}):" \
+    {-C+,--color=-}"[Set the color of the Matrix characters]:"\
+"color:(${colors[*]})" \
+    {-c+,--background=-}"[Set the color of the background]:"\
+"color:(${colors[*]})" \
+    {-t+,--title=-}"[Set the title that appears in the rain]" \
+    --help"[Display help and exit]" \
+    --version"[Output version information and exit]" \
