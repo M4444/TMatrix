@@ -25,7 +25,15 @@ nix-env -f channel:nixpkgs-unstable -iA tmatrix
 TMatrix uses the ncurses library.
 To install the library on Ubuntu or Debian run:
 ```
+<<<<<<< HEAD
+<<<<<<< HEAD
+sudo apt-get install libncurses5
+=======
+sudo apt-get install libncurses5-dev libncurses5
+>>>>>>> 58e5f9c... Add libncurses5 to apt install command
+=======
 sudo apt-get install libncurses5-dev
+>>>>>>> 16f6448... Revert "Add libncurses5 to apt install command"
 ```
 Now that you have the required library you can install and run tmatrix:
 ```
