@@ -88,6 +88,7 @@ Thanks to:
 - [eliasrg](https://github.com/eliasrg) for creating an Arch Linux package and clarifying the installation options on Arch Linux
 - [Makefile-dot-in](https://github.com/Makefile-dot-in) for fixing a problem linking atomic on Android
 - [sebpardo](https://github.com/sebpardo) for pointing out a typo in the man page
+- [fosspill](https://github.com/fosspill) for correcting the name of the required ncurses library
 
 ### License
 TMatrix is licensed under the `GPL-2.0-only` - see the [LICENSE](../master/LICENSE) file for details.
