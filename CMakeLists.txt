@@ -37,4 +37,14 @@ add_executable(tmatrix ${tmatrix_SRC})
 # Specify the include directory.
 include_directories(include)
 
+# Specify how to compress the man page.
+configure_file(tmatrix.6 ${PROJECT_BINARY_DIR}/tmatrix.6)
+add_custom_command(OUTPUT tmatrix.6.gz
+	COMMAND gzip -f tmatrix.6
+	DEPENDS tmatrix.6
+)
+add_custom_target(manpage ALL DEPENDS tmatrix.6.gz)
+
+# Install tmatrix binary and manpage.
 install(TARGETS tmatrix DESTINATION bin)
+install(FILES ${PROJECT_BINARY_DIR}/tmatrix.6.gz DESTINATION share/man/man6)
