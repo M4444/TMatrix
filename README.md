@@ -60,7 +60,7 @@ This project uses C++17 so you'll need the latest tools in order you build it:
 #### Commands
 After cloning the repository run:
 ```
-cd tmatrix
+cd TMatrix
 mkdir -p build && cd build
 cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
 make -j8
