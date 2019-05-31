@@ -21,19 +21,19 @@ namespace Parser {
 			return "";
 			break;
 		case MODE:
-			return "<mode>";
+			return "MODE";
 			break;
 		case NUMERIC:
-			return "<value>";
+			return "VALUE";
 			break;
 		case RANGE:
-			return "<min>,<max>";
+			return "RANGE";
 			break;
 		case COLOR:
-			return "<color>";
+			return "COLOR";
 			break;
 		case TEXT:
-			return "<text>";
+			return "TEXT";
 			break;
 		}
 		return "";
@@ -53,10 +53,10 @@ namespace Parser {
 		case COLOR:
 		case TEXT:
 			if (ShortLiteral != "" && LongLiteral != "") {
-				return "[" + ShortLiteral + valueName + " | " +
+				return "[" + ShortLiteral + " " + valueName + " | " +
 				       LongLiteral + "=" + valueName + "]";
 			} else if (ShortLiteral != "") {
-				return "[" + ShortLiteral + valueName + "]";
+				return "[" + ShortLiteral + " " + valueName + "]";
 			} else {
 				return "[" + LongLiteral + "=" + valueName + "]";
 			}
@@ -258,6 +258,9 @@ namespace Parser {
 			// Print help and version at the end
 			PrintSpecificOptionType(HELP, longestLiterals);
 			PrintSpecificOptionType(VERSION, longestLiterals);
+			std::cout << '\n';
+			std::cout << "RANGE is a pair of numbers separated by a comma: MIN,MAX." << '\n';
+			std::cout << "It specifies the boundaries of an integer set used in random operations." << '\n';
 		}
 	}
 

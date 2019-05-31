@@ -20,7 +20,7 @@ namespace Parser {
 	constexpr int MAX_LINE_LENGTH {80};
 	constexpr int SHORT_GAP_PREFIX {2};
 	constexpr int LONG_GAP_PREFIX {6};
-	constexpr std::string_view SEPARATOR {"  - "};
+	constexpr std::string_view SEPARATOR {"    "};
 
 	enum OptionType { VERSION, HELP, MODE, NUMERIC, RANGE, COLOR, TEXT };
 	struct Option {
@@ -171,8 +171,7 @@ namespace Parser {
 		Option{
 			RANGE, "-r", "",
 			{
-				"Set the range for the update rate of the",
-				"Matrix characters",
+				"Set the range for the character update rate",
 				"The values correspond to the number of steps",
 				"before the change and 0 represents no change",
 				"Default: " +
@@ -187,7 +186,7 @@ namespace Parser {
 		Option{
 			COLOR, "-C", "--color",
 			{
-				"Set the color of the Matrix characters",
+				"Set the color of the characters",
 				"Available colors: default, white, gray, black,",
 				"red, green, yellow, blue, magenta, cyan",
 				"Default: green"

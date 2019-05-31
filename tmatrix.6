@@ -1,15 +1,14 @@
-.TH TMatrix 6 "28 May 2019" "TMatrix Version 1.1"
+.TH TMatrix 6 "5 June 2019" "TMatrix Version 1.1"
 .SH NAME
 TMatrix \- Terminal based replica of the digital rain from The Matrix
 .SH SYNOPSIS
 .nf
-\fItmatrix\fR [--version] [--help] [--mode=<mode>]
-        [-s<value>|--steps-per-sec=<value>]
-        [-f<min>,<max>|--fall-speed=<min>,<max>]
-        [-G<min>,<max>|--start-gap=<min>,<max>]
-        [-g<min>,<max>|--gap=<min>,<max>] [-l<min>,<max>]
-        [-r<min>,<max>] [-C<color> | --color=<color>]
-        [-c<color> | --background=<color>] [-t<text> | --title=<text>]
+\fItmatrix\fR [--version] [--help] [--mode=MODE]
+        [-s VALUE | --steps-per-sec=VALUE]
+        [-f RANGE | --fall-speed=RANGE] [-G RANGE | --start-gap=RANGE]
+        [-g RANGE | --gap=RANGE] [-l RANGE] [-r RANGE]
+        [-C COLOR | --color=COLOR] [-c COLOR | --background=COLOR]
+        [-t TEXT | --title=TEXT]
 .fi
 .SH DESCRIPTION
 Simulates the digital rain effect from The Matrix.
@@ -21,44 +20,44 @@ Output version information and exit.
 \-\-help
 Display this help and exit.
 .TP 4
-\-\-mode=<mode>
+\-\-mode=MODE
 Set the mode of the rain.
 .br
 Available modes: \fBdefault\fR, \fBdense\fR.
 .TP 4
-\-s, \-\-steps-per-sec=<value>
+\-s, \-\-steps-per-sec=VALUE
 Run this many steps per second.
 .br
-<value> can range from \fB1\fR to \fB60\fR.
+VALUE can range from \fB1\fR to \fB60\fR.
 .br
 Default: \fI10\fR.
 .TP 4
-\-f, --fall-speed=<min>,<max>
+\-f, --fall-speed=RANGE
 Set the range for the fall speed.
 .br
 The maximal fall speed value is \fB10\fR.
 .br
 Default: \fI1,1\fR.
 .TP 4
-\-G, --start-gap=<min>,<max>
+\-G, --start-gap=RANGE
 Set the range for the starting gaps.
 .br
 Default: \fI10,50\fR.
 .TP 4
-\-g, --gap=<min>,<max>
+\-g, --gap=RANGE
 Set the range for the gaps between streaks.
 .br
 Default: \fI0,40\fR.
 .TP 4
-\-l <min>,<max>
+\-l RANGE
 Set the range for the length of rain streaks.
 .br
 The minimal length value is \fB1\fR.
 .br
 Default: \fI1,30\fR.
 .TP 4
-\-r <min>,<max>
-Set the range for the update rate of the Matrix characters.
+\-r RANGE
+Set the range for the character update rate.
 .br
 The values correspond to the number of steps before the change.
 .br
@@ -66,8 +65,8 @@ The values correspond to the number of steps before the change.
 .br
 Default: \fI10,20\fR.
 .TP 4
-\-C, --color=<color>
-Set the color of the Matrix characters.
+\-C, --color=COLOR
+Set the color of the characters.
 .br
 Available colors: \fBdefault\fR, \fBwhite\fR, \fBgray\fR, \fBblack\fR, \fBred\fR, \fBgreen\fR,
 .br
@@ -75,19 +74,23 @@ Available colors: \fBdefault\fR, \fBwhite\fR, \fBgray\fR, \fBblack\fR, \fBred\fR
 .br
 Default: \fIgreen\fR.
 .TP 4
-\-c, --background=<color>
+\-c, --background=COLOR
 Set the color of the background.
 .br
 Available colors: \fBdefault\fR, \fBwhite\fR, \fBgray\fR, \fBblack\fR, \fBred\fR, \fBgreen\fR,
 .br
 \fByellow\fR, \fBblue\fR, \fBmagenta\fR, \fBcyan\fR.
 .TP 4
-\-t, --title=<text>
+\-t, --title=TEXT
 Set the title that appears in the rain.
 .br
 \fINote\fR: the title needs to fit within the terminal window
 .br
 in order to be displayed.
+.PP
+RANGE is a pair of numbers separated by a comma: MIN,MAX.
+.br
+It specifies the boundaries of an integer set used in random operations.
 .SH Real-time commands
 .TP 4
 p
