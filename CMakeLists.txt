@@ -48,3 +48,9 @@ add_custom_target(manpage ALL DEPENDS tmatrix.6.gz)
 # Install tmatrix binary and manpage.
 install(TARGETS tmatrix DESTINATION bin)
 install(FILES ${PROJECT_BINARY_DIR}/tmatrix.6.gz DESTINATION share/man/man6)
+
+# Install zsh completion script.
+install(FILES completions/tmatrix-completion.zsh
+	DESTINATION share/zsh/site-functions
+	RENAME _tmatrix
+)
