@@ -2,6 +2,8 @@
 TMatrix is a program that simulates the digital rain from The Matrix.
 It's focused on being the most accurate replica of the digital rain effect achievable on a typical terminal, while also being customizable and performant.
 
+## Installation
+
 ### Install on Arch Linux
 Install [`tmatrix-git`](https://aur.archlinux.org/packages/tmatrix-git/) from
 the AUR. For example, with an [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers)
@@ -58,8 +60,8 @@ This project uses C++17 so you'll need the latest tools in order you build it:
 - [ncurses](https://www.gnu.org/software/ncurses/)
 
 #### Commands
-After cloning the repository run:
 ```
+git clone https://github.com/M4444/TMatrix.git
 cd TMatrix
 mkdir -p build && cd build
 cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
@@ -67,9 +69,12 @@ make -j8
 sudo make install
 ```
 
+## Info
+
 ### Options
 TMatrix is very customizable.
 You can change the starting title text, the color of the background and the characters, the speed, length and separations of the rain streaks.
+During execution you can use `p` to pause and `q` to quit.
 
 For a full description of all the options run `man tmatrix` or `tmatrix --help`.
 
@@ -84,8 +89,8 @@ Written and maintained by Miloš Stojanović \<[mc.cm.mail@gmail.com](mailto:mc.
 ### Acknowledgments
 Thanks to:
 - [Infinisil](https://github.com/Infinisil) for creating a NixOS Linux package
-- [filalex77](https://github.com/filalex77) for creating a Gentoo Linux package
-- [eliasrg](https://github.com/eliasrg) for creating an Arch Linux package and clarifying the installation options on Arch Linux
+- [filalex77](https://github.com/filalex77) for creating a Gentoo Linux package, adding bash and zsh completions scripts and a .editorconfig file
+- [eliasrg](https://github.com/eliasrg) for creating an Arch Linux package, clarifying the installation options on Arch Linux, adding CMake install commands for the man page and helping in the creation of completions scripts
 - [Makefile-dot-in](https://github.com/Makefile-dot-in) for fixing a problem linking atomic on Android
 - [sebpardo](https://github.com/sebpardo) for pointing out a typo in the man page
 - [fosspill](https://github.com/fosspill) for correcting the name of the required ncurses library
