@@ -24,7 +24,8 @@ class MatrixChar : public Active {
 	void Erase() const;
 public:
 	static constexpr std::size_t MCHAR_SIZE {sizeof("𐌇")-1};
-	static constexpr std::array<const char [MCHAR_SIZE+1], 57> ALL_MCHARS {
+	static constexpr std::size_t ALL_MCHARS_LENGTH {57};
+	static constexpr std::array<const char [MCHAR_SIZE+1], ALL_MCHARS_LENGTH> ALL_MCHARS {
 		"ﾊ", "ﾐ", "ﾋ", "ｰ", "ｳ", "ｼ", "ﾅ", "ﾓ", "ﾆ", "ｻ",
 		"ﾜ", "ﾂ", "ｵ", "ﾘ", "ｱ", "ﾎ", "ﾃ", "ﾏ", "ｹ", "ﾒ",
 		"ｴ", "ｶ", "ｷ", "ﾑ", "ﾕ", "ﾗ", "ｾ", "ﾈ", "ｽ", "ﾀ",
@@ -48,7 +49,7 @@ public:
 
 	static const char *GetEmptyMChar()
 	{
-		return ALL_MCHARS[55];
+		return ALL_MCHARS[ALL_MCHARS_LENGTH-2];
 	}
 
 	void Update();
