@@ -24,7 +24,7 @@ nix-env -f channel:nixpkgs-unstable -iA tmatrix
 ```
 
 ### Download and install on other GNU/Linux distributions
-TMatrix uses the ncurses library.
+The prebuilt TMatrix uses **version 5** of the ncurses library.
 To install the library on Ubuntu or Debian run:
 ```
 sudo apt-get install libncurses5
