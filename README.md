@@ -43,11 +43,14 @@ tmatrix --version
 
 #### Uninstall
 ```
-sudo rm -f /usr/bin/tmatrix /usr/share/man/man6/tmatrix.6.gz
+sudo rm -f /usr/bin/tmatrix \
+           /usr/share/man/man6/tmatrix.6.gz \
+           /usr/share/bash-completion/completions/tmatrix \
+           /usr/share/zsh/site-functions/_tmatrix
 ```
 To check if anything was left behind you can run:
 ```
-whereis tmatrix
+locate tmatrix
 ```
 
 ### Build and install from source
@@ -64,7 +67,7 @@ This project uses C++17 so you'll need the latest tools in order you build it:
 git clone https://github.com/M4444/TMatrix.git
 cd TMatrix
 mkdir -p build && cd build
-cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
+cmake ..
 make -j8
 sudo make install
 ```

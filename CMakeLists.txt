@@ -45,6 +45,11 @@ add_custom_command(OUTPUT tmatrix.6.gz
 )
 add_custom_target(manpage ALL DEPENDS tmatrix.6.gz)
 
+# If the user didn't change the default install prefix set it to "/usr"
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+	set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "..." FORCE)
+endif()
+
 # Install tmatrix binary and manpage.
 install(TARGETS tmatrix DESTINATION bin)
 install(FILES ${PROJECT_BINARY_DIR}/tmatrix.6.gz DESTINATION share/man/man6)
