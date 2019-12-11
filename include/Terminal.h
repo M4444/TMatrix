@@ -9,40 +9,18 @@
 
 #include <cstring>
 #include <vector>
+#include "Color.h"
 #include "MatrixChar.h"
 
 struct TerminalChar {
-	// Terminal foreground color escape sequences
-	static constexpr char DEFAULT_COLOR[] {"\033[39m"};
-	static constexpr char WHITE_COLOR[]   {"\033[97m"};
-	static constexpr char GRAY_COLOR[]    {"\033[90m"};
-	static constexpr char BLACK_COLOR[]   {"\033[30m"};
-	static constexpr char RED_COLOR[]     {"\033[31m"};
-	static constexpr char GREEN_COLOR[]   {"\033[32m"};
-	static constexpr char YELLOW_COLOR[]  {"\033[33m"};
-	static constexpr char BLUE_COLOR[]    {"\033[34m"};
-	static constexpr char MAGENTA_COLOR[] {"\033[35m"};
-	static constexpr char CYAN_COLOR[]    {"\033[36m"};
-	// Terminal background color escape sequences
-	static constexpr char DEFAULT_BACKGROUND_COLOR[] {"\033[49m"};
-	static constexpr char WHITE_BACKGROUND_COLOR[]   {"\033[107m"};
-	static constexpr char GRAY_BACKGROUND_COLOR[]    {"\033[100m"};
-	static constexpr char BLACK_BACKGROUND_COLOR[]   {"\033[40m"};
-	static constexpr char RED_BACKGROUND_COLOR[]     {"\033[41m"};
-	static constexpr char GREEN_BACKGROUND_COLOR[]   {"\033[42m"};
-	static constexpr char YELLOW_BACKGROUND_COLOR[]  {"\033[43m"};
-	static constexpr char BLUE_BACKGROUND_COLOR[]    {"\033[44m"};
-	static constexpr char MAGENTA_BACKGROUND_COLOR[] {"\033[45m"};
-	static constexpr char CYAN_BACKGROUND_COLOR[]    {"\033[46m"};
-
-	static constexpr std::size_t PREFIX_SIZE {sizeof(DEFAULT_COLOR)-1};
+	static constexpr std::size_t PREFIX_SIZE {Color::LONGEST_COLOR_SIZE-1};
 
 	static const char *GLOWING_COLOR_ESC_SEQ;
 	static const char *NORMAL_COLOR_ESC_SEQ;
 
-	static void SetColor(const char *color)
+	static void SetColor(const Color& color)
 	{
-		NORMAL_COLOR_ESC_SEQ = color;
+		NORMAL_COLOR_ESC_SEQ = color.Foreground;
 	}
 
 	// Non-static members
@@ -84,13 +62,13 @@ class Terminal {
 	static int NumberOfColumns;
 	static std::vector<TerminalChar> ScreenBuffer;
 
-	Terminal(const char *color, const char *background_color);
+	Terminal(const Color& color, const Color& background_color);
 	~Terminal();
 public:
 	Terminal(Terminal const&) = delete;
 	void operator=(Terminal const&)	= delete;
 
-	static Terminal& getInstance(const char *color, const char *background_color)
+	static Terminal& getInstance(const Color& color, const Color& background_color)
 	{
 		static Terminal instance {color, background_color};
 		return instance;

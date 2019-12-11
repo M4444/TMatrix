@@ -10,14 +10,14 @@
 #include <unistd.h>
 #include "Terminal.h"
 
-const char *TerminalChar::GLOWING_COLOR_ESC_SEQ {TerminalChar::WHITE_COLOR};
+const char *TerminalChar::GLOWING_COLOR_ESC_SEQ {Color::GetColor("white").Foreground};
 const char *TerminalChar::NORMAL_COLOR_ESC_SEQ {nullptr};
 
 int Terminal::NumberOfRows {0};
 int Terminal::NumberOfColumns {0};
 std::vector<TerminalChar> Terminal::ScreenBuffer {};
 
-Terminal::Terminal(const char *color, const char *background_color)
+Terminal::Terminal(const Color& color, const Color& background_color)
 {
 	initscr();
 	savetty();
@@ -36,7 +36,7 @@ Terminal::Terminal(const char *color, const char *background_color)
 	// Set foreground color
 	TerminalChar::SetColor(color);
 	// Set background color
-	std::cout << background_color;
+	std::cout << background_color.Background;
 
 	Terminal::Reset();
 

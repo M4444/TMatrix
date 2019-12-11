@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <stdexcept>
+#include "Color.h"
 #include "Parser.h"
 
 namespace Parser {
@@ -397,56 +398,12 @@ namespace Parser {
 	//---COLOR--------------------------------------------------------------
 	void SetColor(std::string_view color, RainProperties &rainProperties)
 	{
-		if (color == "default") {
-			rainProperties.Color = TerminalChar::DEFAULT_COLOR;
-		} else if (color == "white") {
-			rainProperties.Color = TerminalChar::WHITE_COLOR;
-		} else if (color == "gray") {
-			rainProperties.Color = TerminalChar::GRAY_COLOR;
-		} else if (color == "black") {
-			rainProperties.Color = TerminalChar::BLACK_COLOR;
-		} else if (color == "red") {
-			rainProperties.Color = TerminalChar::RED_COLOR;
-		} else if (color == "green") {
-			rainProperties.Color = TerminalChar::GREEN_COLOR;
-		} else if (color == "yellow") {
-			rainProperties.Color = TerminalChar::YELLOW_COLOR;
-		} else if (color == "blue") {
-			rainProperties.Color = TerminalChar::BLUE_COLOR;
-		} else if (color == "magenta") {
-			rainProperties.Color = TerminalChar::MAGENTA_COLOR;
-		} else if (color == "cyan") {
-			rainProperties.Color = TerminalChar::CYAN_COLOR;
-		} else {
-			throw std::invalid_argument("Color isn't valid.");
-		}
+		rainProperties.CharacterColor = Color::GetColor(color);
 	}
 	//---BACKGROUND-COLOR---------------------------------------------------
 	void SetBackgroundColor(std::string_view color, RainProperties &rainProperties)
 	{
-		if (color == "default") {
-			rainProperties.BackgroundColor = TerminalChar::DEFAULT_BACKGROUND_COLOR;
-		} else if (color == "white") {
-			rainProperties.BackgroundColor = TerminalChar::WHITE_BACKGROUND_COLOR;
-		} else if (color == "gray") {
-			rainProperties.BackgroundColor = TerminalChar::GRAY_BACKGROUND_COLOR;
-		} else if (color == "black") {
-			rainProperties.BackgroundColor = TerminalChar::BLACK_BACKGROUND_COLOR;
-		} else if (color == "red") {
-			rainProperties.BackgroundColor = TerminalChar::RED_BACKGROUND_COLOR;
-		} else if (color == "green") {
-			rainProperties.BackgroundColor = TerminalChar::GREEN_BACKGROUND_COLOR;
-		} else if (color == "yellow") {
-			rainProperties.BackgroundColor = TerminalChar::YELLOW_BACKGROUND_COLOR;
-		} else if (color == "blue") {
-			rainProperties.BackgroundColor = TerminalChar::BLUE_BACKGROUND_COLOR;
-		} else if (color == "magenta") {
-			rainProperties.BackgroundColor = TerminalChar::MAGENTA_BACKGROUND_COLOR;
-		} else if (color == "cyan") {
-			rainProperties.BackgroundColor = TerminalChar::CYAN_BACKGROUND_COLOR;
-		} else {
-			throw std::invalid_argument("Background color isn't valid.");
-		}
+		rainProperties.BackgroundColor = Color::GetColor(color);
 	}
 	//---TITLE--------------------------------------------------------------
 	void SetTitle(std::string_view title, RainProperties &rainProperties)

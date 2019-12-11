@@ -30,7 +30,7 @@ std::mutex mutexOfRenderingConditionVariable;
 
 void render(const RainProperties &rainProperties)
 {
-	Terminal::getInstance(rainProperties.Color, rainProperties.BackgroundColor);
+	Terminal::getInstance(rainProperties.CharacterColor, rainProperties.BackgroundColor);
 
 	Rain rain {rainProperties};
 	std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
