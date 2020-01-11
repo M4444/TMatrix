@@ -10,9 +10,6 @@
 #include <unistd.h>
 #include "Terminal.h"
 
-const char *TerminalChar::GLOWING_COLOR_ESC_SEQ {Color::GetColor("white").Foreground};
-const char *TerminalChar::NORMAL_COLOR_ESC_SEQ {nullptr};
-
 int Terminal::NumberOfRows {0};
 int Terminal::NumberOfColumns {0};
 std::vector<TerminalChar> Terminal::ScreenBuffer {};
