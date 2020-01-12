@@ -12,21 +12,30 @@
 #include "TerminalChar.h"
 
 class Terminal {
+protected:
 	int NumberOfRows {0};
 	int NumberOfColumns {0};
-	std::vector<TerminalChar> ScreenBuffer;
 public:
-	Terminal(const Color& color, const Color& background_color);
+	Terminal();
 	~Terminal();
-
-	static Terminal& getInstance(const Color& color, const Color& background_color)
-	{
-		static Terminal instance {color, background_color};
-		return instance;
-	}
 
 	int GetNumberOfRows() { return NumberOfRows; }
 	int GetNumberOfColumns() { return NumberOfColumns; }
+
+	virtual void Reset() = 0;
+	virtual void Draw(int x, int y, const char *mchar, int colorShade) = 0;
+	virtual void Erase(int x, int y) = 0;
+	virtual void DrawTitle(int x, int y, char tchar) = 0;
+	virtual void Flush() = 0;
+};
+
+template <bool F>
+class ColorTerminal : public Terminal {
+	using TCharType = TerminalChar<F>;
+
+	std::vector<TCharType> ScreenBuffer;
+public:
+	ColorTerminal<F>(const Color& color, const Color& background_color);
 
 	void Reset();
 	void Draw(int x, int y, const char *mchar, int colorShade);

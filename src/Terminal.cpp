@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include "Terminal.h"
 
-Terminal::Terminal(const Color& color, const Color& background_color)
+Terminal::Terminal()
 {
 	initscr();
 	savetty();
@@ -23,15 +23,6 @@ Terminal::Terminal(const Color& color, const Color& background_color)
 
 	// Disable C stream sync
 	std::ios::sync_with_stdio(false);
-
-	// Set bold style
-	std::cout << "\033[1m";
-	// Set foreground color
-	TerminalChar::SetColor(color);
-	// Set background color
-	std::cout << background_color.Background;
-
-	Terminal::Reset();
 
 	// Calling this here first prevents delay in the main loop.
 	getch();
@@ -46,17 +37,36 @@ Terminal::~Terminal()
 	endwin();
 }
 
-void Terminal::Reset()
+template <bool F>
+ColorTerminal<F>::ColorTerminal(const Color& color, const Color& background_color)
+{
+	// Set bold style
+	std::cout << "\033[1m";
+	// Set foreground color
+	TCharType::SetColor(color);
+	// Set background color
+	std::cout << background_color.Background;
+
+	Reset();
+}
+
+// Instantiate both versions of the constructor
+template ColorTerminal<true>::ColorTerminal(const Color& color, const Color& background_color);
+template ColorTerminal<false>::ColorTerminal(const Color& color, const Color& background_color);
+
+template <bool F>
+void ColorTerminal<F>::Reset()
 {
 	struct winsize windowSize;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &windowSize);
 	NumberOfRows = windowSize.ws_row;
 	NumberOfColumns = windowSize.ws_col;
 
-	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TerminalChar());
+	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TCharType());
 }
 
-void Terminal::Draw(int x, int y, const char *mchar, int colorShade)
+template <bool F>
+void ColorTerminal<F>::Draw(int x, int y, const char *mchar, int colorShade)
 {
 	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
 		return;
@@ -65,7 +75,8 @@ void Terminal::Draw(int x, int y, const char *mchar, int colorShade)
 	ScreenBuffer[y*NumberOfColumns + x].SetFullMChar(mchar, colorShade);
 }
 
-void Terminal::Erase(int x, int y)
+template <bool F>
+void ColorTerminal<F>::Erase(int x, int y)
 {
 	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
 		return;
@@ -74,7 +85,8 @@ void Terminal::Erase(int x, int y)
 	ScreenBuffer[y*NumberOfColumns + x].Clear();
 }
 
-void Terminal::DrawTitle(int x, int y, char tchar)
+template <bool F>
+void ColorTerminal<F>::DrawTitle(int x, int y, char tchar)
 {
 	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
 		return;
@@ -83,10 +95,11 @@ void Terminal::DrawTitle(int x, int y, char tchar)
 	ScreenBuffer[y*NumberOfColumns + x].SetFullTitleChar(tchar);
 }
 
-void Terminal::Flush()
+template <bool F>
+void ColorTerminal<F>::Flush()
 {
 	std::cout.write(reinterpret_cast<char*>(ScreenBuffer.data()),
-			ScreenBuffer.size() * sizeof(decltype(ScreenBuffer)::value_type));
+			ScreenBuffer.size() * sizeof(TCharType));
 	std::cout << std::flush;
 	// Move cursor to the start of the screen
 	std::cout << "\033[0;0H";

@@ -32,26 +32,33 @@ std::mutex mutexOfRenderingConditionVariable;
 
 void render(const RainProperties &rainProperties)
 {
-	Terminal terminal {Terminal::getInstance(rainProperties.CharacterColor,
-						 rainProperties.BackgroundColor)};
+	Color color = rainProperties.CharacterColor;
+	Color background_color = rainProperties.BackgroundColor;
+	std::shared_ptr<Terminal> terminal {
+		rainProperties.Fade
+			? std::static_pointer_cast<Terminal>(
+				std::make_shared<ColorTerminal<true>>(color, background_color))
+			: std::static_pointer_cast<Terminal>(
+				std::make_shared<ColorTerminal<false>>(color, background_color))
+	};
 
 	std::shared_ptr<Rain> rain {
 		rainProperties.Fade
 			? std::static_pointer_cast<Rain>(
-				std::make_shared<FadingRain>(rainProperties, &terminal))
+				std::make_shared<FadingRain>(rainProperties, terminal.get()))
 			: std::static_pointer_cast<Rain>(
-				std::make_shared<NonFadingRain>(rainProperties, &terminal))
+				std::make_shared<NonFadingRain>(rainProperties, terminal.get()))
 	};
 	std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 	while (true) {
 		renderingConditionVariable.wait(mutexLock);
 		if (resizeTriggered) {
-			terminal.Reset();
+			terminal->Reset();
 			rain->Reset();
 			resizeTriggered = false;
 		}
 		rain->Update();
-		terminal.Flush();
+		terminal->Flush();
 	}
 }
 

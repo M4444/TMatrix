@@ -19,7 +19,10 @@ struct Color {
 	const char* Shade3;
 	const char* Shade4;
 
-	static constexpr std::size_t LONGEST_COLOR_SIZE {sizeof("\033[38;5;234m")};
+	static constexpr std::size_t GetPrefixSize(bool isFade)
+	{
+		return isFade ? sizeof("\033[38;5;234m") : sizeof("\033[100m");
+	};
 
 	static constexpr Color GetColor(std::string_view color) {
 		if (color == "default") {
