@@ -8,6 +8,7 @@
 #include <chrono>
 #include <condition_variable>
 #include <csignal>
+#include <memory>
 #include <string_view>
 #include <thread>
 #include <vector>
@@ -34,16 +35,22 @@ void render(const RainProperties &rainProperties)
 	Terminal terminal {Terminal::getInstance(rainProperties.CharacterColor,
 						 rainProperties.BackgroundColor)};
 
-	Rain rain {rainProperties, &terminal};
+	std::shared_ptr<Rain> rain {
+		rainProperties.Fade
+			? std::static_pointer_cast<Rain>(
+				std::make_shared<FadingRain>(rainProperties, &terminal))
+			: std::static_pointer_cast<Rain>(
+				std::make_shared<NonFadingRain>(rainProperties, &terminal))
+	};
 	std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 	while (true) {
 		renderingConditionVariable.wait(mutexLock);
 		if (resizeTriggered) {
 			terminal.Reset();
-			rain.Reset();
+			rain->Reset();
 			resizeTriggered = false;
 		}
-		rain.Update();
+		rain->Update();
 		terminal.Flush();
 	}
 }

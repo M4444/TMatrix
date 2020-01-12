@@ -22,7 +22,7 @@ namespace Parser {
 	constexpr int LONG_GAP_PREFIX {6};
 	constexpr std::string_view SEPARATOR {"    "};
 
-	enum OptionType { VERSION, HELP, MODE, NUMERIC, RANGE, COLOR, TEXT };
+	enum OptionType { VERSION, HELP, BOOL, MODE, NUMERIC, RANGE, COLOR, TEXT };
 	struct Option {
 		const OptionType Type;
 		const std::string ShortLiteral;
@@ -71,6 +71,8 @@ namespace Parser {
 	void SetGapRange(std::string_view range, RainProperties &rainProperties);
 	//---CHARACTER-UPDATE-RATE----------------------------------------------
 	void SetCharUpdateRateRange(std::string_view range, RainProperties &rainProperties);
+	//---FADE---------------------------------------------------------------
+	void SetFade(bool fade, RainProperties &rainProperties);
 	//---COLOR--------------------------------------------------------------
 	void SetColor(std::string_view color, RainProperties &rainProperties);
 	//---BACKGROUND-COLOR---------------------------------------------------
@@ -181,6 +183,26 @@ namespace Parser {
 			[](std::string_view range, int &, RainProperties &rainProperties)
 			{
 				SetCharUpdateRateRange(range, rainProperties);
+			}
+		},
+		Option{
+			BOOL, "", "--fade",
+			{
+				"Enable fading characters"
+			},
+			[](std::string_view, int &, RainProperties &rainProperties)
+			{
+				SetFade(true, rainProperties);
+			}
+		},
+		Option{
+			BOOL, "", "--no-fade",
+			{
+				"Disable fading characters"
+			},
+			[](std::string_view, int &, RainProperties &rainProperties)
+			{
+				SetFade(false, rainProperties);
 			}
 		},
 		Option{

@@ -16,10 +16,16 @@ struct TerminalChar {
 
 	static const char *GLOWING_COLOR_ESC_SEQ;
 	static const char *NORMAL_COLOR_ESC_SEQ;
+	static const char *NORMAL_COLOR_ESC_SEQ_2;
+	static const char *NORMAL_COLOR_ESC_SEQ_3;
+	static const char *NORMAL_COLOR_ESC_SEQ_4;
 
 	static void SetColor(const Color& color)
 	{
-		NORMAL_COLOR_ESC_SEQ = color.Foreground;
+		NORMAL_COLOR_ESC_SEQ = color.Shade1;
+		NORMAL_COLOR_ESC_SEQ_2 = color.Shade2;
+		NORMAL_COLOR_ESC_SEQ_3 = color.Shade3;
+		NORMAL_COLOR_ESC_SEQ_4 = color.Shade4;
 	}
 
 	// Non-static members
@@ -31,12 +37,25 @@ struct TerminalChar {
 		Clear();
 	}
 
-	void SetFullMChar(const char *mchar, bool isGlowing)
+	void SetFullMChar(const char *mchar, int colorShade)
 	{
-		if (isGlowing) {
+		switch (colorShade) {
+		case 0:
 			std::memcpy(&prefix, GLOWING_COLOR_ESC_SEQ, PREFIX_SIZE);
-		} else {
+			break;
+		case 1:
+		default:
 			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ, PREFIX_SIZE);
+			break;
+		case 2:
+			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ_2, PREFIX_SIZE);
+			break;
+		case 3:
+			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ_3, PREFIX_SIZE);
+			break;
+		case 4:
+			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ_4, PREFIX_SIZE);
+			break;
 		}
 		std::memcpy(&MChar, mchar, MatrixChar::MCHAR_SIZE);
 	}

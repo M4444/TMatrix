@@ -17,7 +17,7 @@ class MatrixChar : public Active, public HasTerminal {
 	const int y;
 	CountdownTimer UpdateTimer;
 	int MCharIndex {GetRandomMCharIndex()};
-	bool Glowing {true};
+	int ColorShade {0};
 
 	static int GetRandomMCharIndex();
 	void SetRandomMChar();
@@ -53,8 +53,12 @@ public:
 		return ALL_MCHARS[ALL_MCHARS_LENGTH-2];
 	}
 
+	int GetVerticalOffset(int verticalPosition) {
+		return verticalPosition - y;
+	}
+
 	void Update();
-	void SetNotGlowing();
+	void SetColorShade(int colorShade);
 };
 
 #endif

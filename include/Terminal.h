@@ -29,7 +29,7 @@ public:
 	int GetNumberOfColumns() { return NumberOfColumns; }
 
 	void Reset();
-	void Draw(int x, int y, const char *mchar, bool isGlowing);
+	void Draw(int x, int y, const char *mchar, int colorShade);
 	void Erase(int x, int y);
 	void DrawTitle(int x, int y, char tchar);
 	void Flush();

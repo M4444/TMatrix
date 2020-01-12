@@ -6,5 +6,8 @@
 
 #include "TerminalChar.h"
 
-const char *TerminalChar::GLOWING_COLOR_ESC_SEQ {Color::GetColor("white").Foreground};
+const char *TerminalChar::GLOWING_COLOR_ESC_SEQ {Color::GetColor("white").Shade1};
 const char *TerminalChar::NORMAL_COLOR_ESC_SEQ {nullptr};
+const char *TerminalChar::NORMAL_COLOR_ESC_SEQ_2 {nullptr};
+const char *TerminalChar::NORMAL_COLOR_ESC_SEQ_3 {nullptr};
+const char *TerminalChar::NORMAL_COLOR_ESC_SEQ_4 {nullptr};

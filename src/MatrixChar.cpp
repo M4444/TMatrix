@@ -25,7 +25,7 @@ void MatrixChar::SetRandomMChar()
 
 void MatrixChar::Draw() const
 {
-	terminal->Draw(x, y, ALL_MCHARS[MCharIndex], Glowing);
+	terminal->Draw(x, y, ALL_MCHARS[MCharIndex], ColorShade);
 }
 
 void MatrixChar::Erase() const
@@ -47,10 +47,10 @@ void MatrixChar::Update()
 	UpdateTimer.Update();
 }
 
-void MatrixChar::SetNotGlowing()
+void MatrixChar::SetColorShade(int colorShade)
 {
-	if (Glowing) {
-		Glowing = false;
+	if (colorShade != ColorShade) {
+		ColorShade = colorShade;
 		Draw();
 	}
 }

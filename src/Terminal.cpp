@@ -56,13 +56,13 @@ void Terminal::Reset()
 	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TerminalChar());
 }
 
-void Terminal::Draw(int x, int y, const char *mchar, bool isGlowing)
+void Terminal::Draw(int x, int y, const char *mchar, int colorShade)
 {
 	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
 		return;
 	}
 
-	ScreenBuffer[y*NumberOfColumns + x].SetFullMChar(mchar, isGlowing);
+	ScreenBuffer[y*NumberOfColumns + x].SetFullMChar(mchar, colorShade);
 }
 
 void Terminal::Erase(int x, int y)

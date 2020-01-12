@@ -19,6 +19,7 @@ namespace Parser {
 		switch (type) {
 		case VERSION:
 		case HELP:
+		case BOOL:
 			return "";
 			break;
 		case MODE:
@@ -46,6 +47,7 @@ namespace Parser {
 		switch (Type) {
 		case VERSION:
 		case HELP:
+		case BOOL:
 			return "[" + LongLiteral + ']';
 			break;
 		case MODE:
@@ -72,6 +74,7 @@ namespace Parser {
 		switch (Type) {
 		case VERSION:
 		case HELP:
+		case BOOL:
 			return LongLiteral;
 			break;
 		case MODE:
@@ -152,12 +155,15 @@ namespace Parser {
 				switch (option.Type) {
 				case VERSION:
 				case HELP:
+				case BOOL:
 					if (suffix != "") {
 						matched = false;
 						break;
 					}
 					option.ProcessArgument(argument, stepsPerSecond, rainProperties);
-					return false;
+					if (option.Type != BOOL) {
+						return false;
+					}
 					break;
 				case MODE:
 				case NUMERIC:
@@ -320,6 +326,11 @@ namespace Parser {
 		}
 	}
 
+	//---FADE---------------------------------------------------------------
+	void SetFade(bool fade, RainProperties &rainProperties)
+	{
+		rainProperties.Fade = fade;
+	}
 	//---STEPS-PER-SECONDS--------------------------------------------------
 	void SetStepsPerSecond(std::string_view value, int &stepsPerSecond)
 	{

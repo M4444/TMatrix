@@ -33,6 +33,8 @@ public:
 	bool HasLeftScreenMiddle() const { return LeftScreenMiddle; }
 	bool IsOutOfScreen() const { return OutOfScreen; }
 	void Update();
+	void UpdateShadeColors();
+	void RemoveGlowFromPreviousHead();
 };
 
 #endif

@@ -1,4 +1,4 @@
-.TH TMatrix 6 "10 January 2020" "TMatrix Version 1.2"
+.TH TMatrix 6 "15 January 2020" "TMatrix Version 1.2"
 .SH NAME
 TMatrix \- Terminal based replica of the digital rain from The Matrix
 .SH SYNOPSIS
@@ -6,9 +6,9 @@ TMatrix \- Terminal based replica of the digital rain from The Matrix
 \fItmatrix\fR [--version] [--help] [--mode=MODE]
         [-s VALUE | --steps-per-sec=VALUE]
         [-f RANGE | --fall-speed=RANGE] [-G RANGE | --start-gap=RANGE]
-        [-g RANGE | --gap=RANGE] [-l RANGE] [-r RANGE]
-        [-C COLOR | --color=COLOR] [-c COLOR | --background=COLOR]
-        [-t TEXT | --title=TEXT]
+        [-g RANGE | --gap=RANGE] [-l RANGE] [-r RANGE] [--fade]
+        [--no-fade] [-C COLOR | --color=COLOR]
+        [-c COLOR | --background=COLOR] [-t TEXT | --title=TEXT]
 .fi
 .SH DESCRIPTION
 Simulates the digital rain effect from The Matrix.
@@ -64,6 +64,12 @@ The values correspond to the number of steps before the change.
 \fB0\fR represents no change.
 .br
 Default: \fI10,20\fR.
+.TP 4
+\-\-fade
+Enable fading characters.
+.TP 4
+\-\-no\-fade
+Disable fading characters.
 .TP 4
 \-C, --color=COLOR
 Set the color of the characters.

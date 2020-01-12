@@ -18,10 +18,7 @@ void RainStreak::Update()
 			OutOfScreen = true;
 		}
 	}
-	// Remove glow from the previous head MChar
-	if (!MChars.empty()) {
-		MChars.front().SetNotGlowing();
-	}
+	rain->UpdateStreakColors(*this);
 	int numberOfRows {terminal->GetNumberOfRows()};
 	// Create a new head MChar
 	if (y < numberOfRows) {
@@ -45,5 +42,30 @@ void RainStreak::Update()
 	// Update all the MChars
 	for (MatrixChar &mc : MChars) {
 		mc.Update();
+	}
+}
+
+void RainStreak::UpdateShadeColors()
+{
+	if (!MChars.empty()) {
+		for (MatrixChar &mc : MChars) {
+			int position = mc.GetVerticalOffset(y);
+			if (position < Length/2) {
+				mc.SetColorShade(1);
+			} else if (position < (3*Length)/4) {
+				mc.SetColorShade(2);
+			} else if (position <= (7*Length)/8) {
+				mc.SetColorShade(3);
+			} else {
+				mc.SetColorShade(4);
+			}
+		}
+	}
+}
+
+void RainStreak::RemoveGlowFromPreviousHead()
+{
+	if (!MChars.empty()) {
+		MChars.front().SetColorShade(1);
 	}
 }

@@ -9,7 +9,7 @@ _tmatrix() {
 	local colors=(default white gray black red green yellow blue magenta cyan)
 
 	case $prev in
-		--help|--version)
+		--help|--version|--fade|--no-fade)
 			return
 			;;
 		--background|-c|--color|-C)

@@ -25,6 +25,8 @@ set tmatrix_long_options = (\
 	--fall-speed \
 	--start-gap \
 	--gap \
+	--fade \
+	--no-fade \
 	--color \
 	--background \
 	--title \
@@ -53,8 +55,12 @@ complete tmatrix \
 	'c/--mode=/$tmatrix_modes/' \
 	'n/--help/n/' \
 	'n/--version/n/' \
+	'n/--fade/n/' \
+	'n/--no-fade/n/' \
 	'C/--h/(--help)/' \
 	'C/--v/(--version)/' \
+	'C/--f/(--fade)/' \
+	'C/--n/(--no-fade)/' \
 	'C/--/$tmatrix_long_options/=/' \
 	'C/-/$tmatrix_short_options/' \
 	'p/*/n/' # don't complete file names and alike

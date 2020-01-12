@@ -69,3 +69,13 @@ std::pair<int, int> Rain::GetRandomUpdateRateAndTime() const
 	int UpdateTime {UpdateRate ? Random::Random(UpdateRate) : 0};
 	return {UpdateRate, UpdateTime};
 }
+
+void FadingRain::UpdateStreakColors(RainStreak& rainStreak) const
+{
+	rainStreak.UpdateShadeColors();
+}
+
+void NonFadingRain::UpdateStreakColors(RainStreak& rainStreak) const
+{
+	rainStreak.RemoveGlowFromPreviousHead();
+}
