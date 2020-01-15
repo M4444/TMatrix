@@ -29,6 +29,7 @@ struct RainProperties {
 class Rain : public Active {
 	std::vector<RainColumn> RainColumns;
 	const RainProperties Properties;
+	Terminal* terminal;
 
 	int GetRandomSpeed() const;
 	int GetRandomStartingGap() const;
@@ -46,7 +47,7 @@ public:
 	static constexpr int MAX_FALL_SPEED {10};
 	static constexpr int MIN_LENGTH {1};
 
-	Rain(RainProperties RP);
+	Rain(RainProperties RP, Terminal* T);
 
 	void Reset();
 	void Update();

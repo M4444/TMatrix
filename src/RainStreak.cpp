@@ -22,7 +22,7 @@ void RainStreak::Update()
 	if (!MChars.empty()) {
 		MChars.front().SetNotGlowing();
 	}
-	int numberOfRows {Terminal::GetNumberOfRows()};
+	int numberOfRows {terminal->GetNumberOfRows()};
 	// Create a new head MChar
 	if (y < numberOfRows) {
 		auto [updateRate, updateTime] { rain->GetRandomUpdateRateAndTime() };

@@ -9,11 +9,12 @@
 
 #include <deque>
 #include "Active.h"
+#include "HasTerminal.h"
 #include "MatrixChar.h"
 
 class Rain;
 
-class RainStreak : public Active {
+class RainStreak : public Active, public HasTerminal {
 	const Rain *rain;
 	const int x;
 	int y {0};

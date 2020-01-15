@@ -10,8 +10,9 @@
 #include <array>
 #include "Active.h"
 #include "CountdownTimer.h"
+#include "HasTerminal.h"
 
-class MatrixChar : public Active {
+class MatrixChar : public Active, public HasTerminal {
 	const int x;
 	const int y;
 	CountdownTimer UpdateTimer;

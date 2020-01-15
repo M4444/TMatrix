@@ -9,15 +9,18 @@
 #include "Random.h"
 #include "Terminal.h"
 
-Rain::Rain(RainProperties RP) : Properties{RP}
+Rain::Rain(RainProperties RP, Terminal* T) : Properties{RP}, terminal{T}
 {
+	RainColumn::SetTerminal(T);
+	RainStreak::SetTerminal(T);
+	MatrixChar::SetTerminal(T);
 	Reset();
 }
 
 void Rain::Reset()
 {
 	// Create all the rain columns
-	int numberOfColumns {Terminal::GetNumberOfColumns()};
+	int numberOfColumns {terminal->GetNumberOfColumns()};
 	int titleLength {static_cast<int>(std::strlen(Properties.Title))};
 
 	int titleCharIndex {0};

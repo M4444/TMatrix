@@ -10,11 +10,12 @@
 #include <list>
 #include "Active.h"
 #include "CountdownTimer.h"
+#include "HasTerminal.h"
 #include "RainStreak.h"
 
 class Rain;
 
-class RainColumn : public Active {
+class RainColumn : public Active, public HasTerminal {
 	const Rain *rain;
 	const int x;
 	const int Speed;

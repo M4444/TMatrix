@@ -25,12 +25,12 @@ void MatrixChar::SetRandomMChar()
 
 void MatrixChar::Draw() const
 {
-	Terminal::Draw(x, y, ALL_MCHARS[MCharIndex], Glowing);
+	terminal->Draw(x, y, ALL_MCHARS[MCharIndex], Glowing);
 }
 
 void MatrixChar::Erase() const
 {
-	Terminal::Erase(x, y);
+	terminal->Erase(x, y);
 }
 
 void MatrixChar::Update()

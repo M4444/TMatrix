@@ -37,7 +37,7 @@ void RainColumn::Step()
 		if (ContainsTitle && FirstRainStreak &&
 		    FirstRainStreak->HasReachedScreenMiddle() &&
 		    !FirstRainStreak->HasLeftScreenMiddle() && TitleChar != ' ') {
-			Terminal::DrawTitle(x, Terminal::GetNumberOfRows()/2, TitleChar);
+			terminal->DrawTitle(x, terminal->GetNumberOfRows()/2, TitleChar);
 		}
 		// Check if an empty slot appeared
 		if ((!ContainsTitle || !FirstRainStreak ||

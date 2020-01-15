@@ -11,6 +11,7 @@
 #include <string_view>
 #include <thread>
 #include <vector>
+#include <ncurses.h>
 #include "Parser.h"
 #include "Rain.h"
 #include "Terminal.h"
@@ -30,19 +31,20 @@ std::mutex mutexOfRenderingConditionVariable;
 
 void render(const RainProperties &rainProperties)
 {
-	Terminal::getInstance(rainProperties.CharacterColor, rainProperties.BackgroundColor);
+	Terminal terminal {Terminal::getInstance(rainProperties.CharacterColor,
+						 rainProperties.BackgroundColor)};
 
-	Rain rain {rainProperties};
+	Rain rain {rainProperties, &terminal};
 	std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 	while (true) {
 		renderingConditionVariable.wait(mutexLock);
 		if (resizeTriggered) {
-			Terminal::Reset();
+			terminal.Reset();
 			rain.Reset();
 			resizeTriggered = false;
 		}
 		rain.Update();
-		Terminal::Flush();
+		terminal.Flush();
 	}
 }
 
@@ -60,7 +62,7 @@ int main(int argc, char *argv[])
 
 		std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 		while (true) {
-			Parser::ParseRuntimeInput(Terminal::ReadInputChar(), paused);
+			Parser::ParseRuntimeInput(getch(), paused);
 			mutexLock.unlock();
 			if (!paused) {
 				renderingConditionVariable.notify_one();

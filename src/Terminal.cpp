@@ -10,10 +10,6 @@
 #include <unistd.h>
 #include "Terminal.h"
 
-int Terminal::NumberOfRows {0};
-int Terminal::NumberOfColumns {0};
-std::vector<TerminalChar> Terminal::ScreenBuffer {};
-
 Terminal::Terminal(const Color& color, const Color& background_color)
 {
 	initscr();
@@ -94,9 +90,4 @@ void Terminal::Flush()
 	std::cout << std::flush;
 	// Move cursor to the start of the screen
 	std::cout << "\033[0;0H";
-}
-
-char Terminal::ReadInputChar()
-{
-	return getch();
 }
