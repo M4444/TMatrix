@@ -22,13 +22,18 @@ namespace Parser {
 	constexpr int LONG_GAP_PREFIX {6};
 	constexpr std::string_view SEPARATOR {"    "};
 
+	struct OutputVariables {
+		int& stepsPerSecond;
+		RainProperties& rainProperties;
+	};
+
 	enum OptionType { VERSION, HELP, BOOL, MODE, NUMERIC, RANGE, COLOR, TEXT };
 	struct Option {
 		const OptionType Type;
 		const std::string ShortLiteral;
 		const std::string LongLiteral;
 		const std::vector<std::string> HelpText;
-		const std::function<void(std::string_view, int &, RainProperties &)> ProcessArgument;
+		const std::function<void(std::string_view, const OutputVariables& out)> ProcessArgument;
 
 		static std::string GetValueName(OptionType type);
 		std::string GetUsage() const;
@@ -41,7 +46,7 @@ namespace Parser {
 	//---Parser-functions---------------------------------------------------
 	bool StartsWith(std::string_view str, std::string_view prefix);
 	bool ParseCmdLineArgs(std::vector<std::string_view> arguments,
-			      int &stepsPerSecond, RainProperties &rainProperties);
+			      const OutputVariables& out);
 	void PrintInvalidValue(std::string_view prefix, std::string_view suffix);
 
 	void ParseRuntimeInput(char c, bool &paused);
@@ -84,12 +89,12 @@ namespace Parser {
 		Option{
 			VERSION, "", "--version",
 			{ "Output version information and exit "},
-			[](std::string_view, int &, RainProperties &) { PrintVersion(); }
+			[](std::string_view, const OutputVariables&) { PrintVersion(); }
 		},
 		Option{
 			HELP, "", "--help",
 			{ "Display this help and exit "},
-			[](std::string_view, int &, RainProperties &) { PrintUsage(true); }
+			[](std::string_view, const OutputVariables&) { PrintUsage(true); }
 		},
 		Option{
 			MODE, "", "--mode",
@@ -97,9 +102,9 @@ namespace Parser {
 				"Set the mode of the rain",
 				"Available modes: default, dense"
 			},
-			[](std::string_view mode, int &, RainProperties &rainProperties)
+			[](std::string_view mode, const OutputVariables& out)
 			{
-				SetRainProperties(mode, rainProperties);
+				SetRainProperties(mode, out.rainProperties);
 			}
 		},
 		Option{
@@ -110,9 +115,9 @@ namespace Parser {
 					" to " + std::to_string(MAX_STEPS_PER_SECOND),
 				"Default: " + std::to_string(DEFAULT_STEPS_PER_SECOND)
 			},
-			[](std::string_view value, int &stepsPerSecond, RainProperties &)
+			[](std::string_view value, const OutputVariables& out)
 			{
-				SetStepsPerSecond(value, stepsPerSecond);
+				SetStepsPerSecond(value, out.stepsPerSecond);
 			}
 		},
 		Option{
@@ -125,9 +130,9 @@ namespace Parser {
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMax())
 
 			},
-			[](std::string_view range, int &, RainProperties &rainProperties)
+			[](std::string_view range, const OutputVariables& out)
 			{
-				SetSpeedRange(range, rainProperties);
+				SetSpeedRange(range, out.rainProperties);
 			}
 		},
 		Option{
@@ -138,9 +143,9 @@ namespace Parser {
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnStartingGap.GetMin()) + ',' +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnStartingGap.GetMax())
 			},
-			[](std::string_view range, int &, RainProperties &rainProperties)
+			[](std::string_view range, const OutputVariables& out)
 			{
-				SetStartingGapRange(range, rainProperties);
+				SetStartingGapRange(range, out.rainProperties);
 			}
 		},
 		Option{
@@ -151,9 +156,9 @@ namespace Parser {
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnGap.GetMin()) + ',' +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnGap.GetMax())
 			},
-			[](std::string_view range, int &, RainProperties &rainProperties)
+			[](std::string_view range, const OutputVariables& out)
 			{
-				SetGapRange(range, rainProperties);
+				SetGapRange(range, out.rainProperties);
 			}
 		},
 		Option{
@@ -165,9 +170,9 @@ namespace Parser {
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainStreakLength.GetMin()) + ',' +
 					std::to_string(Rain::DEFAULT_PROPERTIES.RainStreakLength.GetMax())
 			},
-			[](std::string_view range, int &, RainProperties &rainProperties)
+			[](std::string_view range, const OutputVariables& out)
 			{
-				SetLengthRange(range, rainProperties);
+				SetLengthRange(range, out.rainProperties);
 			}
 		},
 		Option{
@@ -180,9 +185,9 @@ namespace Parser {
 					std::to_string(Rain::DEFAULT_PROPERTIES.MCharUpdateRate.GetMin()) + ',' +
 					std::to_string(Rain::DEFAULT_PROPERTIES.MCharUpdateRate.GetMax())
 			},
-			[](std::string_view range, int &, RainProperties &rainProperties)
+			[](std::string_view range, const OutputVariables& out)
 			{
-				SetCharUpdateRateRange(range, rainProperties);
+				SetCharUpdateRateRange(range, out.rainProperties);
 			}
 		},
 		Option{
@@ -190,9 +195,9 @@ namespace Parser {
 			{
 				"Enable fading characters"
 			},
-			[](std::string_view, int &, RainProperties &rainProperties)
+			[](std::string_view, const OutputVariables& out)
 			{
-				SetFade(true, rainProperties);
+				SetFade(true, out.rainProperties);
 			}
 		},
 		Option{
@@ -200,9 +205,9 @@ namespace Parser {
 			{
 				"Disable fading characters"
 			},
-			[](std::string_view, int &, RainProperties &rainProperties)
+			[](std::string_view, const OutputVariables& out)
 			{
-				SetFade(false, rainProperties);
+				SetFade(false, out.rainProperties);
 			}
 		},
 		Option{
@@ -213,9 +218,9 @@ namespace Parser {
 				"red, green, yellow, blue, magenta, cyan",
 				"Default: green"
 			},
-			[](std::string_view color, int &, RainProperties &rainProperties)
+			[](std::string_view color, const OutputVariables& out)
 			{
-				SetColor(color, rainProperties);
+				SetColor(color, out.rainProperties);
 			}
 		},
 		Option{
@@ -225,9 +230,9 @@ namespace Parser {
 				"Available colors: default, white, gray, black,",
 				"red, green, yellow, blue, magenta, cyan"
 			},
-			[](std::string_view color, int &, RainProperties &rainProperties)
+			[](std::string_view color, const OutputVariables& out)
 			{
-				SetBackgroundColor(color, rainProperties);
+				SetBackgroundColor(color, out.rainProperties);
 			}
 		},
 		Option{
@@ -237,9 +242,9 @@ namespace Parser {
 				"Note: the title needs to fit within the",
 				"terminal window in order to be displayed"
 			},
-			[](std::string_view title, int &, RainProperties &rainProperties)
+			[](std::string_view title, const OutputVariables& out)
 			{
-				SetTitle(title, rainProperties);
+				SetTitle(title, out.rainProperties);
 			}
 		}
 	};

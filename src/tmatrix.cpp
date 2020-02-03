@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 	RainProperties rainProperties;
 
 	if (Parser::ParseCmdLineArgs(std::vector<std::string_view>(argv+1, argv+argc),
-				     stepsPerSecond, rainProperties)) {
+				     {stepsPerSecond, rainProperties})) {
 		std::signal(SIGWINCH, resizeHandler);
 
 		std::thread rendering_thread([&]{ render(rainProperties); });

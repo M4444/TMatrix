@@ -139,9 +139,9 @@ namespace Parser {
 	}
 
 	bool ParseCmdLineArgs(std::vector<std::string_view> arguments,
-			      int &stepsPerSecond, RainProperties &rainProperties)
+			      const OutputVariables& out)
 	{
-		SetRainProperties("default", rainProperties);
+		SetRainProperties("default", out.rainProperties);
 		for (decltype(arguments)::size_type i = 0; i < arguments.size(); i++) {
 			std::string_view argument {arguments[i]};
 
@@ -160,7 +160,7 @@ namespace Parser {
 						matched = false;
 						break;
 					}
-					option.ProcessArgument(argument, stepsPerSecond, rainProperties);
+					option.ProcessArgument(argument, out);
 					if (option.Type != BOOL) {
 						return false;
 					}
@@ -186,7 +186,7 @@ namespace Parser {
 					}
 
 					try {
-						option.ProcessArgument(suffix, stepsPerSecond, rainProperties);
+						option.ProcessArgument(suffix, out);
 					} catch (const std::out_of_range&) {
 						PrintInvalidValue(prefix, suffix);
 						return false;
