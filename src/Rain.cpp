@@ -21,7 +21,7 @@ void Rain::Reset()
 {
 	// Create all the rain columns
 	int numberOfColumns {terminal->GetNumberOfColumns()};
-	int titleLength {static_cast<int>(std::strlen(Properties.Title))};
+	int titleLength {static_cast<int>(Properties.Title.length())};
 
 	int titleCharIndex {0};
 	RainColumns.clear();
@@ -30,7 +30,7 @@ void Rain::Reset()
 		bool titleColumn {numberOfColumns >= titleLength && titleLength > 0 &&
 				  i >= numberOfColumns/2 - std::ceil(titleLength/2.0) &&
 				  i < numberOfColumns/2 + std::floor(titleLength/2.0)};
-		char titleChar {titleColumn ? Properties.Title[titleCharIndex++] : '\0'};
+		wchar_t titleChar {titleColumn ? Properties.Title[titleCharIndex++] : '\0'};
 		RainColumns.emplace_back(this, i, GetRandomSpeed(), GetRandomStartingGap(),
 					 titleChar);
 	}

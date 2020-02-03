@@ -86,7 +86,7 @@ void ColorTerminal<F>::Erase(int x, int y)
 }
 
 template <bool F>
-void ColorTerminal<F>::DrawTitle(int x, int y, char tchar)
+void ColorTerminal<F>::DrawTitle(int x, int y, wchar_t tchar)
 {
 	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
 		return;

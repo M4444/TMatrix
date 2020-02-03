@@ -6,8 +6,10 @@
 
 #include <algorithm>
 #include <cctype>
+#include <clocale>
 #include <csignal>
 #include <cstdlib>
+#include <cstring>
 #include <iostream>
 #include <stdexcept>
 #include "Color.h"
@@ -417,8 +419,17 @@ namespace Parser {
 		rainProperties.BackgroundColor = Color::GetColor(color);
 	}
 	//---TITLE--------------------------------------------------------------
-	void SetTitle(std::string_view title, RainProperties &rainProperties)
+	void SetTitle(std::string_view title, RainProperties& rainProperties, std::wstring& wtitle)
 	{
-		rainProperties.Title = title.data();
+		// Convert (const char *) to wstring
+		std::setlocale(LC_ALL, "en_US.utf8");
+		const char* ptr = title.data();
+		std::mbtowc(NULL, 0, 0);
+		const char* end = ptr + std::strlen(ptr);
+		int len;
+		for (wchar_t wc; (len = std::mbtowc(&wc, ptr, end-ptr)) > 0; ptr += len) {
+			wtitle.push_back(wc);
+		}
+		rainProperties.Title = wtitle;
 	}
 }

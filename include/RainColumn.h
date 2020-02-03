@@ -20,13 +20,13 @@ class RainColumn : public Active, public HasTerminal {
 	const int x;
 	const int Speed;
 	CountdownTimer GapTimer;
-	char TitleChar;
+	wchar_t TitleChar;
 	const RainStreak *FirstRainStreak {nullptr};
 	bool CreatedRainStreak {false};
 	bool EmptyRainStreakSlot {true};
 	std::list<RainStreak> RainStreaks;
 public:
-	RainColumn(const Rain *R, int X, int S, int G, char TC) :
+	RainColumn(const Rain *R, int X, int S, int G, wchar_t TC) :
 		rain{R}, x{X}, Speed{S}, GapTimer{G}, TitleChar{TC} {}
 
 	void Step();

@@ -25,6 +25,7 @@ namespace Parser {
 	struct OutputVariables {
 		int& stepsPerSecond;
 		RainProperties& rainProperties;
+		std::wstring& title;
 	};
 
 	enum OptionType { VERSION, HELP, BOOL, MODE, NUMERIC, RANGE, COLOR, TEXT };
@@ -83,7 +84,7 @@ namespace Parser {
 	//---BACKGROUND-COLOR---------------------------------------------------
 	void SetBackgroundColor(std::string_view color, RainProperties &rainProperties);
 	//---TITLE--------------------------------------------------------------
-	void SetTitle(std::string_view title, RainProperties &rainProperties);
+	void SetTitle(std::string_view title, RainProperties& rainProperties, std::wstring& wtitle);
 
 	const std::array Options {
 		Option{
@@ -244,7 +245,7 @@ namespace Parser {
 			},
 			[](std::string_view title, const OutputVariables& out)
 			{
-				SetTitle(title, out.rainProperties);
+				SetTitle(title, out.rainProperties, out.title);
 			}
 		}
 	};

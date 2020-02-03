@@ -7,7 +7,10 @@
 #ifndef TERMINAL_CHAR_H
 #define TERMINAL_CHAR_H
 
+#include <algorithm>
+#include <cstdlib>
 #include <cstring>
+#include <string>
 #include "Color.h"
 #include "MatrixChar.h"
 
@@ -33,11 +36,18 @@ struct BaseTerminalChar {
 		std::memcpy(&MChar, MatrixChar::GetEmptyMChar(), MatrixChar::MCHAR_SIZE);
 	}
 
-	void SetFullTitleChar(char tchar)
+	void SetFullTitleChar(wchar_t tchar)
 	{
 		std::memcpy(&prefix, GLOWING_COLOR_ESC_SEQ, PREFIX_SIZE);
 		std::memset(&MChar, '\0', MatrixChar::MCHAR_SIZE);
-		MChar[0] = tchar;
+
+		// Convert wchar to (const char *)
+		std::string tchar_buffer(MB_CUR_MAX, '\0');
+		int tchar_size = std::wctomb(&tchar_buffer[0], tchar);
+		if (tchar_size > 0) {
+			std::memcpy(&MChar, tchar_buffer.data(),
+				    std::min((std::size_t)tchar_size, MatrixChar::MCHAR_SIZE));
+		}
 	}
 };
 

@@ -25,7 +25,7 @@ public:
 	virtual void Reset() = 0;
 	virtual void Draw(int x, int y, const char *mchar, int colorShade) = 0;
 	virtual void Erase(int x, int y) = 0;
-	virtual void DrawTitle(int x, int y, char tchar) = 0;
+	virtual void DrawTitle(int x, int y, wchar_t tchar) = 0;
 	virtual void Flush() = 0;
 };
 
@@ -40,7 +40,7 @@ public:
 	void Reset();
 	void Draw(int x, int y, const char *mchar, int colorShade);
 	void Erase(int x, int y);
-	void DrawTitle(int x, int y, char tchar);
+	void DrawTitle(int x, int y, wchar_t tchar);
 	void Flush();
 };
 
