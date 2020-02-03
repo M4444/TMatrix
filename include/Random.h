@@ -10,10 +10,10 @@
 #include "Range.h"
 
 namespace Random {
-	// Returns a random integer in the range [min, max]
-	int Random(int min, int max);
 	// Returns a random integer in the range [range.min, range.max]
 	int Random(Range<int> range);
+	// Returns a random integer in the range [min, max]
+	int Random(int min, int max);
 	// Returns a random integer in the range [0, range-1]
 	int Random(int range);
 }

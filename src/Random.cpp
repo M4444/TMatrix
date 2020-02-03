@@ -5,30 +5,25 @@
  */
 
 #include <random>
-#include <stdexcept>
 #include "Random.h"
 
 namespace Random {
 	std::random_device RandomDevice {};
 	std::mt19937 RandomEngine {RandomDevice()};
 
-	int Random(int min, int max)
+	int Random(Range<int> range)
 	{
-		if (min > max) {
-			throw std::range_error("Min is greater than max.");
-		}
-
-		std::uniform_int_distribution<> distribution {min, max};
+		std::uniform_int_distribution<> distribution {range.GetMin(), range.GetMax()};
 		return distribution(RandomEngine);
 	}
 
-	int Random(Range<int> range)
+	int Random(int min, int max)
 	{
-		return Random(range.GetMin(), range.GetMax());
+		return Random(Range(min, max));
 	}
 
 	int Random(int range)
 	{
-		return Random(0, range-1);
+		return Random(Range(range));
 	}
 }
