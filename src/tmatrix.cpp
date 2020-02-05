@@ -24,7 +24,7 @@ std::atomic<bool> resizeTriggered {false};
 
 void resizeHandler(int)
 {
-	resizeTriggered = true;
+	resizeTriggered.store(true);
 }
 
 std::condition_variable renderingConditionVariable;
@@ -52,10 +52,9 @@ void render(const RainProperties &rainProperties)
 	std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 	while (true) {
 		renderingConditionVariable.wait(mutexLock);
-		if (resizeTriggered) {
+		if (resizeTriggered.exchange(false)) {
 			terminal->Reset();
 			rain->Reset();
-			resizeTriggered = false;
 		}
 		rain->Update();
 		terminal->Flush();
