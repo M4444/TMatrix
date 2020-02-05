@@ -17,48 +17,48 @@ It's focused on being the most accurate replica of the digital rain effect achie
 Install [`tmatrix-git`](https://aur.archlinux.org/packages/tmatrix-git/) from
 the AUR. For example, with an [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers)
 such as [`yay`](https://aur.archlinux.org/packages/yay/):
-```
+```shell
 yay -S tmatrix-git
 ```
 
 ### Install on Gentoo Linux
-```
+```shell
 eselect repository enable bright
 emerge --ask tmatrix
 ```
 
 ### Install on NixOS Linux
-```
+```shell
 nix-env -f channel:nixpkgs-unstable -iA tmatrix
 ```
 
 ### Download and install on other GNU/Linux distributions
 The prebuilt TMatrix uses **version 5** of the ncurses library.
 To install the library on Ubuntu or Debian run:
-```
+```shell
 sudo apt-get install libncurses5
 ```
 Now that you have the required library you can install and run tmatrix:
-```
+```shell
 wget -q https://github.com/M4444/TMatrix/releases/download/v1.3/installation.tar.gz
 tar -zxvf installation.tar.gz
 cd installation
 sudo ./install.sh
 ```
 To check if it installed correctly run:
-```
+```shell
 tmatrix --version
 ```
 
 #### Uninstall
-```
+```shell
 sudo rm -f /usr/bin/tmatrix \
            /usr/share/man/man6/tmatrix.6.gz \
            /usr/share/bash-completion/completions/tmatrix \
            /usr/share/zsh/site-functions/_tmatrix
 ```
 To check if anything was left behind you can run:
-```
+```shell
 locate tmatrix
 ```
 
@@ -68,11 +68,11 @@ This project uses C++17 so you'll need the latest tools in order you build it:
 - [CMake 3.8+](https://cmake.org/download/)
 - [GCC 7+](https://gcc.gnu.org/) or [Clang 5+](http://releases.llvm.org/)
 
-#### Library:
+#### Library
 - [ncurses](https://www.gnu.org/software/ncurses/)
 
 #### Commands
-```
+```shell
 git clone https://github.com/M4444/TMatrix.git
 cd TMatrix
 mkdir -p build && cd build
@@ -96,7 +96,7 @@ You can create an [issue](../../issues), send a [pull requests](../../pulls) of 
 For details see [CONTRIBUTING.md](../master/CONTRIBUTING.md).
 
 ### Author
-Written and maintained by Miloš Stojanović \<[mc.cm.mail@gmail.com](mailto:mc.cm.mail@gmail.com)\>.
+Written and maintained by Miloš Stojanović ([mc.cm.mail@gmail.com](mailto:mc.cm.mail@gmail.com)).
 
 ### Acknowledgments
 Thanks to:
@@ -110,6 +110,6 @@ Thanks to:
 ### License
 TMatrix is licensed under the `GPL-2.0-only` - see the [LICENSE](../master/LICENSE) file for details.
 
-### How it looks:
+### How it looks
 ![](assets/img/TMatrix.png?raw=true)
 ![](assets/img/TMatrix.gif?raw=true)
