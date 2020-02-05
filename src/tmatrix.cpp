@@ -64,7 +64,6 @@ void render(const RainProperties &rainProperties)
 
 int main(int argc, char *argv[])
 {
-	bool paused {false};
 	int stepsPerSecond {DEFAULT_STEPS_PER_SECOND};
 	RainProperties rainProperties;
 	std::wstring title;
@@ -75,6 +74,7 @@ int main(int argc, char *argv[])
 
 		std::thread rendering_thread([&]{ render(rainProperties); });
 
+		bool paused {false};
 		std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 		while (true) {
 			Parser::ParseRuntimeInput(getch(), paused);
