@@ -62,13 +62,13 @@ public:
 
 class FadingRain : public Rain {
 public:
-	FadingRain(RainProperties RP, Terminal* T) : Rain(RP, T) {};
+	using Rain::Rain;
 	void UpdateStreakColors(RainStreak& rainStreak) const;
 };
 
 class NonFadingRain : public Rain {
 public:
-	NonFadingRain(RainProperties RP, Terminal* T) : Rain(RP, T) {};
+	using Rain::Rain;
 	void UpdateStreakColors(RainStreak& rainStreak) const;
 };
 
