@@ -9,7 +9,7 @@
 #include "Random.h"
 #include "Terminal.h"
 
-Rain::Rain(RainProperties RP, Terminal* T) : Properties{RP}, terminal{T}
+Rain::Rain(const RainProperties& RP, Terminal* T) : Properties{RP}, terminal{T}
 {
 	RainColumn::SetTerminal(T);
 	RainStreak::SetTerminal(T);

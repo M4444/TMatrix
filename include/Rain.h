@@ -50,7 +50,7 @@ public:
 	static constexpr int MAX_FALL_SPEED {10};
 	static constexpr int MIN_LENGTH {1};
 
-	Rain(RainProperties RP, Terminal* T);
+	Rain(const RainProperties& RP, Terminal* T);
 
 	void Reset();
 	void Update();
