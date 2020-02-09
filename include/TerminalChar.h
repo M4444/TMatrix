@@ -7,10 +7,6 @@
 #ifndef TERMINAL_CHAR_H
 #define TERMINAL_CHAR_H
 
-#include <algorithm>
-#include <cstdlib>
-#include <cstring>
-#include <string>
 #include "Color.h"
 #include "MatrixChar.h"
 
@@ -30,25 +26,9 @@ struct BaseTerminalChar {
 		Clear();
 	}
 
-	void Clear()
-	{
-		std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ, PREFIX_SIZE);
-		std::memcpy(&MChar, MatrixChar::GetEmptyMChar(), MatrixChar::MCHAR_SIZE);
-	}
+	void Clear();
 
-	void SetFullTitleChar(wchar_t tchar)
-	{
-		std::memcpy(&prefix, GLOWING_COLOR_ESC_SEQ, PREFIX_SIZE);
-		std::memset(&MChar, '\0', MatrixChar::MCHAR_SIZE);
-
-		// Convert wchar to (const char *)
-		std::string tchar_buffer(MB_CUR_MAX, '\0');
-		int tchar_size = std::wctomb(&tchar_buffer[0], tchar);
-		if (tchar_size > 0) {
-			std::memcpy(&MChar, tchar_buffer.data(),
-				    std::min((std::size_t)tchar_size, MatrixChar::MCHAR_SIZE));
-		}
-	}
+	void SetFullTitleChar(wchar_t tchar);
 };
 
 template <bool F>
@@ -60,59 +40,16 @@ struct TerminalChar<true> : public BaseTerminalChar<true> {
 	static const char *NORMAL_COLOR_ESC_SEQ_3;
 	static const char *NORMAL_COLOR_ESC_SEQ_4;
 
-	static void SetColor(const Color& color)
-	{
-		NORMAL_COLOR_ESC_SEQ = color.Shade1;
-		NORMAL_COLOR_ESC_SEQ_2 = color.Shade2;
-		NORMAL_COLOR_ESC_SEQ_3 = color.Shade3;
-		NORMAL_COLOR_ESC_SEQ_4 = color.Shade4;
-	}
+	static void SetColor(const Color& color);
 
-	void SetFullMChar(const char *mchar, int colorShade)
-	{
-		switch (colorShade) {
-		case 0:
-			std::memcpy(&prefix, GLOWING_COLOR_ESC_SEQ, PREFIX_SIZE);
-			break;
-		case 1:
-		default:
-			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ, PREFIX_SIZE);
-			break;
-		case 2:
-			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ_2, PREFIX_SIZE);
-			break;
-		case 3:
-			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ_3, PREFIX_SIZE);
-			break;
-		case 4:
-			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ_4, PREFIX_SIZE);
-			break;
-		}
-		std::memcpy(&MChar, mchar, MatrixChar::MCHAR_SIZE);
-	}
+	void SetFullMChar(const char *mchar, int colorShade);
 };
 
 template <>
 struct TerminalChar<false> : public BaseTerminalChar<false> {
-	static void SetColor(const Color& color)
-	{
-		GLOWING_COLOR_ESC_SEQ = Color::GetColor("white").Foreground;
-		NORMAL_COLOR_ESC_SEQ = color.Foreground;
-	}
+	static void SetColor(const Color& color);
 
-	void SetFullMChar(const char *mchar, int colorShade)
-	{
-		switch (colorShade) {
-		case 0:
-			std::memcpy(&prefix, GLOWING_COLOR_ESC_SEQ, PREFIX_SIZE);
-			break;
-		case 1:
-		default:
-			std::memcpy(&prefix, NORMAL_COLOR_ESC_SEQ, PREFIX_SIZE);
-			break;
-		}
-		std::memcpy(&MChar, mchar, MatrixChar::MCHAR_SIZE);
-	}
+	void SetFullMChar(const char *mchar, int colorShade);
 };
 
 #endif
