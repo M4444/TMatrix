@@ -62,7 +62,8 @@ void ColorTerminal<F>::Reset()
 	NumberOfRows = windowSize.ws_row;
 	NumberOfColumns = windowSize.ws_col;
 
-	ScreenBuffer = std::vector(NumberOfColumns*NumberOfRows, TCharType());
+	ScreenBuffer = std::vector(static_cast<std::size_t>(NumberOfColumns*NumberOfRows),
+				   TCharType());
 }
 
 template <bool F>

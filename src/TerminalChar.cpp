@@ -44,7 +44,8 @@ void BaseTerminalChar<F>::SetFullTitleChar(wchar_t tchar)
 	int tchar_size = std::wctomb(&tchar_buffer[0], tchar);
 	if (tchar_size > 0) {
 		std::memcpy(&MChar, tchar_buffer.data(),
-			    std::min((std::size_t)tchar_size, MatrixChar::MCHAR_SIZE));
+			    std::min(static_cast<std::size_t>(tchar_size),
+			    MatrixChar::MCHAR_SIZE));
 	}
 }
 // Instantiate both versions of the Clear()
