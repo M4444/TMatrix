@@ -17,7 +17,7 @@ protected:
 	int NumberOfColumns {0};
 public:
 	Terminal();
-	~Terminal();
+	virtual ~Terminal();
 
 	int GetNumberOfRows() { return NumberOfRows; }
 	int GetNumberOfColumns() { return NumberOfColumns; }
