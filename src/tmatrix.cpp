@@ -21,12 +21,6 @@
 using namespace std::chrono_literals;
 
 std::atomic<bool> resizeTriggered {false};
-
-void resizeHandler(int)
-{
-	resizeTriggered.store(true);
-}
-
 std::condition_variable renderingConditionVariable;
 std::mutex mutexOfRenderingConditionVariable;
 
@@ -69,7 +63,7 @@ int main(int argc, char *argv[])
 
 	if (Parser::ParseCmdLineArgs(std::vector<std::string_view>(argv+1, argv+argc),
 				     {stepsPerSecond, rainProperties, title})) {
-		std::signal(SIGWINCH, resizeHandler);
+		std::signal(SIGWINCH, [](int) { resizeTriggered.store(true); });
 
 		std::thread rendering_thread([&]{ render(rainProperties); });
 
