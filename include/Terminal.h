@@ -13,19 +13,19 @@
 
 class Terminal {
 protected:
-	int NumberOfRows {0};
-	int NumberOfColumns {0};
+	unsigned NumberOfRows {0};
+	unsigned NumberOfColumns {0};
 public:
 	Terminal();
 	virtual ~Terminal();
 
-	int GetNumberOfRows() { return NumberOfRows; }
-	int GetNumberOfColumns() { return NumberOfColumns; }
+	unsigned GetNumberOfRows() { return NumberOfRows; }
+	unsigned GetNumberOfColumns() { return NumberOfColumns; }
 
 	virtual void Reset() = 0;
-	virtual void Draw(int x, int y, const char *mchar, int colorShade) = 0;
-	virtual void Erase(int x, int y) = 0;
-	virtual void DrawTitle(int x, int y, wchar_t tchar) = 0;
+	virtual void Draw(unsigned x, unsigned y, const char *mchar, int colorShade) = 0;
+	virtual void Erase(unsigned x, unsigned y) = 0;
+	virtual void DrawTitle(unsigned x, unsigned y, wchar_t tchar) = 0;
 	virtual void Flush() = 0;
 };
 
@@ -38,9 +38,9 @@ public:
 	ColorTerminal<F>(const Color& color, const Color& background_color);
 
 	void Reset();
-	void Draw(int x, int y, const char *mchar, int colorShade);
-	void Erase(int x, int y);
-	void DrawTitle(int x, int y, wchar_t tchar);
+	void Draw(unsigned x, unsigned y, const char *mchar, int colorShade);
+	void Erase(unsigned x, unsigned y);
+	void DrawTitle(unsigned x, unsigned y, wchar_t tchar);
 	void Flush();
 };
 

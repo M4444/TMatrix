@@ -16,16 +16,16 @@ class Rain;
 
 class RainStreak : public Active, public HasTerminal {
 	const Rain *rain;
-	const int x;
-	int y {0};
-	const int Length;
+	const unsigned x;
+	unsigned y {0};
+	const unsigned Length;
 	bool FullyEnteredScreen {false};
 	bool ReachedScreenMiddle {false};
 	bool LeftScreenMiddle {false};
 	bool OutOfScreen {false};
 	std::deque<MatrixChar> MChars;
 public:
-	RainStreak(const Rain *R, int col, int len) :
+	RainStreak(const Rain *R, unsigned col, unsigned len) :
 		rain{R}, x{col}, Length{len} {}
 
 	bool HasFullyEnteredScreen() const { return FullyEnteredScreen; }

@@ -8,14 +8,14 @@
 #include "Random.h"
 #include "Terminal.h"
 
-int MatrixChar::GetRandomMCharIndex()
+size_t MatrixChar::GetRandomMCharIndex()
 {
-	return Random::Random(ALL_MCHARS.size());
+	return static_cast<size_t>(Random::Random(ALL_MCHARS.size()));
 }
 
 void MatrixChar::SetRandomMChar()
 {
-	int newIndex {GetRandomMCharIndex()};
+	size_t newIndex {GetRandomMCharIndex()};
 	while (MCharIndex == newIndex) {
 		newIndex = GetRandomMCharIndex();
 	}

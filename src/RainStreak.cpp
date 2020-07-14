@@ -19,7 +19,7 @@ void RainStreak::Update()
 		}
 	}
 	rain->UpdateStreakColors(*this);
-	int numberOfRows {terminal->GetNumberOfRows()};
+	unsigned numberOfRows {terminal->GetNumberOfRows()};
 	// Create a new head MChar
 	if (y < numberOfRows) {
 		auto [updateRate, updateTime] { rain->GetRandomUpdateRateAndTime() };
@@ -49,7 +49,7 @@ void RainStreak::UpdateShadeColors()
 {
 	if (!MChars.empty()) {
 		for (MatrixChar &mc : MChars) {
-			int position = mc.GetVerticalOffset(y);
+			unsigned position = mc.GetVerticalOffset(y);
 			if (position < Length/2) {
 				mc.SetColorShade(1);
 			} else if (position < (3*Length)/4) {

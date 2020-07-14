@@ -294,7 +294,7 @@ namespace Parser {
 
 	void PrintUsageLine(const Option &option, std::size_t longestLiterals)
 	{
-		int gapSize {option.HasShortLiteral() ? SHORT_GAP_PREFIX : LONG_GAP_PREFIX};
+		size_t gapSize {option.HasShortLiteral() ? SHORT_GAP_PREFIX : LONG_GAP_PREFIX};
 		std::string line(gapSize, ' ');
 		line += option.GetLiterals();
 		line += std::string(longestLiterals-line.length(), ' ');
@@ -413,11 +413,11 @@ namespace Parser {
 	{
 		// Convert (const char *) to wstring
 		std::setlocale(LC_ALL, "en_US.utf8");
-		std::mbtowc(NULL, 0, 0);
+		std::mbtowc(nullptr, nullptr, 0);
 		const char* ptr = title.data();
-		const char* end = ptr + title.length();
+		const size_t byte_len = title.length();
 		int len;
-		for (wchar_t wc; (len = std::mbtowc(&wc, ptr, end-ptr)) > 0; ptr += len) {
+		for (wchar_t wc; (len = std::mbtowc(&wc, ptr, byte_len)) > 0; ptr += len) {
 			wtitle.push_back(wc);
 		}
 		rainProperties.Title = wtitle;

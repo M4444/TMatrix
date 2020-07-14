@@ -13,13 +13,13 @@
 #include "HasTerminal.h"
 
 class MatrixChar : public Active, public HasTerminal {
-	const int x;
-	const int y;
+	const unsigned x;
+	const unsigned y;
 	CountdownTimer UpdateTimer;
-	int MCharIndex {GetRandomMCharIndex()};
+	size_t MCharIndex {GetRandomMCharIndex()};
 	int ColorShade {0};
 
-	static int GetRandomMCharIndex();
+	static size_t GetRandomMCharIndex();
 	void SetRandomMChar();
 	void Draw() const;
 	void Erase() const;
@@ -35,7 +35,7 @@ public:
 		"<", ">", "¦", "|", "╌", " ", "\""
 	};
 
-	MatrixChar(int X, int Y, int UpdateRate, int UpdateTime) : x{X}, y{Y},
+	MatrixChar(unsigned X, unsigned Y, int UpdateRate, int UpdateTime) : x{X}, y{Y},
 		UpdateTimer{UpdateRate, UpdateTime} {
 		Draw();
 	}
@@ -53,7 +53,7 @@ public:
 		return ALL_MCHARS[ALL_MCHARS_LENGTH-2];
 	}
 
-	int GetVerticalOffset(int verticalPosition) {
+	unsigned GetVerticalOffset(unsigned verticalPosition) {
 		return verticalPosition - y;
 	}
 

@@ -20,13 +20,13 @@ Rain::Rain(const RainProperties& RP, Terminal* T) : Properties{RP}, terminal{T}
 void Rain::Reset()
 {
 	// Create all the rain columns
-	int numberOfColumns {terminal->GetNumberOfColumns()};
-	int titleLength {static_cast<int>(Properties.Title.length())};
+	unsigned numberOfColumns {terminal->GetNumberOfColumns()};
+	size_t titleLength {Properties.Title.length()};
 
-	int titleCharIndex {0};
+	size_t titleCharIndex {0};
 	RainColumns.clear();
 	RainColumns.reserve(numberOfColumns);
-	for (int i = 0; i < numberOfColumns; i++) {
+	for (unsigned i = 0; i < numberOfColumns; i++) {
 		bool titleColumn {numberOfColumns >= titleLength && titleLength > 0 &&
 				  i >= numberOfColumns/2 - std::ceil(titleLength/2.0) &&
 				  i < numberOfColumns/2 + std::floor(titleLength/2.0)};

@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 		bool paused {false};
 		std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 		while (true) {
-			Parser::ParseRuntimeInput(getch(), paused);
+			Parser::ParseRuntimeInput(static_cast<char>(getch()), paused);
 			mutexLock.unlock();
 			if (!paused) {
 				renderingConditionVariable.notify_one();

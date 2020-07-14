@@ -18,8 +18,8 @@
 
 namespace Parser {
 	constexpr int MAX_LINE_LENGTH {80};
-	constexpr int SHORT_GAP_PREFIX {2};
-	constexpr int LONG_GAP_PREFIX {6};
+	constexpr size_t SHORT_GAP_PREFIX {2};
+	constexpr size_t LONG_GAP_PREFIX {6};
 	constexpr std::string_view SEPARATOR {"    "};
 
 	struct OutputVariables {

@@ -17,7 +17,7 @@ class Rain;
 
 class RainColumn : public Active, public HasTerminal {
 	const Rain *rain;
-	const int x;
+	const unsigned x;
 	const int Speed;
 	CountdownTimer GapTimer;
 	wchar_t TitleChar;
@@ -26,7 +26,7 @@ class RainColumn : public Active, public HasTerminal {
 	bool EmptyRainStreakSlot {true};
 	std::list<RainStreak> RainStreaks;
 public:
-	RainColumn(const Rain *R, int X, int S, int G, wchar_t TC) :
+	RainColumn(const Rain *R, unsigned X, int S, int G, wchar_t TC) :
 		rain{R}, x{X}, Speed{S}, GapTimer{G}, TitleChar{TC} {}
 
 	void Step();

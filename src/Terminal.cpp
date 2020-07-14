@@ -67,32 +67,23 @@ void ColorTerminal<F>::Reset()
 }
 
 template <bool F>
-void ColorTerminal<F>::Draw(int x, int y, const char *mchar, int colorShade)
+void ColorTerminal<F>::Draw(unsigned x, unsigned y, const char *mchar, int colorShade)
 {
-	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
-		return;
-	}
-
+	// Assumes that x and y are in bounds
 	ScreenBuffer[y*NumberOfColumns + x].SetFullMChar(mchar, colorShade);
 }
 
 template <bool F>
-void ColorTerminal<F>::Erase(int x, int y)
+void ColorTerminal<F>::Erase(unsigned x, unsigned y)
 {
-	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
-		return;
-	}
-
+	// Assumes that x and y are in bounds
 	ScreenBuffer[y*NumberOfColumns + x].Clear();
 }
 
 template <bool F>
-void ColorTerminal<F>::DrawTitle(int x, int y, wchar_t tchar)
+void ColorTerminal<F>::DrawTitle(unsigned x, unsigned y, wchar_t tchar)
 {
-	if (x < 0 || x > NumberOfColumns-1 || y < 0 || y > NumberOfRows-1) {
-		return;
-	}
-
+	// Assumes that x and y are in bounds
 	ScreenBuffer[y*NumberOfColumns + x].SetFullTitleChar(tchar);
 }
 
@@ -100,7 +91,7 @@ template <bool F>
 void ColorTerminal<F>::Flush()
 {
 	std::cout.write(reinterpret_cast<char*>(ScreenBuffer.data()),
-			ScreenBuffer.size() * sizeof(TCharType));
+			static_cast<std::streamsize>(ScreenBuffer.size() * sizeof(TCharType)));
 	std::cout << std::flush;
 	// Move cursor to the start of the screen
 	std::cout << "\033[0;0H";
