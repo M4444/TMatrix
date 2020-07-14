@@ -8,8 +8,8 @@
 #include "Random.h"
 
 namespace Random {
-	std::random_device RandomDevice {};
-	std::mt19937 RandomEngine {RandomDevice()};
+	static std::random_device RandomDevice {};
+	static std::mt19937 RandomEngine {RandomDevice()};
 
 	int Random(Range<int> range)
 	{

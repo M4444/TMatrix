@@ -26,4 +26,6 @@ public:
 	T GetMax() const { return max; }
 };
 
+template <typename T> Range(T, T) -> Range<T>;
+
 #endif

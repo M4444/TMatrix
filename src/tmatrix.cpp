@@ -20,11 +20,11 @@
 
 using namespace std::chrono_literals;
 
-std::atomic<bool> resizeTriggered {false};
-std::condition_variable renderingConditionVariable;
-std::mutex mutexOfRenderingConditionVariable;
+static std::atomic<bool> resizeTriggered {false};
+static std::condition_variable renderingConditionVariable;
+static std::mutex mutexOfRenderingConditionVariable;
 
-void render(const RainProperties &rainProperties)
+[[noreturn]] static void render(const RainProperties &rainProperties)
 {
 	Color color = rainProperties.CharacterColor;
 	Color background_color = rainProperties.BackgroundColor;

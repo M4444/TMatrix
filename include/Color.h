@@ -22,7 +22,7 @@ struct Color {
 	static constexpr std::size_t GetPrefixSize(bool isFade)
 	{
 		return isFade ? sizeof("\033[38;5;234m") : sizeof("\033[100m");
-	};
+	}
 
 	static constexpr Color GetColor(std::string_view color) {
 		if (color == "default") {
