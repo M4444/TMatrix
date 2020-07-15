@@ -103,10 +103,12 @@ Written and maintained by Miloš Stojanović ([mc.cm.mail@gmail.com](mailto:mc.c
 Thanks to:
 - [Infinisil](https://github.com/Infinisil) for creating a NixOS Linux package
 - [filalex77](https://github.com/filalex77) for creating a Gentoo Linux package, adding bash, zsh and tcsh completions scripts and a .editorconfig file
-- [eliasrg](https://github.com/eliasrg) for creating an Arch Linux package, clarifying the installation options on Arch Linux, adding CMake install commands for the man page and helping in the creation of completions scripts
+- [eliasrg](https://github.com/eliasrg) for creating and maintaining the Arch Linux package, clarifying the installation options on Arch Linux, adding CMake install commands for the man page and helping in the creation of completions scripts
 - [Makefile-dot-in](https://github.com/Makefile-dot-in) for fixing a problem linking atomic on Android
 - [sebpardo](https://github.com/sebpardo) for pointing out a typo in the man page
 - [fosspill](https://github.com/fosspill) for correcting the name of the required ncurses library
+- [meskarune](https://github.com/meskarune) for the idea and helpful suggestions for creating the 'fade' and 'rainbow' options
+- [taschenlampe](https://github.com/taschenlampe) for reporting an issue with the install script
 
 ### License
 TMatrix is licensed under the `GPL-2.0-only` - see the [LICENSE](../master/LICENSE) file for details.
