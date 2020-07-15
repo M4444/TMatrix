@@ -23,22 +23,16 @@ namespace Parser {
 		case HELP:
 		case BOOL:
 			return "";
-			break;
 		case MODE:
 			return "MODE";
-			break;
 		case NUMERIC:
 			return "VALUE";
-			break;
 		case RANGE:
 			return "RANGE";
-			break;
 		case COLOR:
 			return "COLOR";
-			break;
 		case TEXT:
 			return "TEXT";
-			break;
 		}
 		return "";
 	}
@@ -51,7 +45,6 @@ namespace Parser {
 		case HELP:
 		case BOOL:
 			return "[" + LongLiteral + ']';
-			break;
 		case MODE:
 		case NUMERIC:
 		case RANGE:
@@ -65,7 +58,6 @@ namespace Parser {
 			} else {
 				return "[" + LongLiteral + "=" + valueName + "]";
 			}
-			break;
 		}
 		return "";
 	}
@@ -78,7 +70,6 @@ namespace Parser {
 		case HELP:
 		case BOOL:
 			return LongLiteral;
-			break;
 		case MODE:
 		case NUMERIC:
 		case RANGE:
@@ -91,7 +82,6 @@ namespace Parser {
 			} else {
 				return LongLiteral + "=" + valueName;
 			}
-			break;
 		}
 		return "";
 	}
