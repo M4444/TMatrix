@@ -194,7 +194,7 @@ namespace Parser {
 		Option{
 			BOOL, "", "--fade",
 			{
-				"Enable fading characters"
+				"Enable fading characters (Default)"
 			},
 			[](std::string_view, const OutputVariables& out)
 			{
