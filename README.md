@@ -28,9 +28,9 @@ eselect repository enable bright
 emerge --ask tmatrix
 ```
 
-### Install on NixOS Linux
+### Install on any Nix system
 ```shell
-nix-env -f channel:nixpkgs-unstable -iA tmatrix
+nix-env -f '<nixpkgs>' -iA tmatrix
 ```
 
 ### Download and install on other GNU/Linux distributions
