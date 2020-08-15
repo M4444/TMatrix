@@ -20,7 +20,11 @@ public:
 			throw std::range_error("Min is greater than max.");
 		}
 	}
-	constexpr Range(T range) : min{0}, max{range-1} {}
+	constexpr Range(T range) : min{0}, max{range-1} {
+		if (range == 0) {
+			throw std::range_error("range can't be zero.");
+		}
+	}
 
 	T GetMin() const { return min; }
 	T GetMax() const { return max; }

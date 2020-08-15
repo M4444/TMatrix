@@ -28,7 +28,7 @@ void Rain::Reset()
 	RainColumns.reserve(numberOfColumns);
 	for (unsigned i = 0; i < numberOfColumns; i++) {
 		bool titleColumn {numberOfColumns >= titleLength && titleLength > 0 &&
-				  i >= numberOfColumns/2 - std::ceil(titleLength/2.0) &&
+				  i + std::ceil(titleLength/2.0) >= numberOfColumns/2 &&
 				  i < numberOfColumns/2 + std::floor(titleLength/2.0)};
 		wchar_t titleChar {titleColumn ? Properties.Title[titleCharIndex++] : '\0'};
 		RainColumns.emplace_back(this, i, GetRandomSpeed(), GetRandomStartingGap(),

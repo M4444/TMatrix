@@ -35,7 +35,7 @@ void RainStreak::Update()
 	// Check if the head MChar has reached the screen middle
 	if (y > numberOfRows/2) {
 		ReachedScreenMiddle = true;
-		if (y-Length-1 > numberOfRows/2) {
+		if (y > numberOfRows/2 + Length + 1) {
 			LeftScreenMiddle = true;
 		}
 	}
