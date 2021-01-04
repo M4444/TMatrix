@@ -1,6 +1,6 @@
 #compdef tmatrix
 
-# Copyright (C) 2018-2020 Miloš Stojanović
+# Copyright (C) 2018-2021 Miloš Stojanović
 #
 # SPDX-License-Identifier: GPL-2.0-only
 
