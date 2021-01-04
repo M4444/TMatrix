@@ -33,6 +33,22 @@ emerge --ask tmatrix
 nix-env -f '<nixpkgs>' -iA tmatrix
 ```
 
+### Install on openSUSE Linux
+
+The package can be installed from the community repo:
+#### For openSUSE Tumbleweed
+```shell
+zypper addrepo https://download.opensuse.org/repositories/home:kosmonaut2000/openSUSE_Tumbleweed/home:kosmonaut2000.repo
+zypper refresh
+zypper install TMatrix
+```
+#### For openSUSE Leap 15.2
+```shell
+zypper addrepo https://download.opensuse.org/repositories/home:kosmonaut2000/openSUSE_Leap_15.2/home:kosmonaut2000.repo
+zypper refresh
+zypper install TMatrix
+```
+
 ### Download and install on other GNU/Linux distributions
 The prebuilt TMatrix uses **version 5** of the ncurses library.
 To install the library on Ubuntu or Debian run:
@@ -101,14 +117,14 @@ Written and maintained by Miloš Stojanović ([mc.cm.mail@gmail.com](mailto:mc.c
 
 ### Acknowledgments
 Thanks to:
-- [Infinisil](https://github.com/Infinisil) for creating a NixOS Linux package
+- [Infinisil](https://github.com/Infinisil) for creating a Nix package
 - [filalex77](https://github.com/filalex77) for creating a Gentoo Linux package, adding bash, zsh and tcsh completions scripts and a .editorconfig file
 - [eliasrg](https://github.com/eliasrg) for creating and maintaining the Arch Linux package, clarifying the installation options on Arch Linux, adding CMake install commands for the man page and helping in the creation of completions scripts
 - [Makefile-dot-in](https://github.com/Makefile-dot-in) for fixing a problem linking atomic on Android
 - [sebpardo](https://github.com/sebpardo) for pointing out a typo in the man page
 - [fosspill](https://github.com/fosspill) for correcting the name of the required ncurses library
 - [meskarune](https://github.com/meskarune) for the idea and helpful suggestions for creating the 'fade' and 'rainbow' options
-- [taschenlampe](https://github.com/taschenlampe) for reporting an issue with the install script
+- [taschenlampe](https://github.com/taschenlampe) for creating a openSUSE Linux package and reporting an issue with the install script
 
 ### License
 TMatrix is licensed under the `GPL-2.0-only` - see the [LICENSE](../master/LICENSE) file for details.
