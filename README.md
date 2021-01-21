@@ -130,7 +130,7 @@ Thanks to:
 TMatrix is licensed under the `GPL-2.0-only` - see the [LICENSE](../master/LICENSE) file for details.
 
 ### Donations
-If you wish to send a donation you can do so here [![Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/M4444/donate) or here [![PayPal](assets/img/PayPal.png?raw=true)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=53XNGN3HXMAVN).
+If you wish to send a donation you can do so here [![Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/M4444/donate) or here [![PayPal](assets/img/PayPal.png?raw=true)](https://www.paypal.com/paypalme/4milos).
 
 ### How it looks
 ![](assets/img/TMatrix.png?raw=true)
