@@ -1,7 +1,7 @@
 # TMatrix
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/M4444/TMatrix)
-![License](https://img.shields.io/badge/license-GPL--2.0--only-green)
+[![\[Latest GitHub release\]](https://img.shields.io/github/v/release/M4444/TMatrix)](https://github.com/M4444/TMatrix/releases)
+[![\[License\]](https://img.shields.io/badge/license-GPL--2.0--only-green)](https://github.com/M4444/TMatrix/blob/master/LICENSE)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/995dada1ec344743921cdd10fc118f3a)](https://www.codacy.com/manual/M4444/TMatrix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=M4444/TMatrix&amp;utm_campaign=Badge_Grade)
 [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/M4444/TMatrix.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/M4444/TMatrix/context:cpp)
@@ -13,7 +13,7 @@ It's focused on being the most accurate replica of the digital rain effect achie
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/tmatrix-m4444.svg)](https://repology.org/project/tmatrix-m4444/versions)
 
-### Install on Arch Linux ![AUR votes](https://img.shields.io/aur/votes/tmatrix-git)
+### Install on Arch Linux [![AUR votes](https://img.shields.io/aur/votes/tmatrix-git)](https://aur.archlinux.org/packages/tmatrix-git)
 
 Install [`tmatrix-git`](https://aur.archlinux.org/packages/tmatrix-git/) from
 the AUR. For example, with an [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers)
