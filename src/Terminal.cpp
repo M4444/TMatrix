@@ -76,7 +76,10 @@ void ColorTerminal<F>::Draw(unsigned x, unsigned y, const char *mchar, int color
 template <bool F>
 void ColorTerminal<F>::Erase(unsigned x, unsigned y)
 {
-	// Assumes that x and y are in bounds
+	if (x > NumberOfColumns-1 || y > NumberOfRows-1) {
+		return;
+	}
+
 	ScreenBuffer[y*NumberOfColumns + x].Clear();
 }
 
