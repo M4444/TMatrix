@@ -48,7 +48,7 @@ void BaseTerminalChar<F>::SetFullTitleChar(wchar_t tchar)
 			    MatrixChar::MCHAR_SIZE));
 	}
 }
-// Instantiate both versions of the Clear()
+// Instantiate both versions of the SetFullTitleChar()
 template void BaseTerminalChar<true>::SetFullTitleChar(wchar_t tchar);
 template void BaseTerminalChar<false>::SetFullTitleChar(wchar_t tchar);
 
