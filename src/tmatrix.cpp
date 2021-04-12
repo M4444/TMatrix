@@ -24,7 +24,7 @@ static std::atomic<bool> resizeTriggered {false};
 static std::condition_variable renderingConditionVariable;
 static std::mutex mutexOfRenderingConditionVariable;
 
-[[noreturn]] static void render(const RainProperties &rainProperties)
+[[noreturn]] static void render(const RainProperties &rainProperties, int stepsPerSecond)
 {
 	Color color = rainProperties.CharacterColor;
 	Color background_color = rainProperties.BackgroundColor;
@@ -43,16 +43,23 @@ static std::mutex mutexOfRenderingConditionVariable;
 			: std::static_pointer_cast<Rain>(
 				std::make_shared<NonFadingRain>(rainProperties, terminal.get()))
 	};
+	int maxStep = FRAMES_PER_SECOND/stepsPerSecond;
+	int step = 0;
 	std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 	while (true) {
 		renderingConditionVariable.wait(mutexLock);
 		if (resizeTriggered.exchange(false)) {
+			step = 0;
 			terminal->Reset();
 			rain->Reset();
 			rain->Update();
 		}
 		terminal->Flush();
-		rain->Update();
+		if (step >= maxStep - 1) {
+			rain->Update();
+			step = 0;
+		}
+		step++;
 	}
 }
 
@@ -66,7 +73,7 @@ int main(int argc, char *argv[])
 				     {stepsPerSecond, rainProperties, title})) {
 		std::signal(SIGWINCH, [](int) { resizeTriggered.store(true); });
 
-		std::thread rendering_thread([&]{ render(rainProperties); });
+		std::thread rendering_thread([&]{ render(rainProperties, stepsPerSecond); });
 
 		bool paused {false};
 		std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
@@ -76,7 +83,7 @@ int main(int argc, char *argv[])
 			if (!paused) {
 				renderingConditionVariable.notify_one();
 			}
-			std::this_thread::sleep_for(1.0s/stepsPerSecond);
+			std::this_thread::sleep_for(1.0s/FRAMES_PER_SECOND);
 			mutexLock.lock();
 		}
 	}
