@@ -49,9 +49,10 @@ static std::mutex mutexOfRenderingConditionVariable;
 		if (resizeTriggered.exchange(false)) {
 			terminal->Reset();
 			rain->Reset();
+			rain->Update();
 		}
-		rain->Update();
 		terminal->Flush();
+		rain->Update();
 	}
 }
 
