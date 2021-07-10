@@ -44,7 +44,7 @@ namespace Parser {
 		case VERSION:
 		case HELP:
 		case BOOL:
-			return "[" + LongLiteral + ']';
+			return (ShortLiteral != "") ? "[" + ShortLiteral + " | " + LongLiteral  + ']' : "[" + LongLiteral + ']';
 		case MODE:
 		case NUMERIC:
 		case RANGE:
@@ -69,7 +69,7 @@ namespace Parser {
 		case VERSION:
 		case HELP:
 		case BOOL:
-			return LongLiteral;
+			return (ShortLiteral != "") ?  ShortLiteral + ", " + LongLiteral   : LongLiteral;
 		case MODE:
 		case NUMERIC:
 		case RANGE:
@@ -322,6 +322,11 @@ namespace Parser {
 	void SetFade(bool fade, RainProperties &rainProperties)
 	{
 		rainProperties.Fade = fade;
+	}
+	//---PERSISTENT---------------------------------------------------------------
+	void SetPersistent(bool persistent, RainProperties &rainProperties)
+	{
+		rainProperties.Persistent = persistent;
 	}
 	//---STEPS-PER-SECONDS--------------------------------------------------
 	void SetStepsPerSecond(std::string_view value, int &stepsPerSecond)
