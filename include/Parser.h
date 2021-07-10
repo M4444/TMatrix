@@ -79,6 +79,8 @@ namespace Parser {
 	void SetCharUpdateRateRange(std::string_view range, RainProperties &rainProperties);
 	//---FADE---------------------------------------------------------------
 	void SetFade(bool fade, RainProperties &rainProperties);
+	//---PERSISTENT---------------------------------------------------------
+	void SetPersistent(bool persistent, RainProperties &rainProperties);
 	//---COLOR--------------------------------------------------------------
 	void SetColor(std::string_view color, RainProperties &rainProperties);
 	//---BACKGROUND-COLOR---------------------------------------------------
@@ -199,6 +201,17 @@ namespace Parser {
 			[](std::string_view, const OutputVariables& out)
 			{
 				SetFade(true, out.rainProperties);
+			}
+		},
+		Option{
+			BOOL, "-p", "--persistent",
+			{
+				"Prevent title letters from being erased",
+				"by rain streaks"
+			},
+			[](std::string_view, const OutputVariables& out)
+			{
+				SetPersistent(true, out.rainProperties);
 			}
 		},
 		Option{

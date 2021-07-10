@@ -34,9 +34,11 @@ void RainColumn::Step()
 		const auto& Head {RainStreaks.back()};
 		// Check if a title character needs to be drawn
 		bool ContainsTitle {TitleChar != '\0'};
-		if (ContainsTitle && FirstRainStreak &&
-		    FirstRainStreak->HasReachedScreenMiddle() &&
-		    !FirstRainStreak->HasLeftScreenMiddle() && TitleChar != ' ') {
+		if (ContainsTitle &&  TitleChar != ' ' && (ForceDraw || 
+			(FirstRainStreak && FirstRainStreak->HasReachedScreenMiddle() &&
+		    !FirstRainStreak->HasLeftScreenMiddle()))) {
+			if (Persistent && !ForceDraw)
+				ForceDraw = true;
 			terminal->DrawTitle(x, terminal->GetNumberOfRows()/2, TitleChar);
 		}
 		// Check if an empty slot appeared

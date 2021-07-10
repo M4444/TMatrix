@@ -24,9 +24,10 @@ struct RainProperties {
 	Range<int> RainStreakLength;
 	Range<int> MCharUpdateRate;
 	bool Fade;
+	bool Persistent;
 	Color CharacterColor;
 	Color BackgroundColor;
-	std::wstring_view Title;
+	std::wstring_view Title;	
 };
 
 class Rain : public Active {
@@ -39,12 +40,12 @@ class Rain : public Active {
 public:
 	static constexpr RainProperties DEFAULT_PROPERTIES {
 		{1, 1}, {10, 50}, {0, 40}, {1, 30}, {10, 20},
-		true, Color::GetColor("green"), Color::GetColor("black"),
+		true, false, Color::GetColor("green"), Color::GetColor("black"),
 		L" T M A T R I X "
 	};
 	static constexpr RainProperties DENSE_PROPERTIES {
 		{1, 2}, {4, 9}, {4, 9}, {4, 20}, {5, 7},
-		false, Color::GetColor("green"), Color::GetColor("default"),
+		false, false, Color::GetColor("green"), Color::GetColor("default"),
 		L" T M A T R I X "
 	};
 	static constexpr int MAX_FALL_SPEED {10};
