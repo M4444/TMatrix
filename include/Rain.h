@@ -53,20 +53,20 @@ public:
 	Rain(const RainProperties& RP, Terminal* T);
 
 	void Reset();
-	void Update();
+	void Update() final;
 	virtual void UpdateStreakColors(RainStreak& rainStreak) const = 0;
 	int GetRandomLength() const;
 	int GetRandomGap() const;
 	std::pair<int, int> GetRandomUpdateRateAndTime() const;
 };
 
-class FadingRain : public Rain {
+class FadingRain final : public Rain {
 public:
 	using Rain::Rain;
 	void UpdateStreakColors(RainStreak& rainStreak) const;
 };
 
-class NonFadingRain : public Rain {
+class NonFadingRain final : public Rain {
 public:
 	using Rain::Rain;
 	void UpdateStreakColors(RainStreak& rainStreak) const;

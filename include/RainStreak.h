@@ -14,7 +14,7 @@
 
 class Rain;
 
-class RainStreak : public Active, public HasTerminal {
+class RainStreak final : public Active, public HasTerminal {
 	const Rain *rain;
 	const unsigned x;
 	unsigned y {0};
@@ -32,7 +32,7 @@ public:
 	bool HasReachedScreenMiddle() const { return ReachedScreenMiddle; }
 	bool HasLeftScreenMiddle() const { return LeftScreenMiddle; }
 	bool IsOutOfScreen() const { return OutOfScreen; }
-	void Update();
+	void Update() final;
 	void UpdateShadeColors();
 	void RemoveGlowFromPreviousHead();
 };

@@ -37,11 +37,11 @@ class ColorTerminal : public Terminal {
 public:
 	ColorTerminal<F>(const Color& color, const Color& background_color);
 
-	void Reset();
-	void Draw(unsigned x, unsigned y, const char *mchar, int colorShade);
-	void Erase(unsigned x, unsigned y);
-	void DrawTitle(unsigned x, unsigned y, wchar_t tchar);
-	void Flush();
+	void Reset() final;
+	void Draw(unsigned x, unsigned y, const char *mchar, int colorShade) final;
+	void Erase(unsigned x, unsigned y) final;
+	void DrawTitle(unsigned x, unsigned y, wchar_t tchar) final;
+	void Flush() final;
 };
 
 #endif

@@ -10,7 +10,7 @@
 #include <stdexcept>
 #include "Active.h"
 
-class CountdownTimer : public Active {
+class CountdownTimer final : public Active {
 	int StartingTime;
 	int CurrentTime;
 public:
@@ -24,7 +24,7 @@ public:
 	bool HasExpired() const { return CurrentTime <= 0; }
 	bool IsZeroTimer() const { return StartingTime == 0; }
 
-	void Update()
+	void Update() final
 	{
 		CurrentTime--;
 	}

@@ -15,7 +15,7 @@
 
 class Rain;
 
-class RainColumn : public Active, public HasTerminal {
+class RainColumn final : public Active, public HasTerminal {
 	const Rain *rain;
 	const unsigned x;
 	const int Speed;
@@ -30,7 +30,7 @@ public:
 		rain{R}, x{X}, Speed{S}, GapTimer{G}, TitleChar{TC} {}
 
 	void Step();
-	void Update();
+	void Update() final;
 };
 
 #endif

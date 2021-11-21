@@ -12,7 +12,7 @@
 #include "CountdownTimer.h"
 #include "HasTerminal.h"
 
-class MatrixChar : public Active, public HasTerminal {
+class MatrixChar final : public Active, public HasTerminal {
 	const unsigned x;
 	const unsigned y;
 	CountdownTimer UpdateTimer;
@@ -57,7 +57,7 @@ public:
 		return verticalPosition - y;
 	}
 
-	void Update();
+	void Update() final;
 	void SetColorShade(int colorShade);
 };
 
