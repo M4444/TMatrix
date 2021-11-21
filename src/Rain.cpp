@@ -32,7 +32,7 @@ void Rain::Reset()
 				  i < numberOfColumns/2 + std::floor(titleLength/2.0)};
 		wchar_t titleChar {titleColumn ? Properties.Title[titleCharIndex++] : '\0'};
 		RainColumns.emplace_back(this, i, GetRandomSpeed(), GetRandomStartingGap(),
-					 titleChar);
+					 titleChar, Properties.Persistent);
 	}
 }
 
