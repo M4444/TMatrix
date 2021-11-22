@@ -43,7 +43,7 @@ void Rain::Update()
 	}
 }
 
-int Rain::GetRandomSpeed() const
+DecimalFraction Rain::GetRandomSpeed() const
 {
 	return Random::Random(Properties.RainColumnSpeed);
 }

@@ -1,4 +1,4 @@
-.TH TMatrix 6 "16 January 2020" "TMatrix Version 1.3"
+.TH TMatrix 6 "22 November 2021" "TMatrix Version 1.3"
 .SH NAME
 TMatrix \- Terminal based replica of the digital rain from The Matrix
 .SH SYNOPSIS
@@ -35,9 +35,11 @@ Default: \fI10\fR.
 \-f, --fall-speed=RANGE
 Set the range for the fall speed.
 .br
-The maximal fall speed value is \fB10\fR.
+The speeds can have \fBdecimal parts\fR (e.g. \fB1.2\fR)
 .br
-Default: \fI1,1\fR.
+The maximal fall speed value is \fB10.0\fR.
+.br
+Default: \fI0.5,1.5\fR.
 .TP 4
 \-G, --start-gap=RANGE
 Set the range for the starting gaps.
@@ -96,7 +98,7 @@ in order to be displayed.
 .PP
 RANGE is a pair of numbers separated by a comma: MIN,MAX.
 .br
-It specifies the boundaries of an integer set used in random operations.
+It specifies the boundaries of a set from which random numbers are picked.
 .SH Real-time commands
 .TP 4
 p

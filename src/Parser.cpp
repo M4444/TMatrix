@@ -259,7 +259,7 @@ namespace Parser {
 			PrintSpecificOptionType(VERSION, longestLiterals);
 			std::cout << '\n';
 			std::cout << "RANGE is a pair of numbers separated by a comma: MIN,MAX." << '\n';
-			std::cout << "It specifies the boundaries of an integer set used in random operations." << '\n';
+			std::cout << "It specifies the boundaries of a set from which random numbers are picked." << '\n';
 		}
 	}
 
@@ -344,6 +344,27 @@ namespace Parser {
 		return std::atoi(value.data());
 	}
 
+	DecimalFraction ReturnValidDecimalFraction(std::string_view value)
+	{
+		int IntegerPart {0};
+		int FractionPart {0};
+
+		auto pointPlace {value.find('.')};
+		if (pointPlace == 0) {
+			FractionPart = ReturnValidNumber(value.substr(pointPlace + 1));
+		}
+		else if (pointPlace == value.length() - 1) {
+			IntegerPart = ReturnValidNumber(value.substr(0, pointPlace));
+		}
+		else if (pointPlace == std::string_view::npos) {
+			IntegerPart = ReturnValidNumber(value);
+		}
+		else {
+			IntegerPart = ReturnValidNumber(value.substr(0, pointPlace));
+			FractionPart = ReturnValidNumber(value.substr(pointPlace + 1));
+		}
+		return {IntegerPart, FractionPart};
+	}
 	//----------------------------------------------------------------------
 	void SetRainProperties(std::string_view mode, RainProperties &rainProperties)
 	{
@@ -367,10 +388,21 @@ namespace Parser {
 		int max {ReturnValidNumber(range.substr(commaPlace + 1))};
 		return {min, max};
 	}
+
+	Range<DecimalFraction> SplitDecimalFractionRange(std::string_view range)
+	{
+		auto commaPlace {range.find(',')};
+		if (commaPlace == std::string_view::npos) {
+			throw std::invalid_argument("No comma found in range argument.");
+		}
+		DecimalFraction min {ReturnValidDecimalFraction(range.substr(0, commaPlace))};
+		DecimalFraction max {ReturnValidDecimalFraction(range.substr(commaPlace + 1))};
+		return {min, max};
+	}
 	//---SPEED--------------------------------------------------------------
 	void SetSpeedRange(std::string_view range, RainProperties &rainProperties)
 	{
-		rainProperties.RainColumnSpeed = SplitRange(range);
+		rainProperties.RainColumnSpeed = SplitDecimalFractionRange(range);
 		if (rainProperties.RainColumnSpeed.GetMax() > Rain::MAX_FALL_SPEED) {
 			throw std::out_of_range("Value is out of range.");
 		}

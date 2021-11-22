@@ -9,6 +9,26 @@
 #include "RainColumn.h"
 #include "Terminal.h"
 
+void RainColumn::GenerateSpeeds(DecimalFraction speed)
+{
+	// Generates an array of integer speeds whose cumulative average is equal
+	// to the specified speed. The order is also such that the average of any
+	// sampled subset should be as close to the specified speed as possible
+	// to create a nice, consistent visual.
+	DecimalFraction speedAproximation {speed};
+	DecimalFraction trueSum {speed};
+	DecimalFraction sumOfIntegerSpeeds {0};
+	while (true) {
+		DecimalFraction integerSpeed {speedAproximation.GetFloor()};
+		Speeds.emplace_back(integerSpeed.GetIntegerPart());
+		if (integerSpeed == speedAproximation)
+			return;
+		sumOfIntegerSpeeds += integerSpeed;
+		trueSum += speed;
+		speedAproximation = trueSum - sumOfIntegerSpeeds;
+	}
+}
+
 void RainColumn::Step()
 {
 	if (EmptyRainStreakSlot) {
@@ -57,7 +77,8 @@ void RainColumn::Step()
 
 void RainColumn::Update()
 {
-	for (int i = 0; i < Speed; i++) {
+	for (int i = 0; i < Speeds[SpeedIndex]; i++) {
 		Step();
 	}
+	SpeedIndex = (SpeedIndex + 1) % Speeds.size();
 }

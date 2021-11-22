@@ -125,10 +125,11 @@ namespace Parser {
 			RANGE, "-f", "--fall-speed",
 			{
 				"Set the range for the fall speed",
-				"The maximal fall speed value is " + std::to_string(Rain::MAX_FALL_SPEED),
+				"The speeds can have decimal parts (e.g. 1.2)",
+				"The maximal fall speed value is " + Rain::MAX_FALL_SPEED.to_string(),
 				"Default: " +
-					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMin()) + ',' +
-					std::to_string(Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMax())
+					Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMin().to_string() + ',' +
+					Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMax().to_string()
 
 			},
 			[](std::string_view range, const OutputVariables& out)

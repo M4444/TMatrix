@@ -7,6 +7,7 @@
 #ifndef RANDOM_H
 #define RANDOM_H
 
+#include "DecimalFraction.h"
 #include "Range.h"
 
 namespace Random {
@@ -16,6 +17,8 @@ namespace Random {
 	int Random(int min, int max);
 	// Returns a random integer in the range [0, range-1]
 	int Random(int range);
+	// Returns a random decimal fraction in the range [range.min, range.max]
+	DecimalFraction Random(Range<DecimalFraction> range);
 }
 
 #endif

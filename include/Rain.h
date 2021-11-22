@@ -12,13 +12,14 @@
 #include <vector>
 #include "Active.h"
 #include "Color.h"
+#include "DecimalFraction.h"
 #include "RainColumn.h"
 #include "RainStreak.h"
 #include "Range.h"
 #include "Terminal.h"
 
 struct RainProperties {
-	Range<int> RainColumnSpeed;
+	Range<DecimalFraction> RainColumnSpeed;
 	Range<int> RainColumnStartingGap;
 	Range<int> RainColumnGap;
 	Range<int> RainStreakLength;
@@ -34,11 +35,11 @@ class Rain : public Active {
 	const RainProperties Properties;
 	Terminal* terminal;
 
-	int GetRandomSpeed() const;
+	DecimalFraction GetRandomSpeed() const;
 	int GetRandomStartingGap() const;
 public:
 	static constexpr RainProperties DEFAULT_PROPERTIES {
-		{1, 1}, {10, 50}, {0, 40}, {1, 30}, {10, 20},
+		{{0, 5}, {1, 5}}, {10, 30}, {0, 40}, {1, 30}, {10, 20},
 		true, Color::GetColor("green"), Color::GetColor("black"),
 		L" T M A T R I X "
 	};
@@ -47,7 +48,7 @@ public:
 		false, Color::GetColor("green"), Color::GetColor("default"),
 		L" T M A T R I X "
 	};
-	static constexpr int MAX_FALL_SPEED {10};
+	static constexpr DecimalFraction MAX_FALL_SPEED {10};
 	static constexpr int MIN_LENGTH {1};
 
 	Rain(const RainProperties& RP, Terminal* T);
