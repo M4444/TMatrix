@@ -57,7 +57,7 @@ sudo apt-get install libncurses5
 ```
 Now that you have the required library you can install and run tmatrix:
 ```shell
-wget -q https://github.com/M4444/TMatrix/releases/download/v1.3/installation.tar.gz
+wget -q https://github.com/M4444/TMatrix/releases/download/v1.4/installation.tar.gz
 tar -zxvf installation.tar.gz
 cd installation
 sudo ./install.sh
