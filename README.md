@@ -36,15 +36,14 @@ nix-env -f '<nixpkgs>' -iA tmatrix
 ### Install on openSUSE Linux
 
 The package can be installed from the community repo:
-#### For openSUSE Tumbleweed
+#### Note: if you are using Leap insted of Tubleweed uncomment your version of Leap and delete the others.
 ```shell
-zypper addrepo https://download.opensuse.org/repositories/home:kosmonaut2000/openSUSE_Tumbleweed/home:kosmonaut2000.repo
-zypper refresh
-zypper install TMatrix
-```
-#### For openSUSE Leap 15.2
-```shell
-zypper addrepo https://download.opensuse.org/repositories/home:kosmonaut2000/openSUSE_Leap_15.2/home:kosmonaut2000.repo
+DISTRIBUTION=Tumbleweed
+#DISTRIBUTION=Leap_15.2
+#DISTRIBUTION=Leap_15.3
+#DISTRIBUTION=Leap_15.4
+
+zypper addrepo "https://download.opensuse.org/repositories/home:kosmonaut2001/openSUSE_${DISTRIBUTION}/home:kosmonaut2000.repo"
 zypper refresh
 zypper install TMatrix
 ```
