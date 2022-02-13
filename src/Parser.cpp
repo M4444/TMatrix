@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2021 Miloš Stojanović
+ * Copyright (C) 2018-2022 Miloš Stojanović
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
@@ -231,7 +231,7 @@ namespace Parser {
 		std::cout.precision(1);
 		std::cout << "tmatrix version " << std::fixed << VERSION_NUMBER << '\n';
 		std::cout << '\n';
-		std::cout << "Copyright (C) 2018-2021 Miloš Stojanović" << '\n';
+		std::cout << "Copyright (C) 2018-2022 Miloš Stojanović" << '\n';
 		std::cout << "SPDX-License-Identifier: GPL-2.0-only" << '\n';
 	}
 
