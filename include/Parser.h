@@ -126,6 +126,7 @@ namespace Parser {
 			{
 				"Set the range for the fall speed",
 				"The speeds can have decimal parts (e.g. 1.2)",
+				"with increment of 0.1",
 				"The maximal fall speed value is " + Rain::MAX_FALL_SPEED.to_string(),
 				"Default: " +
 					Rain::DEFAULT_PROPERTIES.RainColumnSpeed.GetMin().to_string() + ',' +

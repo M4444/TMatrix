@@ -351,7 +351,11 @@ namespace Parser {
 
 		auto pointPlace {value.find('.')};
 		if (pointPlace == 0) {
-			FractionPart = ReturnValidNumber(value.substr(pointPlace + 1));
+			std::string_view FractionPartString {value.substr(pointPlace + 1)};
+			if (FractionPartString.length() > 1) {
+				throw std::invalid_argument("Fractional part is too long.");
+			}
+			FractionPart = ReturnValidNumber(FractionPartString);
 		}
 		else if (pointPlace == value.length() - 1) {
 			IntegerPart = ReturnValidNumber(value.substr(0, pointPlace));
@@ -361,7 +365,12 @@ namespace Parser {
 		}
 		else {
 			IntegerPart = ReturnValidNumber(value.substr(0, pointPlace));
-			FractionPart = ReturnValidNumber(value.substr(pointPlace + 1));
+
+			std::string_view FractionPartString {value.substr(pointPlace + 1)};
+			if (FractionPartString.length() > 1) {
+				throw std::invalid_argument("Fractional part is too long.");
+			}
+			FractionPart = ReturnValidNumber(FractionPartString);
 		}
 		return {IntegerPart, FractionPart};
 	}
