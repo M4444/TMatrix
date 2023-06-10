@@ -1,4 +1,4 @@
-# Copyright (C) 2018-2022 Miloš Stojanović
+# Copyright (C) 2018-2023 Miloš Stojanović
 #
 # SPDX-License-Identifier: GPL-2.0-only
 #
