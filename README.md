@@ -22,12 +22,6 @@ such as [`yay`](https://aur.archlinux.org/packages/yay/):
 yay -S tmatrix-git
 ```
 
-### Install on Gentoo Linux
-```shell
-eselect repository enable bright
-emerge --ask tmatrix
-```
-
 ### Install on any Nix system
 ```shell
 nix-env -f '<nixpkgs>' -iA tmatrix
@@ -36,11 +30,12 @@ nix-env -f '<nixpkgs>' -iA tmatrix
 ### Install on openSUSE Linux
 
 The package can be installed from the community repo:
-#### Note: if you are using Leap insted of Tubleweed uncomment your version of Leap and delete the others.
+#### Note: if you are using other versions insted of Tubleweed uncomment the one you're using and delete the others.
 ```shell
 DISTRIBUTION=Tumbleweed
+#DISTRIBUTION=Slowroll
+#DISTRIBUTION=Leap_15.6
 #DISTRIBUTION=Leap_15.5
-#DISTRIBUTION=Leap_15.4
 
 zypper addrepo "https://download.opensuse.org/repositories/home:kosmonaut2001/openSUSE_${DISTRIBUTION}/home:kosmonaut2000.repo"
 zypper refresh
