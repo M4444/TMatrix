@@ -43,10 +43,10 @@ zypper install TMatrix
 ```
 
 ### Download and install on other GNU/Linux distributions
-The prebuilt TMatrix uses **version 5** of the ncurses library.
+The prebuilt TMatrix uses **version 6** of the ncurses library.
 To install the library on Ubuntu or Debian run:
 ```shell
-sudo apt-get install libncurses5
+sudo apt-get install libncurses-dev
 ```
 Now that you have the required library you can install and run tmatrix:
 ```shell

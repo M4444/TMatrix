@@ -20,6 +20,7 @@ set(CMAKE_EXE_LINKER_FLAGS "-pthread")
 
 # Add the required ncurses library.
 set(CURSES_NEED_NCURSES TRUE)
+set(CURSES_MINIMUM_VERSION 6)
 find_package(Curses REQUIRED)
 link_libraries(${CURSES_LIBRARIES})
 
