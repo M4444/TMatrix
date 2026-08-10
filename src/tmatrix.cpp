@@ -24,25 +24,30 @@ static std::atomic<bool> resizeTriggered {false};
 static std::condition_variable renderingConditionVariable;
 static std::mutex mutexOfRenderingConditionVariable;
 
+static std::shared_ptr<Terminal> MakeTerminal(const RainProperties &rainProperties)
+{
+	if (rainProperties.Fade) {
+		return std::make_shared<ColorTerminal<true>>(rainProperties.CharacterColor,
+							     rainProperties.BackgroundColor);
+	} else {
+		return std::make_shared<ColorTerminal<false>>(rainProperties.CharacterColor,
+							      rainProperties.BackgroundColor);
+	}
+}
+
+static std::shared_ptr<Rain> MakeRain(const RainProperties &rainProperties, Terminal *terminal)
+{
+	if (rainProperties.Fade) {
+		return std::make_shared<FadingRain>(rainProperties, terminal);
+	} else {
+		return std::make_shared<NonFadingRain>(rainProperties, terminal);
+	}
+}
+
 [[noreturn]] static void render(const RainProperties &rainProperties)
 {
-	Color color = rainProperties.CharacterColor;
-	Color background_color = rainProperties.BackgroundColor;
-	std::shared_ptr<Terminal> terminal {
-		rainProperties.Fade
-			? std::static_pointer_cast<Terminal>(
-				std::make_shared<ColorTerminal<true>>(color, background_color))
-			: std::static_pointer_cast<Terminal>(
-				std::make_shared<ColorTerminal<false>>(color, background_color))
-	};
-
-	std::shared_ptr<Rain> rain {
-		rainProperties.Fade
-			? std::static_pointer_cast<Rain>(
-				std::make_shared<FadingRain>(rainProperties, terminal.get()))
-			: std::static_pointer_cast<Rain>(
-				std::make_shared<NonFadingRain>(rainProperties, terminal.get()))
-	};
+	std::shared_ptr<Terminal> terminal {MakeTerminal(rainProperties)};
+	std::shared_ptr<Rain> rain {MakeRain(rainProperties, terminal.get())};
 	std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 	while (true) {
 		renderingConditionVariable.wait(mutexLock);
