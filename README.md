@@ -118,6 +118,7 @@ Thanks to:
 - [fosspill](https://github.com/fosspill) for correcting the name of the required ncurses library
 - [meskarune](https://github.com/meskarune) for the idea and helpful suggestions for creating the 'fade' and 'rainbow' options
 - [taschenlampe](https://github.com/taschenlampe) for creating a openSUSE Linux package and reporting an issue with the install script
+- [raviksharma](https://github.com/raviksharma) for the patch to append build flags in CMakeLists.txt
 
 ### License
 TMatrix is licensed under the `GPL-2.0-only` - see the [LICENSE](../master/LICENSE) file for details.
