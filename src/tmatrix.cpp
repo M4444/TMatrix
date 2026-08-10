@@ -44,10 +44,9 @@ static std::shared_ptr<Rain> MakeRain(const RainProperties &rainProperties, Term
 	}
 }
 
-[[noreturn]] static void render(const RainProperties &rainProperties)
+[[noreturn]] static void render(const RainProperties &rainProperties, Terminal *terminal)
 {
-	std::shared_ptr<Terminal> terminal {MakeTerminal(rainProperties)};
-	std::shared_ptr<Rain> rain {MakeRain(rainProperties, terminal.get())};
+	std::shared_ptr<Rain> rain {MakeRain(rainProperties, terminal)};
 	std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
 	while (true) {
 		renderingConditionVariable.wait(mutexLock);
@@ -71,7 +70,9 @@ int main(int argc, char *argv[])
 				     {stepsPerSecond, rainProperties, title})) {
 		std::signal(SIGWINCH, [](int) { resizeTriggered.store(true); });
 
-		std::thread rendering_thread([&]{ render(rainProperties); });
+		std::shared_ptr<Terminal> terminal {MakeTerminal(rainProperties)};
+
+		std::thread rendering_thread([&]{ render(rainProperties, terminal.get()); });
 
 		bool paused {false};
 		std::unique_lock<std::mutex> mutexLock(mutexOfRenderingConditionVariable);
