@@ -194,6 +194,7 @@ namespace Parser {
 					}
 					break;
 				}
+				break;
 			}
 			if (!matched) {
 				std::cout << "Unknown option: " << argument << '\n';
