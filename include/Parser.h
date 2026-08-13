@@ -46,7 +46,7 @@ namespace Parser {
 
 	//---Parser-functions---------------------------------------------------
 	bool StartsWith(std::string_view str, std::string_view prefix);
-	bool ParseCmdLineArgs(std::vector<std::string_view> arguments,
+	bool ParseCmdLineArgs(const std::vector<std::string_view>& arguments,
 			      const OutputVariables& out);
 	void PrintInvalidValue(std::string_view prefix, std::string_view suffix);
 

@@ -130,11 +130,11 @@ namespace Parser {
 		return (str.substr(0, prefix.length()) == prefix);
 	}
 
-	bool ParseCmdLineArgs(std::vector<std::string_view> arguments,
+	bool ParseCmdLineArgs(const std::vector<std::string_view>& arguments,
 			      const OutputVariables& out)
 	{
 		SetRainProperties("default", out.rainProperties);
-		for (decltype(arguments)::size_type i = 0; i < arguments.size(); i++) {
+		for (std::size_t i = 0; i < arguments.size(); i++) {
 			std::string_view argument {arguments[i]};
 
 			bool matched {false};
