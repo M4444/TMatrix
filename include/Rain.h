@@ -28,6 +28,7 @@ struct RainProperties {
 	Color CharacterColor;
 	Color BackgroundColor;
 	std::wstring_view Title;
+	bool PersistentTitle;
 };
 
 class Rain : public Active {
@@ -41,12 +42,12 @@ public:
 	static constexpr RainProperties DEFAULT_PROPERTIES {
 		{{0, 5}, {1, 5}}, {10, 30}, {0, 40}, {1, 30}, {10, 20},
 		true, Color::GetColor("green"), Color::GetColor("black"),
-		L" T M A T R I X "
+		L" T M A T R I X ", false
 	};
 	static constexpr RainProperties DENSE_PROPERTIES {
 		{1, 2}, {4, 9}, {4, 9}, {4, 20}, {5, 7},
 		false, Color::GetColor("green"), Color::GetColor("default"),
-		L" T M A T R I X "
+		L" T M A T R I X ", false
 	};
 	static constexpr DecimalFraction MAX_FALL_SPEED {10};
 	static constexpr int MIN_LENGTH {1};

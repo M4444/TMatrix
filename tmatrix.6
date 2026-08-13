@@ -1,4 +1,4 @@
-.TH TMatrix 6 "10 August 2026" "TMatrix Version 1.4"
+.TH TMatrix 6 "13 August 2026" "TMatrix Version 1.4"
 .SH NAME
 TMatrix \- Terminal based replica of the digital rain from The Matrix
 .SH SYNOPSIS
@@ -9,6 +9,7 @@ TMatrix \- Terminal based replica of the digital rain from The Matrix
         [-g RANGE | --gap=RANGE] [-l RANGE] [-r RANGE] [--fade]
         [--no-fade] [-C COLOR | --color=COLOR]
         [-c COLOR | --background=COLOR] [-t TEXT | --title=TEXT]
+        [--persistent-title] [--no-persistent-title]
 .fi
 .SH DESCRIPTION
 Simulates the digital rain effect from The Matrix.
@@ -95,6 +96,12 @@ Set the title that appears in the rain.
 \fINote\fR: the title needs to fit within the terminal window
 .br
 in order to be displayed.
+.TP 4
+\-\-persistent\-title
+Keep the title visible after it appears.
+.TP 4
+\-\-no\-persistent\-title
+Let the title fade into the rain. (Default)
 .PP
 RANGE is a pair of numbers separated by a comma: MIN,MAX.
 .br

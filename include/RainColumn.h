@@ -24,13 +24,15 @@ class RainColumn final : public Active, public HasTerminal {
 	int SpeedIndex;
 	CountdownTimer GapTimer;
 	wchar_t TitleChar;
+	bool PersistentTitle;
+	bool TitleRevealed {false};
 	const RainStreak *FirstRainStreak {nullptr};
 	bool CreatedRainStreak {false};
 	bool EmptyRainStreakSlot {true};
 	std::list<RainStreak> RainStreaks;
 public:
-	RainColumn(const Rain *R, unsigned X, DecimalFraction S, int G, wchar_t TC) :
-		rain{R}, x{X}, GapTimer{G}, TitleChar{TC}
+	RainColumn(const Rain *R, unsigned X, DecimalFraction S, int G, wchar_t TC, bool PT) :
+		rain{R}, x{X}, GapTimer{G}, TitleChar{TC}, PersistentTitle{PT}
 	{
 		GenerateSpeeds(S);
 		SpeedIndex = Random::Random(Speeds.size());

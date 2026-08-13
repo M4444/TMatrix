@@ -30,6 +30,8 @@ set tmatrix_long_options = (\
 	--color \
 	--background \
 	--title \
+	--persistent-title \
+	--no-persistent-title \
 )
 
 set tmatrix_modes = ( default dense )
@@ -57,10 +59,13 @@ complete tmatrix \
 	'n/--version/n/' \
 	'n/--fade/n/' \
 	'n/--no-fade/n/' \
+	'n/--persistent-title/n/' \
+	'n/--no-persistent-title/n/' \
 	'C/--h/(--help)/' \
 	'C/--v/(--version)/' \
 	'C/--f/(--fade)/' \
-	'C/--n/(--no-fade)/' \
+	'C/--n/(--no-fade --no-persistent-title)/' \
+	'C/--p/(--persistent-title)/' \
 	'C/--/$tmatrix_long_options/=/' \
 	'C/-/$tmatrix_short_options/' \
 	'p/*/n/' # don't complete file names and alike

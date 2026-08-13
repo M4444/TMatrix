@@ -464,4 +464,9 @@ namespace Parser {
 		}
 		rainProperties.Title = wtitle;
 	}
+	//---PERSISTENT-TITLE-----------------------------------------------------
+	void SetPersistentTitle(bool persistent, RainProperties &rainProperties)
+	{
+		rainProperties.PersistentTitle = persistent;
+	}
 }

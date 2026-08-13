@@ -85,6 +85,8 @@ namespace Parser {
 	void SetBackgroundColor(std::string_view color, RainProperties &rainProperties);
 	//---TITLE--------------------------------------------------------------
 	void SetTitle(std::string_view title, RainProperties& rainProperties, std::wstring& wtitle);
+	//---PERSISTENT-TITLE-----------------------------------------------------
+	void SetPersistentTitle(bool persistent, RainProperties &rainProperties);
 
 	const std::array Options {
 		Option{
@@ -248,6 +250,26 @@ namespace Parser {
 			[](std::string_view title, const OutputVariables& out)
 			{
 				SetTitle(title, out.rainProperties, out.title);
+			}
+		},
+		Option{
+			BOOL, "", "--persistent-title",
+			{
+				"Keep the title visible after it appears"
+			},
+			[](std::string_view, const OutputVariables& out)
+			{
+				SetPersistentTitle(true, out.rainProperties);
+			}
+		},
+		Option{
+			BOOL, "", "--no-persistent-title",
+			{
+				"Let the title fade into the rain (Default)"
+			},
+			[](std::string_view, const OutputVariables& out)
+			{
+				SetPersistentTitle(false, out.rainProperties);
 			}
 		}
 	};
