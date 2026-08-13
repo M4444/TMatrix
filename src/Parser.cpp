@@ -188,8 +188,8 @@ namespace Parser {
 					} catch (const std::range_error&) {
 						std::cout << "Invalid values '" << suffix;
 						std::cout << "' specified for " << prefix << '\n';
-						std::cout << "The first value must be";
-						std::cout << " greater than the second." << '\n';
+						std::cout << "MIN must not be";
+						std::cout << " greater than MAX." << '\n';
 						return false;
 					}
 					break;
