@@ -35,7 +35,7 @@ class ColorTerminal : public Terminal {
 
 	std::vector<TCharType> ScreenBuffer;
 public:
-	ColorTerminal<F>(const Color& color, const Color& background_color);
+	ColorTerminal(const Color& color, const Color& background_color);
 
 	void Reset() final;
 	void Draw(unsigned x, unsigned y, const char *mchar, int colorShade) final;
