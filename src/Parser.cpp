@@ -295,7 +295,7 @@ namespace Parser {
 
 	void PrintUsageLine(const Option &option, std::size_t longestLiterals)
 	{
-		size_t gapSize {option.HasShortLiteral() ? SHORT_GAP_PREFIX : LONG_GAP_PREFIX};
+		std::size_t gapSize {option.HasShortLiteral() ? SHORT_GAP_PREFIX : LONG_GAP_PREFIX};
 		std::string line(gapSize, ' ');
 		line += option.GetLiterals();
 		line += std::string(longestLiterals-line.length(), ' ');
@@ -457,7 +457,7 @@ namespace Parser {
 		std::setlocale(LC_ALL, "en_US.utf8");
 		std::mbtowc(nullptr, nullptr, 0);
 		const char* ptr = title.data();
-		const size_t byte_len = title.length();
+		const std::size_t byte_len = title.length();
 		int len;
 		for (wchar_t wc; (len = std::mbtowc(&wc, ptr, byte_len)) > 0; ptr += len) {
 			wtitle.push_back(wc);

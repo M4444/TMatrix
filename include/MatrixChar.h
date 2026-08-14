@@ -16,10 +16,10 @@ class MatrixChar final : public Active, public HasTerminal {
 	const unsigned x;
 	const unsigned y;
 	CountdownTimer UpdateTimer;
-	size_t MCharIndex {GetRandomMCharIndex()};
+	std::size_t MCharIndex {GetRandomMCharIndex()};
 	int ColorShade {0};
 
-	static size_t GetRandomMCharIndex();
+	static std::size_t GetRandomMCharIndex();
 	void SetRandomMChar();
 	void Draw() const;
 	void Erase() const;

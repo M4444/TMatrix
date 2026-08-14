@@ -21,9 +21,9 @@ void Rain::Reset()
 {
 	// Create all the rain columns
 	unsigned numberOfColumns {terminal->GetNumberOfColumns()};
-	size_t titleLength {Properties.Title.length()};
+	std::size_t titleLength {Properties.Title.length()};
 
-	size_t titleCharIndex {0};
+	std::size_t titleCharIndex {0};
 	RainColumns.clear();
 	RainColumns.reserve(numberOfColumns);
 	for (unsigned i = 0; i < numberOfColumns; i++) {

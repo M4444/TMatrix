@@ -21,8 +21,9 @@ void RainColumn::GenerateSpeeds(DecimalFraction speed)
 	while (true) {
 		DecimalFraction integerSpeed {speedAproximation.GetFloor()};
 		Speeds.emplace_back(integerSpeed.GetIntegerPart());
-		if (integerSpeed == speedAproximation)
+		if (integerSpeed == speedAproximation) {
 			return;
+		}
 		sumOfIntegerSpeeds += integerSpeed;
 		trueSum += speed;
 		speedAproximation = trueSum - sumOfIntegerSpeeds;
