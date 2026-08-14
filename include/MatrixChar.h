@@ -34,6 +34,7 @@ public:
 		"8", "9", "Z", ":", ".", "･", "=", "*", "+", "-",
 		"<", ">", "¦", "|", "╌", " ", "\""
 	};
+	static constexpr char EMPTY_MCHAR[MCHAR_SIZE+1] {" "};
 
 	MatrixChar(unsigned X, unsigned Y, int UpdateRate, int UpdateTime) : x{X}, y{Y},
 		UpdateTimer{UpdateRate, UpdateTime} {
@@ -43,14 +44,14 @@ public:
 		Erase();
 	}
 
-	static const char *GetMChar(std::size_t index)
+	static constexpr const char *GetMChar(std::size_t index)
 	{
 		return ALL_MCHARS[index];
 	}
 
-	static const char *GetEmptyMChar()
+	static constexpr const char *GetEmptyMChar()
 	{
-		return ALL_MCHARS[ALL_MCHARS_LENGTH-2];
+		return EMPTY_MCHAR;
 	}
 
 	unsigned GetVerticalOffset(unsigned verticalPosition) {
